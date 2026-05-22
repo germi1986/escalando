@@ -1,3 +1,74 @@
+type ProblemIconName = 'clock' | 'userLost' | 'search' | 'repeat' | 'chat' | 'chart';
+
+function ProblemIcon({ name }: { name: ProblemIconName }) {
+  const common = {
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 2.2,
+    strokeLinecap: 'round' as const,
+    strokeLinejoin: 'round' as const,
+  };
+
+  return (
+    <svg viewBox="0 0 48 48" className="h-9 w-9 text-emerald-300 drop-shadow-[0_0_14px_rgba(110,231,183,0.55)]" aria-hidden="true">
+      {name === 'clock' && (
+        <>
+          <circle cx="24" cy="24" r="15" {...common} />
+          <path d="M24 14v11l7 4" {...common} />
+          <path d="M36 35c3-3 5-7 5-11" {...common} className="opacity-45" />
+          <path d="M39 39h.01" {...common} className="opacity-45" />
+        </>
+      )}
+
+      {name === 'userLost' && (
+        <>
+          <circle cx="21" cy="16" r="7" {...common} />
+          <path d="M9 37c2-8 7-12 14-12" {...common} />
+          <path d="M32 29l8 8" {...common} />
+          <path d="M40 29l-8 8" {...common} />
+        </>
+      )}
+
+      {name === 'search' && (
+        <>
+          <circle cx="21" cy="21" r="13" {...common} />
+          <path d="M31 31l9 9" {...common} />
+          <path d="M34 13h4" {...common} className="opacity-50" />
+          <path d="M37 10v6" {...common} className="opacity-50" />
+        </>
+      )}
+
+      {name === 'repeat' && (
+        <>
+          <path d="M15 14h15c5 0 9 4 9 9" {...common} />
+          <path d="M31 7l8 7-8 7" {...common} />
+          <path d="M33 34H18c-5 0-9-4-9-9" {...common} />
+          <path d="M17 41l-8-7 8-7" {...common} />
+        </>
+      )}
+
+      {name === 'chat' && (
+        <>
+          <path d="M10 14c0-4 4-7 9-7h10c5 0 9 3 9 7v9c0 4-4 7-9 7H20l-10 8v-24Z" {...common} />
+          <path d="M18 19h.01M24 19h.01M30 19h.01" {...common} />
+          <circle cx="36" cy="12" r="8" className="fill-emerald-300 text-emerald-300" />
+          <text x="36" y="15" textAnchor="middle" className="fill-[#052e1a] text-[8px] font-black">99+</text>
+        </>
+      )}
+
+      {name === 'chart' && (
+        <>
+          <path d="M10 38h28" {...common} />
+          <path d="M13 38V20h7v18" {...common} />
+          <path d="M24 38V13h7v25" {...common} />
+          <path d="M35 38V27h7v11" {...common} />
+          <path d="M12 11c8 0 11 10 18 10 5 0 8-4 11-8" {...common} className="opacity-70" />
+        </>
+      )}
+    </svg>
+  );
+}
+
 export default function EscalandoLabsLanding() {
   return (
     <div className="min-h-screen bg-[#050505] text-white overflow-hidden font-sans">
@@ -152,21 +223,54 @@ export default function EscalandoLabsLanding() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
             {[
-              'Respuestas tardías',
-              'Clientes olvidados',
-              'Seguimientos inexistentes',
-              'Consultas repetidas',
-              'WhatsApp saturado',
-              'Cero organización comercial',
+              {
+                title: 'Respuestas tardías',
+                text: 'Cada minuto que pasa, es una venta que se enfría.',
+                icon: 'clock' as const,
+              },
+              {
+                title: 'Clientes olvidados',
+                text: 'Leads que preguntaron una vez y nunca más volvieron.',
+                icon: 'userLost' as const,
+              },
+              {
+                title: 'Seguimientos inexistentes',
+                text: 'Sin seguimiento, las oportunidades desaparecen.',
+                icon: 'search' as const,
+              },
+              {
+                title: 'Consultas repetidas',
+                text: 'Las mismas preguntas, una y otra vez.',
+                icon: 'repeat' as const,
+              },
+              {
+                title: 'WhatsApp saturado',
+                text: 'Conversaciones desordenadas y equipos colapsados.',
+                icon: 'chat' as const,
+              },
+              {
+                title: 'Cero organización comercial',
+                text: 'Sin datos, sin métricas, sin crecimiento.',
+                icon: 'chart' as const,
+              },
             ].map((item, index) => (
               <div
                 key={index}
-                className="rounded-3xl border border-white/10 bg-white/[0.02] p-8 hover:bg-white/[0.04] hover:-translate-y-1 transition-all duration-300"
+                className="group relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.025] p-7 min-h-[220px] hover:border-emerald-400/30 hover:bg-white/[0.045] hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/10 mb-6" />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_20%_10%,rgba(52,211,153,0.14),transparent_35%)]" />
+                <div className="relative z-10">
+                  <div className="w-20 h-20 rounded-3xl bg-emerald-500/[0.08] border border-emerald-400/15 shadow-[inset_0_0_22px_rgba(52,211,153,0.12),0_0_26px_rgba(52,211,153,0.08)] flex items-center justify-center mb-7">
+                    <ProblemIcon name={item.icon} />
+                  </div>
 
-                <div className="text-2xl font-medium text-white/90 leading-snug">
-                  {item}
+                  <h3 className="text-2xl font-semibold text-white/95 tracking-[-0.03em] leading-snug">
+                    {item.title}
+                  </h3>
+
+                  <p className="mt-3 text-lg leading-relaxed text-white/55 max-w-sm">
+                    {item.text}
+                  </p>
                 </div>
               </div>
             ))}
