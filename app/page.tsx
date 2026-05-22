@@ -515,7 +515,83 @@ export default function EscalandoLabsLanding() {
           </div>
         </div>
       </section>
+      ```tsx
+<section className="relative mx-auto mt-32 max-w-6xl px-6">
+  <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(34,197,94,0.08),transparent_70%)]" />
 
+  <div className="mb-14 text-center">
+    <p className="mb-3 text-sm uppercase tracking-[0.25em] text-green-400/70">
+      Infraestructura conversacional
+    </p>
+
+    <h2 className="text-4xl font-semibold tracking-tight text-white md:text-5xl">
+      Más que un chatbot
+    </h2>
+
+    <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-zinc-400">
+      Escalando Labs combina IA, automatización y lógica comercial
+      para construir sistemas conversacionales realmente útiles para negocios.
+    </p>
+  </div>
+
+  <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl">
+    <div className="grid grid-cols-3 border-b border-white/10 bg-white/[0.02] px-6 py-5 text-sm font-medium text-zinc-400">
+      <div>Capacidades</div>
+      <div className="text-center">Automatizaciones tradicionales</div>
+      <div className="text-center text-green-400">Escalando Labs</div>
+    </div>
+
+    {[
+      ["Respuestas automáticas", true, true],
+      ["Conversaciones naturales", false, true],
+      ["Memoria persistente", false, true],
+      ["Detección de intención", false, true],
+      ["Follow-ups inteligentes", false, true],
+      ["Clasificación de clientes", false, true],
+      ["Scoring automático", false, true],
+      ["Integraciones a medida", false, true],
+      ["Automatización comercial real", false, true],
+    ].map(([label, oldWay, escalando], index) => (
+      <div
+        key={label as string}
+        className={`grid grid-cols-3 items-center px-6 py-5 transition-colors duration-300 hover:bg-white/[0.03] ${
+          index !== 8 ? "border-b border-white/5" : ""
+        }`}
+      >
+        <div className="text-sm text-zinc-200 md:text-base">
+          {label as string}
+        </div>
+
+        <div className="flex justify-center">
+          {oldWay ? (
+            <span className="text-zinc-500">✓</span>
+          ) : (
+            <span className="text-zinc-700">✕</span>
+          )}
+        </div>
+
+        <div className="flex justify-center">
+          {escalando ? (
+            <span className="text-green-400">✓</span>
+          ) : (
+            <span className="text-zinc-700">✕</span>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div className="mt-16 text-center">
+    <p className="text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
+      No automatizamos respuestas.
+    </p>
+
+    <p className="mt-3 text-3xl font-semibold leading-tight tracking-tight text-green-400 md:text-5xl">
+      Automatizamos procesos comerciales.
+    </p>
+  </div>
+</section>
+      
       {/* RUBROS */}
       <section>
         <div className="max-w-7xl mx-auto px-6 py-28">
