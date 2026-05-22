@@ -591,6 +591,117 @@ export default function EscalandoLabsLanding() {
     </p>
   </div>
 </section>
+
+      ```tsx id="g3d0a6"
+{/* IMPLEMENTACIÓN */}
+<section className="relative mx-auto max-w-7xl px-6 py-28">
+  <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(34,197,94,0.06),transparent_70%)]" />
+
+  <div className="max-w-3xl">
+    <div className="text-emerald-400 text-sm tracking-[0.3em] uppercase mb-5">
+      Implementación
+    </div>
+
+    <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-white leading-tight">
+      Sistemas adaptados
+      <br />
+      a cada negocio.
+    </h2>
+
+    <p className="mt-6 text-zinc-400 text-lg leading-relaxed">
+      Escalando Labs implementa automatización comercial e infraestructura IA
+      según el nivel de complejidad y necesidades reales de cada operación.
+    </p>
+  </div>
+
+  <div className="mt-16 grid gap-6 md:grid-cols-3">
+
+    {/* STARTER */}
+    <div className="group rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-xl transition-all duration-300 hover:border-green-500/30 hover:bg-white/[0.05]">
+      <div className="mb-6 inline-flex rounded-2xl border border-green-500/20 bg-green-500/10 px-4 py-2 text-sm text-green-400">
+        Starter
+      </div>
+
+      <h3 className="text-2xl font-semibold text-white">
+        Atención IA inteligente
+      </h3>
+
+      <div className="mt-8 space-y-4 text-zinc-400">
+        <div>✓ Conversaciones automatizadas</div>
+        <div>✓ Seguimiento básico</div>
+        <div>✓ Integración WhatsApp</div>
+        <div>✓ Automatización inicial</div>
+      </div>
+
+      <div className="mt-10 border-t border-white/10 pt-6">
+        <div className="text-sm uppercase tracking-[0.2em] text-zinc-500">
+          Implementación
+        </div>
+
+        <div className="mt-2 text-2xl font-semibold text-green-400">
+          3–5 días
+        </div>
+      </div>
+    </div>
+
+    {/* GROWTH */}
+    <div className="group rounded-3xl border border-green-500/20 bg-green-500/[0.06] p-8 backdrop-blur-xl transition-all duration-300 hover:border-green-400/40 hover:bg-green-500/[0.08]">
+      <div className="mb-6 inline-flex rounded-2xl border border-green-500/30 bg-green-500/10 px-4 py-2 text-sm text-green-400">
+        Growth
+      </div>
+
+      <h3 className="text-2xl font-semibold text-white">
+        Automatización comercial
+      </h3>
+
+      <div className="mt-8 space-y-4 text-zinc-300">
+        <div>✓ Scoring automático</div>
+        <div>✓ Recuperación de clientes</div>
+        <div>✓ Integraciones avanzadas</div>
+        <div>✓ Follow-ups inteligentes</div>
+      </div>
+
+      <div className="mt-10 border-t border-white/10 pt-6">
+        <div className="text-sm uppercase tracking-[0.2em] text-zinc-500">
+          Implementación
+        </div>
+
+        <div className="mt-2 text-2xl font-semibold text-green-400">
+          1–2 semanas
+        </div>
+      </div>
+    </div>
+
+    {/* INFRASTRUCTURE */}
+    <div className="group rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-xl transition-all duration-300 hover:border-green-500/30 hover:bg-white/[0.05]">
+      <div className="mb-6 inline-flex rounded-2xl border border-green-500/20 bg-green-500/10 px-4 py-2 text-sm text-green-400">
+        Infrastructure
+      </div>
+
+      <h3 className="text-2xl font-semibold text-white">
+        Sistemas personalizados
+      </h3>
+
+      <div className="mt-8 space-y-4 text-zinc-400">
+        <div>✓ Arquitectura a medida</div>
+        <div>✓ APIs y automatizaciones</div>
+        <div>✓ Flujos complejos</div>
+        <div>✓ Infraestructura escalable</div>
+      </div>
+
+      <div className="mt-10 border-t border-white/10 pt-6">
+        <div className="text-sm uppercase tracking-[0.2em] text-zinc-500">
+          Implementación
+        </div>
+
+        <div className="mt-2 text-2xl font-semibold text-green-400">
+          Personalizado
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
       
       {/* RUBROS */}
       <section>
