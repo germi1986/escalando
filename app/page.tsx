@@ -1,3 +1,7 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+
 type ProblemIconName = 'clock' | 'userLost' | 'search' | 'repeat' | 'chat' | 'chart';
 
 function ProblemIcon({ name }: { name: ProblemIconName }) {
@@ -69,9 +73,185 @@ function ProblemIcon({ name }: { name: ProblemIconName }) {
   );
 }
 
+
+type SolutionIconName = 'brain' | 'human' | 'target' | 'score' | 'followup' | 'integration';
+
+type DynamicCapability = {
+  icon: SolutionIconName;
+  title: string;
+  text: string;
+};
+
+function SolutionIcon({ name, className = 'h-8 w-8' }: { name: SolutionIconName; className?: string }) {
+  const common = {
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 2.2,
+    strokeLinecap: 'round' as const,
+    strokeLinejoin: 'round' as const,
+  };
+
+  return (
+    <svg viewBox="0 0 48 48" className={`${className} text-emerald-300 drop-shadow-[0_0_16px_rgba(110,231,183,0.5)]`} aria-hidden="true">
+      {name === 'brain' && (
+        <>
+          <path d="M18 10c-5 0-9 4-9 9 0 2 .7 3.8 2 5.2A8.5 8.5 0 0 0 9 30c0 5 4 9 9 9 3 0 5.3-1.2 7-3.2 1.7 2 4 3.2 7 3.2 5 0 9-4 9-9 0-2.2-.8-4.2-2.2-5.8A8.1 8.1 0 0 0 40 19c0-5-4-9-9-9-2.8 0-5.1 1.2-6.8 3.2C22.6 11.2 20.4 10 18 10Z" {...common} />
+          <path d="M18 18c3 0 5 2 5 5M30 18c-3 0-5 2-5 5M18 30c3 0 5-2 5-5M30 30c-3 0-5-2-5-5" {...common} className="opacity-60" />
+        </>
+      )}
+      {name === 'human' && (
+        <>
+          <path d="M9 24c0-8 6.5-14 15-14s15 6 15 14-6.5 14-15 14c-2.8 0-5.4-.6-7.5-1.8L9 39l2.6-7.1A14 14 0 0 1 9 24Z" {...common} />
+          <path d="M17 22h.01M24 22h.01M31 22h.01" {...common} />
+          <path d="M18 29c3.5 2.6 8.5 2.6 12 0" {...common} className="opacity-70" />
+        </>
+      )}
+      {name === 'target' && (
+        <>
+          <circle cx="24" cy="24" r="15" {...common} />
+          <circle cx="24" cy="24" r="8" {...common} className="opacity-65" />
+          <circle cx="24" cy="24" r="2" className="fill-emerald-300" />
+          <path d="M35 13l6-6M34 8h7v7" {...common} />
+        </>
+      )}
+      {name === 'score' && (
+        <>
+          <path d="M10 37h28" {...common} />
+          <path d="M14 37V25h6v12M22 37V17h6v20M30 37V10h6v27" {...common} />
+          <path d="M11 14c7 0 9 8 15 8 5 0 8-4 12-10" {...common} className="opacity-60" />
+        </>
+      )}
+      {name === 'followup' && (
+        <>
+          <path d="M15 13h16c5 0 9 4 9 9s-4 9-9 9H20" {...common} />
+          <path d="M27 6l-8 7 8 7" {...common} />
+          <path d="M33 38H17c-5 0-9-4-9-9s4-9 9-9h11" {...common} className="opacity-55" />
+        </>
+      )}
+      {name === 'integration' && (
+        <>
+          <rect x="8" y="8" width="12" height="12" rx="4" {...common} />
+          <rect x="28" y="8" width="12" height="12" rx="4" {...common} />
+          <rect x="8" y="28" width="12" height="12" rx="4" {...common} />
+          <rect x="28" y="28" width="12" height="12" rx="4" {...common} />
+          <path d="M20 14h8M14 20v8M34 20v8M20 34h8" {...common} className="opacity-65" />
+        </>
+      )}
+    </svg>
+  );
+}
+
+function DynamicSolutionCard() {
+  const capabilities: DynamicCapability[] = [
+    {
+      icon: 'brain',
+      title: 'Memoria persistente',
+      text: 'Recuerda contexto, historial y continuidad comercial de cada conversación.',
+    },
+    {
+      icon: 'human',
+      title: 'Atención IA humanizada',
+      text: 'Responde de forma natural, cercana y coherente, sin sensación de bot genérico.',
+    },
+    {
+      icon: 'target',
+      title: 'Contexto persistente',
+      text: 'Entiende en qué punto está cada cliente y qué necesita para avanzar.',
+    },
+    {
+      icon: 'score',
+      title: 'Scoring automático',
+      text: 'Clasifica interés, urgencia y probabilidad de compra en tiempo real.',
+    },
+    {
+      icon: 'followup',
+      title: 'Conversaciones que parecen humanas',
+      text: 'Automatiza seguimiento sin perder timing, tono ni continuidad.',
+    },
+    {
+      icon: 'integration',
+      title: 'Acciones conectadas',
+      text: 'Registra datos, actualiza planillas, dispara eventos y organiza el proceso comercial.',
+    },
+  ];
+
+  const [activeIndex, setActiveIndex] = useState(0);
+  const active = capabilities[activeIndex];
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % capabilities.length);
+    }, 3200);
+
+    return () => window.clearInterval(interval);
+  }, [capabilities.length]);
+
+  return (
+    <div className="group relative overflow-hidden rounded-[32px] border border-emerald-400/20 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.16),transparent_36%),linear-gradient(135deg,rgba(255,255,255,0.055),rgba(255,255,255,0.018))] backdrop-blur-xl p-10 min-h-[330px] hover:border-emerald-300/35 hover:-translate-y-1 transition-all duration-500 shadow-[0_0_60px_rgba(16,185,129,0.05)]">
+      <div className="absolute inset-0 opacity-60 bg-[linear-gradient(to_right,rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:42px_42px]" />
+      <div className="absolute -right-20 -top-20 h-48 w-48 rounded-full bg-emerald-400/10 blur-3xl group-hover:bg-emerald-400/15 transition-colors" />
+
+      <div className="relative z-10">
+        <div className="flex items-start justify-between gap-6">
+          <div className="w-16 h-16 rounded-3xl border border-emerald-400/20 bg-emerald-400/[0.08] shadow-[inset_0_0_24px_rgba(52,211,153,0.14),0_0_34px_rgba(52,211,153,0.1)] flex items-center justify-center">
+            <SolutionIcon name={active.icon} />
+          </div>
+
+          <div className="flex gap-1.5 pt-2">
+            {capabilities.map((_, index) => (
+              <button
+                key={index}
+                type="button"
+                aria-label={`Ver capacidad ${index + 1}`}
+                onClick={() => setActiveIndex(index)}
+                className={`h-1.5 rounded-full transition-all duration-500 ${
+                  index === activeIndex ? 'w-7 bg-emerald-300 shadow-[0_0_14px_rgba(110,231,183,0.7)]' : 'w-1.5 bg-white/20 hover:bg-white/40'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-8 text-emerald-300/70 text-xs tracking-[0.28em] uppercase">
+          Núcleo conversacional IA
+        </div>
+
+        <h3 className="mt-4 text-3xl font-medium tracking-[-0.035em] leading-tight">
+          Atención IA con contexto persistente
+        </h3>
+
+        <div key={activeIndex} className="mt-8 animate-[capabilityIn_520ms_ease-out]">
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/15 bg-emerald-400/[0.07] px-4 py-2 text-sm text-emerald-200/90">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-300 shadow-[0_0_12px_rgba(110,231,183,0.9)]" />
+            {active.title}
+          </div>
+
+          <p className="mt-5 text-white/62 text-lg leading-relaxed max-w-xl">
+            {active.text}
+          </p>
+        </div>
+
+        <div className="mt-9 h-1 overflow-hidden rounded-full bg-white/10">
+          <div key={`bar-${activeIndex}`} className="h-full rounded-full bg-emerald-300 animate-[progressWidth_3200ms_linear] shadow-[0_0_14px_rgba(110,231,183,0.7)]" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function EscalandoLabsLanding() {
   return (
     <div className="min-h-screen bg-[#050505] text-white overflow-hidden font-sans">
+      <style>{`
+        @keyframes capabilityIn {
+          0% { opacity: 0; transform: translateY(14px) scale(0.985); filter: blur(6px); }
+          100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+        @keyframes progressWidth {
+          0% { width: 0%; }
+          100% { width: 100%; }
+        }
+      `}</style>
       {/* BACKGROUND */}
       <div className="fixed inset-0 pointer-events-none animate-pulse">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(34,197,94,0.12),transparent_35%)]" />
@@ -292,37 +472,44 @@ export default function EscalandoLabsLanding() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 mt-16">
+            <DynamicSolutionCard />
+
             {[
               {
-                title: 'Atención automática con IA',
-                text: 'Respondemos consultas de forma natural, rápida y humana, incluso fuera de horario.',
-              },
-              {
                 title: 'Seguimiento inteligente',
-                text: 'Reactivamos clientes y retomamos conversaciones automáticamente.',
+                text: 'Reactivamos clientes y retomamos conversaciones automáticamente cuando detectamos oportunidad.',
+                icon: 'followup' as const,
               },
               {
                 title: 'Clasificación y scoring',
-                text: 'Detectamos interés, intención y organizamos conversaciones.',
+                text: 'Detectamos interés, intención y probabilidad de compra para ordenar conversaciones.',
+                icon: 'score' as const,
               },
               {
                 title: 'Integraciones a medida',
-                text: 'Conectamos WhatsApp con Sheets, pagos, CRMs y APIs.',
+                text: 'Conectamos WhatsApp con Sheets, pagos, CRMs, eventos de Meta y APIs.',
+                icon: 'integration' as const,
               },
             ].map((card, index) => (
               <div
                 key={index}
-                className="rounded-[32px] border border-white/10 bg-black/60 backdrop-blur-xl p-10 hover:border-emerald-500/20 hover:bg-white/[0.03] transition-all duration-500 hover:-translate-y-1"
+                className="group relative overflow-hidden rounded-[32px] border border-white/10 bg-black/60 backdrop-blur-xl p-10 min-h-[330px] hover:border-emerald-500/25 hover:bg-white/[0.03] transition-all duration-500 hover:-translate-y-1"
               >
-                <div className="w-14 h-14 rounded-2xl border border-emerald-500/10 bg-emerald-500/[0.08] mb-8" />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_15%_10%,rgba(52,211,153,0.13),transparent_34%)]" />
 
-                <h3 className="text-3xl font-medium tracking-[-0.03em] mb-5">
-                  {card.title}
-                </h3>
+                <div className="relative z-10">
+                  <div className="w-16 h-16 rounded-3xl border border-emerald-500/15 bg-emerald-500/[0.08] mb-8 flex items-center justify-center shadow-[inset_0_0_22px_rgba(52,211,153,0.1)]">
+                    <SolutionIcon name={card.icon} />
+                  </div>
 
-                <p className="text-white/60 text-lg leading-relaxed">
-                  {card.text}
-                </p>
+                  <h3 className="text-3xl font-medium tracking-[-0.03em] mb-5">
+                    {card.title}
+                  </h3>
+
+                  <p className="text-white/60 text-lg leading-relaxed">
+                    {card.text}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
