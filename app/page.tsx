@@ -592,7 +592,6 @@ export default function EscalandoLabsLanding() {
   </div>
 </section>
 
-      ```tsx id="g3d0a6"
 {/* IMPLEMENTACIÓN */}
 <section className="relative mx-auto max-w-7xl px-6 py-28">
   <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(34,197,94,0.06),transparent_70%)]" />
