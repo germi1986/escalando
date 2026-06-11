@@ -4,11 +4,23 @@ import { useEffect, useState } from "react";
 
 type Theme = "dark" | "light";
 
+const storageKey = "escalando-theme";
+
+function getSystemTheme(): Theme {
+  if (typeof window === "undefined") return "dark";
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
 function getInitialTheme(): Theme {
   if (typeof window === "undefined") return "dark";
-  const saved = window.localStorage.getItem("escalando-theme");
+  const saved = window.localStorage.getItem(storageKey);
   if (saved === "dark" || saved === "light") return saved;
-  return "dark";
+  return getSystemTheme();
+}
+
+function applyTheme(theme: Theme) {
+  document.documentElement.dataset.theme = theme;
+  document.documentElement.style.colorScheme = theme;
 }
 
 function SunIcon({ active }: { active: boolean }) {
@@ -59,14 +71,29 @@ export default function ThemeToggle() {
 
   useEffect(() => {
     const initialTheme = getInitialTheme();
-    document.documentElement.dataset.theme = initialTheme;
+    applyTheme(initialTheme);
+
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleSystemThemeChange = (event: MediaQueryListEvent) => {
+      const saved = window.localStorage.getItem(storageKey);
+      if (saved === "dark" || saved === "light") return;
+
+      const systemTheme = event.matches ? "dark" : "light";
+      applyTheme(systemTheme);
+      setTheme(systemTheme);
+    };
+
+    mediaQuery.addEventListener("change", handleSystemThemeChange);
 
     const frame = window.requestAnimationFrame(() => {
       setTheme(initialTheme);
       setMounted(true);
     });
 
-    return () => window.cancelAnimationFrame(frame);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      mediaQuery.removeEventListener("change", handleSystemThemeChange);
+    };
   }, []);
 
   const isLight = mounted && theme === "light";
@@ -76,12 +103,12 @@ export default function ThemeToggle() {
     <button
       type="button"
       aria-label={`Cambiar a modo ${nextTheme === "dark" ? "noche" : "día"}`}
-      aria-pressed={isLight}
+      aria-pressed={!isLight}
       title={isLight ? "Cambiar a modo noche" : "Cambiar a modo día"}
       onClick={() => {
         setTheme(nextTheme);
-        document.documentElement.dataset.theme = nextTheme;
-        window.localStorage.setItem("escalando-theme", nextTheme);
+        applyTheme(nextTheme);
+        window.localStorage.setItem(storageKey, nextTheme);
       }}
       className="theme-toggle group relative inline-flex h-11 w-[5.7rem] items-center justify-between rounded-full border border-[var(--border-soft)] bg-[var(--surface-soft)] p-1 shadow-[var(--shadow-soft)] backdrop-blur-xl transition hover:border-[var(--border-strong)] focus:outline-none focus:ring-2 focus:ring-cyan-300/50"
     >

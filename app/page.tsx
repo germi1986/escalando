@@ -116,6 +116,29 @@ const solutionSteps = [
   },
 ];
 
+const customerCareUseCases = [
+  {
+    title: "Reclamos con contexto",
+    text: "El equipo puede ver historial, notas y estado de la conversación antes de responder, evitando empezar de cero cada vez.",
+    icon: "service",
+  },
+  {
+    title: "Cambios y devoluciones",
+    text: "La IA puede orientar con políticas simples y derivar a una persona cuando el caso necesita criterio o autorización.",
+    icon: "return",
+  },
+  {
+    title: "Postventa y seguimiento",
+    text: "No todo contacto es una venta inmediata. También sirve para acompañar, resolver dudas y sostener la relación con el cliente.",
+    icon: "clock",
+  },
+  {
+    title: "Derivación a humano",
+    text: "Cuando aparece enojo, urgencia o un caso sensible, el sistema ayuda a salir del piloto automático y pasar al equipo correcto.",
+    icon: "handoff",
+  },
+];
+
 const safeCampaigns = [
   "No vendemos spam ni promesas de miles de mensajes sin estrategia.",
   "Cuidamos horarios, frecuencia y reputación del número.",
@@ -402,6 +425,49 @@ function Glyph({ name }: { name: string }) {
     );
   }
 
+  if (name === "service") {
+    return (
+      <svg className={common} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M5 5.5h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-7l-4.5 3v-3H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Z" />
+        <path d="M8 10h8" />
+        <path d="M8 13h5" />
+        <path d="M17.5 18.5l2 2" />
+      </svg>
+    );
+  }
+
+  if (name === "return") {
+    return (
+      <svg className={common} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M9 7H6.5A2.5 2.5 0 0 0 4 9.5v7A2.5 2.5 0 0 0 6.5 19h10A3.5 3.5 0 0 0 20 15.5" />
+        <path d="M9 3 5 7l4 4" />
+        <path d="M5 7h10.5A4.5 4.5 0 0 1 20 11.5V12" />
+      </svg>
+    );
+  }
+
+  if (name === "clock") {
+    return (
+      <svg className={common} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
+        <path d="M12 7v5l3 2" />
+        <path d="M5.7 5.7 4.3 4.3" />
+        <path d="M18.3 5.7 19.7 4.3" />
+      </svg>
+    );
+  }
+
+  if (name === "handoff") {
+    return (
+      <svg className={common} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M7.5 12.5 10 15a2.4 2.4 0 0 0 3.4 0l3.1-3.1a2 2 0 0 0 0-2.8 2 2 0 0 0-2.8 0L12 10.8" />
+        <path d="M9.5 14.5 7.8 16.2a2 2 0 0 1-2.8 0 2 2 0 0 1 0-2.8L8 10.4" />
+        <path d="M14 6h5v5" />
+        <path d="m19 6-5.5 5.5" />
+      </svg>
+    );
+  }
+
   return (
     <svg className={common} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M7 11.5 11 15l6-7" />
@@ -504,6 +570,7 @@ export default function EscalandoLabsLanding() {
             <a className="transition hover:text-[var(--text-strong)]" href="#problema">Problema</a>
             <a className="transition hover:text-[var(--text-strong)]" href="#oportunidad">Oportunidad</a>
             <a className="transition hover:text-[var(--text-strong)]" href="#solucion">Solución</a>
+            <a className="transition hover:text-[var(--text-strong)]" href="#atencion">Atención</a>
             <a className="transition hover:text-[var(--text-strong)]" href="#planes">Planes</a>
           </nav>
 
@@ -702,6 +769,49 @@ export default function EscalandoLabsLanding() {
         </div>
       </section>
 
+      <section id="atencion" className="relative overflow-hidden border-y border-[var(--border-soft)] bg-[var(--section-soft)]">
+        <div className="absolute inset-0 opacity-50 [background-image:radial-gradient(circle_at_18%_20%,rgba(52,211,153,0.14),transparent_30%),radial-gradient(circle_at_82%_42%,rgba(34,211,238,0.14),transparent_28%)]" />
+        <div className="relative mx-auto grid max-w-7xl gap-12 px-5 py-24 lg:grid-cols-[0.95fr_1.05fr] lg:items-start lg:px-8 lg:py-28">
+          <Reveal className="lg:sticky lg:top-28">
+            <SectionLabel>Atención y postventa</SectionLabel>
+            <h2 className="text-4xl font-semibold leading-tight tracking-[-0.045em] text-[var(--text-strong)] md:text-6xl">
+              También sirve cuando el cliente no viene a comprar.
+            </h2>
+            <p className="mt-6 text-lg leading-8 text-[var(--text-secondary)]">
+              Reclamos, cambios, devoluciones, consultas posteriores y casos sensibles necesitan orden, contexto y derivación humana. WhatsApp no es solo venta: también es experiencia de cliente.
+            </p>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-flex items-center justify-center rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-soft)] px-6 py-3 text-sm font-bold text-[var(--text-strong)] transition hover:-translate-y-0.5 hover:border-[var(--border-strong)] hover:bg-[var(--surface-strong)]"
+            >
+              Mejorar mi atención por WhatsApp
+            </a>
+          </Reveal>
+
+          <div className="grid gap-5 sm:grid-cols-2">
+            {customerCareUseCases.map((item, index) => (
+              <Reveal
+                key={item.title}
+                delay={index * 85}
+                as="article"
+                className="group flex min-h-[245px] flex-col rounded-3xl border border-[var(--border-soft)] bg-[var(--panel)] p-6 shadow-[var(--shadow-soft)] transition hover:-translate-y-1 hover:border-[var(--border-strong)] hover:shadow-[var(--shadow-strong)]"
+              >
+                <div className="grid h-12 w-12 place-items-center rounded-2xl border border-emerald-400/20 bg-emerald-400/[0.08] text-[var(--brand-green)] shadow-[0_0_28px_rgba(52,211,153,0.10)]">
+                  <Glyph name={item.icon} />
+                </div>
+                <h3 className="mt-6 text-2xl font-semibold tracking-[-0.035em] text-[var(--text-strong)]">{item.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">{item.text}</p>
+                <div className="mt-auto pt-6 text-xs font-black uppercase tracking-[0.16em] text-[var(--brand-cyan)]">
+                  Atención con trazabilidad
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="border-y border-[var(--border-soft)] bg-[var(--section-soft)]">
         <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-28">
           <Reveal className="max-w-3xl">
@@ -711,15 +821,23 @@ export default function EscalandoLabsLanding() {
             </h2>
           </Reveal>
 
-          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-14 grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {selectedArguments.map((argument, index) => (
-              <Reveal key={argument.title} delay={index * 80} as="article" className={`rounded-3xl border border-[var(--border-soft)] bg-[var(--panel)] p-6 shadow-[var(--shadow-soft)] ${index < 2 ? "lg:col-span-2" : ""}`}>
-                <div className="grid h-12 w-12 place-items-center rounded-2xl border border-cyan-400/20 bg-cyan-400/[0.08] text-[var(--brand-cyan)]">
+              <Reveal
+                key={argument.title}
+                delay={index * 80}
+                as="article"
+                className="flex h-full min-h-[315px] flex-col rounded-3xl border border-[var(--border-soft)] bg-[var(--panel)] p-6 shadow-[var(--shadow-soft)] transition hover:-translate-y-1 hover:border-[var(--border-strong)] hover:shadow-[var(--shadow-strong)]"
+              >
+                <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-cyan-400/20 bg-cyan-400/[0.08] text-[var(--brand-cyan)]">
                   <Glyph name={argument.icon} />
                 </div>
-                <p className="mt-6 text-xs font-black uppercase tracking-[0.16em] text-[var(--brand-green)]">{argument.use}</p>
+                <p className="mt-6 min-h-10 text-xs font-black uppercase tracking-[0.16em] text-[var(--brand-green)]">{argument.use}</p>
                 <h3 className="mt-3 text-xl font-semibold tracking-[-0.035em] text-[var(--text-strong)]">{argument.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">{argument.text}</p>
+                <div className="mt-auto pt-6">
+                  <span className="inline-flex h-1.5 w-14 rounded-full bg-[linear-gradient(90deg,var(--brand-cyan),var(--brand-green))]" />
+                </div>
               </Reveal>
             ))}
           </div>
