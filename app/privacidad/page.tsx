@@ -119,7 +119,7 @@ export default function PrivacyPage() {
       subtitle="Cómo Escalando Labs recopila, usa, protege y administra datos en su plataforma."
     >
       <p className="rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-4 font-semibold text-[var(--text-strong)]">
-        Última actualización: [FECHA DE ÚLTIMA ACTUALIZACIÓN]
+        Última actualización: 11 de junio de 2026
       </p>
 
       <p>
