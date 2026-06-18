@@ -353,6 +353,9 @@ export default function DemoExperience() {
             <Link className="transition hover:text-[var(--text-strong)]" href="/contacto">
               Contacto
             </Link>
+            <Link className="transition hover:text-[var(--text-strong)]" href="/eliminacion-datos">
+              Eliminación de datos
+            </Link>
           </nav>
           <p>© {new Date().getFullYear()} Escalando Labs. WhatsApp comercial con IA y control humano.</p>
         </div>

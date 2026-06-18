@@ -1085,6 +1085,9 @@ export default function EscalandoLabsLanding() {
             <a className="transition hover:text-[var(--text-strong)]" href="/contacto">
               Contacto
             </a>
+            <a className="transition hover:text-[var(--text-strong)]" href="/eliminacion-datos">
+              Eliminación de datos
+            </a>
           </nav>
           <p>© {new Date().getFullYear()} Escalando Labs. Automatización comercial con IA para WhatsApp.</p>
         </div>

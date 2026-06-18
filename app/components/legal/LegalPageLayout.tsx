@@ -18,6 +18,7 @@ const legalLinks: LegalNavItem[] = [
   { href: "/privacidad", label: "Privacidad" },
   { href: "/terminos", label: "Términos" },
   { href: "/contacto", label: "Contacto" },
+  { href: "/eliminacion-datos", label: "Eliminación de datos" },
 ];
 
 export default function LegalPageLayout({
