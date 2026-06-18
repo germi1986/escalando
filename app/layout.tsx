@@ -43,6 +43,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  other: {
+    "facebook-domain-verification": "tbb7n7mei2yxobklfunj2iysvko2rc",
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
