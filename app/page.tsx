@@ -1075,6 +1075,17 @@ export default function EscalandoLabsLanding() {
       <footer className="border-t border-[var(--border-soft)] px-5 py-10 lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col gap-5 text-sm text-[var(--text-muted)] md:flex-row md:items-center md:justify-between">
           <BrandMark showLabel size="sm" />
+          <nav className="flex flex-wrap gap-x-5 gap-y-2" aria-label="Páginas legales">
+            <a className="transition hover:text-[var(--text-strong)]" href="/privacidad">
+              Privacidad
+            </a>
+            <a className="transition hover:text-[var(--text-strong)]" href="/terminos">
+              Términos
+            </a>
+            <a className="transition hover:text-[var(--text-strong)]" href="/contacto">
+              Contacto
+            </a>
+          </nav>
           <p>© {new Date().getFullYear()} Escalando Labs. Automatización comercial con IA para WhatsApp.</p>
         </div>
       </footer>
