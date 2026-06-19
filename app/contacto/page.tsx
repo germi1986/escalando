@@ -27,9 +27,12 @@ export default function ContactPage() {
           Para consultas comerciales, soporte, privacidad, seguridad o solicitudes relacionadas con
           datos personales, podés escribirnos a:
         </p>
-        <p className="rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-4 text-xl font-semibold text-[var(--text-strong)]">
+        <a
+          href="mailto:contacto@escalandolabs.com"
+          className="block rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-4 text-xl font-semibold text-[var(--text-strong)] transition hover:border-[var(--border-strong)]"
+        >
           contacto@escalandolabs.com
-        </p>
+        </a>
       </LegalSection>
 
       <LegalSection title="Información del servicio">

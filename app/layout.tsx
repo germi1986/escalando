@@ -3,6 +3,36 @@ import "./globals.css";
 import MarketingAnalytics from "./components/MarketingAnalytics";
 
 const siteUrl = "https://escalandolabs.com";
+const socialPreview = "/escalando-social-preview.png";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      name: "Escalando Labs",
+      url: siteUrl,
+      logo: `${siteUrl}/brand-icon.png`,
+      email: "contacto@escalandolabs.com",
+      areaServed: "AR",
+    },
+    {
+      "@type": "WebSite",
+      name: "Escalando Labs",
+      url: siteUrl,
+      inLanguage: "es-AR",
+    },
+    {
+      "@type": "SoftwareApplication",
+      name: "Escalando Labs",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      url: siteUrl,
+      description:
+        "Plataforma de IA comercial para WhatsApp con CRM, atención humana, recuperación de clientes y campañas responsables.",
+    },
+  ],
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -33,12 +63,21 @@ export const metadata: Metadata = {
     siteName: "Escalando Labs",
     locale: "es_AR",
     type: "website",
+    images: [
+      {
+        url: socialPreview,
+        width: 1200,
+        height: 630,
+        alt: "Escalando Labs: IA comercial para WhatsApp",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Escalando Labs | IA comercial para WhatsApp",
     description:
       "Atendé, ordená, recuperá y medí tus conversaciones comerciales de WhatsApp con IA y control humano.",
+    images: [socialPreview],
   },
   robots: {
     index: true,
@@ -67,6 +106,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es-AR" suppressHydrationWarning className="h-full scroll-smooth antialiased">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      </head>
       <body className="min-h-full bg-[var(--background)] font-sans text-[var(--text-primary)]">
         {children}
         <MarketingAnalytics />
