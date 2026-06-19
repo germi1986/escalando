@@ -130,18 +130,6 @@ html[data-theme="light"] .problem-card::after {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.74));
 }
 
-.reveal-card {
-  opacity: 0;
-  transform: translateY(22px) scale(0.985);
-  transition: opacity 680ms ease, transform 680ms ease, border-color 220ms ease, background-color 220ms ease,
-    box-shadow 220ms ease;
-}
-
-.reveal-card.is-visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
 .theme-toggle svg {
   filter: drop-shadow(0 1px 8px rgba(34, 211, 238, 0.08));
 }
@@ -261,10 +249,5 @@ html[data-theme="light"] .problem-card::after {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.001ms !important;
-  }
-
-  .reveal-card {
-    opacity: 1 !important;
-    transform: none !important;
   }
 }

@@ -12,8 +12,10 @@ type DemoStage = {
   clientMessage: string;
   aiReply: string;
   humanNote: string;
-  score: number;
-  conversion: number;
+  interest: string;
+  interestLevel: number;
+  priority: string;
+  priorityLevel: number;
   status: string;
   intent: string;
   segment: string;
@@ -21,8 +23,9 @@ type DemoStage = {
   events: string[];
 };
 
-const whatsappUrl =
-  "https://wa.me/5491153230859?text=Hola,%20vi%20la%20demo%20visual%20de%20Escalando%20Labs%20y%20quiero%20evaluarlo%20para%20mi%20negocio";
+const whatsappUrl = `https://wa.me/5491153230859?text=${encodeURIComponent(
+  "Hola, vi la demo visual de Escalando Labs y quiero evaluar mi caso.",
+)}`;
 
 const stages: DemoStage[] = [
   {
@@ -34,8 +37,10 @@ const stages: DemoStage[] = [
     aiReply:
       "Sí. Te puedo orientar con la promo vigente y, si querés, también revisar qué opción encaja mejor con tu compra anterior.",
     humanNote: "Cliente histórico detectado · 143 días sin comprar · ticket promedio alto",
-    score: 42,
-    conversion: 58,
+    interest: "Consulta inicial",
+    interestLevel: 1,
+    priority: "Seguimiento estándar",
+    priorityLevel: 1,
     status: "Conversación iniciada",
     intent: "Consulta comercial",
     segment: "Cliente recuperable",
@@ -51,8 +56,10 @@ const stages: DemoStage[] = [
     aiReply:
       "Perfecto. Tomo como referencia tu compra anterior y te muestro una opción directa. Si necesitás ajustar algo, lo derivo a una persona.",
     humanNote: "Intención alta · baja tolerancia a fricción · preferencia detectada",
-    score: 69,
-    conversion: 76,
+    interest: "Interés activo",
+    interestLevel: 2,
+    priority: "Priorizar respuesta",
+    priorityLevel: 2,
     status: "Lead calificado",
     intent: "Evaluación activa",
     segment: "Alta afinidad",
@@ -68,8 +75,10 @@ const stages: DemoStage[] = [
     aiReply:
       "Para no prometer algo incorrecto, te paso con una persona del equipo que puede confirmar stock, plazo y condiciones.",
     humanNote: "Derivación sugerida · oportunidad de cierre · requiere confirmación operativa",
-    score: 84,
-    conversion: 88,
+    interest: "Intención de cierre",
+    interestLevel: 3,
+    priority: "Atención humana",
+    priorityLevel: 3,
     status: "Listo para humano",
     intent: "Cierre posible",
     segment: "Oportunidad prioritaria",
@@ -85,8 +94,10 @@ const stages: DemoStage[] = [
     aiReply:
       "Listo. Dejo registrado el interés y programo el seguimiento para mañana con el detalle pendiente.",
     humanNote: "Follow-up programado · CRM actualizado · campaña futura habilitada",
-    score: 91,
-    conversion: 93,
+    interest: "Seguimiento programado",
+    interestLevel: 3,
+    priority: "Seguimiento prioritario",
+    priorityLevel: 3,
     status: "Seguimiento activo",
     intent: "Interés confirmado",
     segment: "Recuperación caliente",
@@ -111,17 +122,17 @@ const pipeline = [
   "CRM actualizado",
 ];
 
-function MetricBar({ label, value }: { label: string; value: number }) {
+function SignalMeter({ label, value, level }: { label: string; value: string; level: number }) {
   return (
     <div>
       <div className="mb-3 flex items-center justify-between gap-4">
         <span className="text-sm font-semibold text-[var(--text-secondary)]">{label}</span>
-        <span className="text-2xl font-semibold tracking-[-0.04em] text-[var(--text-strong)]">{value}%</span>
+        <span className="text-sm font-semibold text-[var(--text-strong)]">{value}</span>
       </div>
       <div className="h-2 overflow-hidden rounded-full bg-[var(--surface-strong)]">
         <div
           className="h-full rounded-full bg-[linear-gradient(90deg,var(--brand-cyan),var(--brand-green),var(--brand-magenta))] transition-all duration-700"
-          style={{ width: `${value}%` }}
+          style={{ width: `${level * 33.33}%` }}
         />
       </div>
     </div>
@@ -188,13 +199,16 @@ export default function DemoExperience() {
       <section className="relative z-10 mx-auto grid max-w-7xl gap-10 px-5 py-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:px-8 lg:py-16">
         <div>
           <p className="inline-flex rounded-full border border-[var(--border-soft)] bg-[var(--surface-soft)] px-4 py-2 text-xs font-black uppercase tracking-[0.2em] text-[var(--brand-cyan)]">
-            Demo visual · operación WhatsApp IA
+            Escenario ilustrativo · operación WhatsApp IA
           </p>
           <h1 className="mt-7 text-5xl font-semibold leading-[0.94] tracking-[-0.06em] text-[var(--text-strong)] md:text-7xl">
             Mirá cómo WhatsApp se convierte en sistema comercial.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--text-secondary)]">
             Una conversación entra. Escalando Labs la entiende, la ordena, la mide y activa el próximo paso sin perder control humano.
+          </p>
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-[var(--text-muted)]">
+            Es una simulación de flujo: no representa resultados, porcentajes ni datos de clientes.
           </p>
 
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -216,7 +230,7 @@ export default function DemoExperience() {
                 </div>
               </div>
               <p className="rounded-full border border-[var(--border-soft)] px-3 py-1 text-xs font-bold text-[var(--brand-cyan)]">
-                En vivo
+                Ejemplo
               </p>
             </div>
 
@@ -259,8 +273,8 @@ export default function DemoExperience() {
                 <p className="mt-4 text-sm leading-7 text-[var(--text-secondary)]">{stage.summary}</p>
 
                 <div className="mt-6 grid gap-4">
-                  <MetricBar label="Lead score" value={stage.score} />
-                  <MetricBar label="Probabilidad de conversión" value={stage.conversion} />
+                  <SignalMeter label="Señal de interés" value={stage.interest} level={stage.interestLevel} />
+                  <SignalMeter label="Prioridad de seguimiento" value={stage.priority} level={stage.priorityLevel} />
                 </div>
 
                 <div className="mt-6 grid gap-3 sm:grid-cols-2">

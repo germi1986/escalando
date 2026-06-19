@@ -3,8 +3,11 @@ import BrandMark from "./components/BrandMark";
 import Reveal from "./components/Reveal";
 import ThemeToggle from "./components/ThemeToggle";
 
-const whatsappUrl =
-  "https://wa.me/5491153230859?text=Hola,%20quiero%20una%20demo%20de%20Escalando%20Labs";
+const whatsappNumber = "5491153230859";
+
+function whatsappUrl(message: string) {
+  return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+}
 
 const trustBadges = [
   "IA + humano",
@@ -533,7 +536,7 @@ function HeroVisual() {
               </div>
               <div className="space-y-3">
                 {[
-                  ["Consultas ordenadas", "94%"],
+                  ["Conversaciones", "Con contexto"],
                   ["Campañas cuidadas", "Activo"],
                   ["Control humano", "OK"],
                 ].map(([label, value]) => (
@@ -575,15 +578,24 @@ export default function EscalandoLabsLanding() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <ThemeToggle />
             <a
-              href={whatsappUrl}
+              href="#planes"
+              className="hidden rounded-full border border-[var(--border-soft)] bg-[var(--surface-soft)] px-4 py-2 text-sm font-bold text-[var(--text-strong)] transition hover:border-[var(--border-strong)] sm:inline-flex lg:hidden"
+            >
+              Planes
+            </a>
+            <div className="hidden md:block">
+              <ThemeToggle />
+            </div>
+            <a
+              href={whatsappUrl("Hola, quiero hablar con Escalando Labs sobre mi operación de WhatsApp.")}
               target="_blank"
               rel="noopener noreferrer"
-              data-analytics-location="header_demo"
-              className="hidden rounded-full bg-[var(--text-strong)] px-5 py-2.5 text-sm font-bold text-[var(--background)] shadow-[var(--shadow-soft)] transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-strong)] sm:inline-flex"
+              data-analytics-location="header_whatsapp"
+              className="inline-flex rounded-full bg-[var(--text-strong)] px-4 py-2.5 text-sm font-bold text-[var(--background)] shadow-[var(--shadow-soft)] transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-strong)] sm:px-5"
             >
-              Demo ↗
+              <span className="sm:hidden">Hablar ↗</span>
+              <span className="hidden sm:inline">Hablar por WhatsApp ↗</span>
             </a>
           </div>
         </div>
@@ -595,11 +607,11 @@ export default function EscalandoLabsLanding() {
             <div>
               <div className="inline-flex items-center gap-3 rounded-full border border-[var(--border-soft)] bg-[var(--surface-soft)] px-4 py-2 text-sm font-semibold text-[var(--text-secondary)] shadow-[var(--shadow-soft)] backdrop-blur-xl">
                 <span className="h-2 w-2 rounded-full bg-[var(--brand-cyan)] shadow-[0_0_18px_rgba(34,211,238,0.9)]" />
-                Infraestructura comercial conversacional para WhatsApp
+                Para negocios que venden y atienden por WhatsApp
               </div>
 
               <h1 className="mt-8 max-w-5xl text-5xl font-semibold leading-[0.94] tracking-[-0.065em] text-[var(--text-strong)] sm:text-6xl lg:text-7xl">
-                IA comercial para WhatsApp que <span className="landing-gradient-text">atiende, ordena y recupera</span> clientes.
+                Recuperá conversaciones que hoy se enfrían antes de convertirse en <span className="landing-gradient-text">ventas.</span>
               </h1>
 
               <p className="mt-7 max-w-2xl text-lg leading-8 text-[var(--text-secondary)] sm:text-xl">
@@ -608,13 +620,13 @@ export default function EscalandoLabsLanding() {
 
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <a
-                  href={whatsappUrl}
+                  href={whatsappUrl("Hola, quiero evaluar si puedo recuperar oportunidades desde mi WhatsApp.")}
                   target="_blank"
                   rel="noopener noreferrer"
                   data-analytics-location="hero_recovery"
                   className="inline-flex items-center justify-center rounded-2xl bg-[var(--text-strong)] px-7 py-4 text-base font-bold text-[var(--background)] shadow-[var(--shadow-strong)] transition hover:-translate-y-0.5"
                 >
-                  Quiero recuperar clientes ↗
+                  Evaluar mi WhatsApp ↗
                 </a>
                 <a
                   href="/demo"
@@ -708,7 +720,7 @@ export default function EscalandoLabsLanding() {
                 ))}
               </div>
               <a
-                href={whatsappUrl}
+                href={whatsappUrl("Hola, quiero evaluar mi base de clientes y oportunidades de recuperación.")}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-analytics-location="base_evaluation"
@@ -785,7 +797,7 @@ export default function EscalandoLabsLanding() {
               Reclamos, cambios, devoluciones, consultas posteriores y casos sensibles necesitan orden, contexto y derivación humana. WhatsApp no es solo venta: también es experiencia de cliente.
             </p>
             <a
-              href={whatsappUrl}
+              href={whatsappUrl("Hola, quiero mejorar la atención y postventa de mi negocio por WhatsApp.")}
               target="_blank"
               rel="noopener noreferrer"
               data-analytics-location="attention"
@@ -934,7 +946,21 @@ export default function EscalandoLabsLanding() {
           </p>
         </Reveal>
 
-        <Reveal delay={120} className="mt-12 overflow-hidden rounded-[2rem] border border-[var(--border-soft)] bg-[var(--panel)] shadow-[var(--shadow-soft)]">
+        <div className="mt-12 grid gap-4 md:hidden">
+          {comparisonRows.map((row) => (
+            <article key={row.label} className="rounded-3xl border border-[var(--border-soft)] bg-[var(--panel)] p-5 shadow-[var(--shadow-soft)]">
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-[var(--brand-cyan)]">{row.label}</p>
+              <p className="mt-3 text-base font-semibold leading-7 text-[var(--text-strong)]">{row.escalando}</p>
+              <div className="mt-5 grid gap-3 border-t border-[var(--border-soft)] pt-4 text-sm leading-6 text-[var(--text-secondary)]">
+                <p><span className="font-bold text-[var(--text-strong)]">Chatbot:</span> {row.chatbot}</p>
+                <p><span className="font-bold text-[var(--text-strong)]">CRM:</span> {row.crm}</p>
+                <p><span className="font-bold text-[var(--text-strong)]">Plataformas:</span> {row.platforms}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <Reveal delay={120} className="mt-12 hidden overflow-hidden rounded-[2rem] border border-[var(--border-soft)] bg-[var(--panel)] shadow-[var(--shadow-soft)] md:block">
           <div className="overflow-x-auto">
             <div className="grid min-w-[860px] grid-cols-[0.72fr_1fr_1fr_1.15fr_1.3fr] border-b border-[var(--border-soft)] bg-[var(--surface-soft)] text-xs font-bold uppercase tracking-[0.16em] text-[var(--text-muted)]">
               <div className="p-4">Criterio</div>
@@ -996,7 +1022,7 @@ export default function EscalandoLabsLanding() {
                 <p className="mt-2 text-sm font-semibold text-[var(--brand-cyan)]">{plan.setup}</p>
               </div>
               <a
-                href={whatsappUrl}
+                href={whatsappUrl(`Hola, me interesa el Plan ${plan.name} de Escalando Labs y quiero evaluar mi caso.`)}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-analytics-location={`plan_${plan.name.toLowerCase()}`}
@@ -1061,7 +1087,7 @@ export default function EscalandoLabsLanding() {
           </p>
           <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
             <a
-              href={whatsappUrl}
+              href={whatsappUrl("Hola, quiero hablar con Escalando Labs para evaluar mi operación de WhatsApp.")}
               target="_blank"
               rel="noopener noreferrer"
               data-analytics-location="final_cta"
@@ -1078,6 +1104,16 @@ export default function EscalandoLabsLanding() {
           </div>
         </Reveal>
       </section>
+
+      <a
+        href={whatsappUrl("Hola, quiero evaluar mi operación de WhatsApp con Escalando Labs.")}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-analytics-location="mobile_sticky_cta"
+        className="fixed bottom-4 right-4 z-40 inline-flex items-center justify-center rounded-full bg-[var(--text-strong)] px-5 py-3 text-sm font-bold text-[var(--background)] shadow-[var(--shadow-strong)] sm:hidden"
+      >
+        Evaluar mi WhatsApp ↗
+      </a>
 
       <footer className="border-t border-[var(--border-soft)] px-5 py-10 lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col gap-5 text-sm text-[var(--text-muted)] md:flex-row md:items-center md:justify-between">
