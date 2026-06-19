@@ -117,6 +117,24 @@ export default function MarketingAnalytics() {
     };
   }, [consent]);
 
+  useEffect(() => {
+    if (consent !== "accepted") return;
+    if (document.querySelector("script[data-escalando-clarity]")) return;
+
+    type QueuedClarity = ((...args: unknown[]) => void) & { q?: unknown[][] };
+    const queuedClarity: QueuedClarity = (...args) => {
+      (queuedClarity.q ??= []).push(args);
+    };
+
+    window.clarity = queuedClarity;
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = `https://www.clarity.ms/tag/${clarityProjectId}`;
+    script.dataset.escalandoClarity = "true";
+    document.head.appendChild(script);
+  }, [consent]);
+
   const saveConsent = (value: Exclude<Consent, null>) => {
     window.localStorage.setItem(consentStorageKey, value);
     window.__escalandoMarketingConsent = value === "accepted";
@@ -130,7 +148,7 @@ export default function MarketingAnalytics() {
     <>
       {consent === "accepted" ? (
         <>
-          {/* GA4, Meta Pixel and Clarity are intentionally direct. Do not recreate these tags in GTM. */}
+          {/* GA4 and Meta Pixel are intentionally direct. Do not recreate these tags in GTM. */}
           <Script id="gtm-loader" strategy="afterInteractive">{`
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({"gtm.start": new Date().getTime(), event: "gtm.js"});
@@ -148,9 +166,6 @@ export default function MarketingAnalytics() {
             !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
             fbq("init", "${metaPixelId}");
             fbq("track", "PageView");
-          `}</Script>
-          <Script id="clarity" strategy="afterInteractive">{`
-            (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","${clarityProjectId}");
           `}</Script>
         </>
       ) : null}
