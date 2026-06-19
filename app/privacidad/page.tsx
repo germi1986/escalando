@@ -99,6 +99,9 @@ const providers = [
   "n8n, para automatizaciones, webhooks y orquestación de procesos;",
   "Meta / WhatsApp Business Platform, para mensajería de WhatsApp;",
   "Twilio, mientras continúe activo como proveedor transitorio o fallback;",
+  "Google Analytics y Google Tag Manager, para medir visitas, eventos de navegación y rendimiento del sitio cuando la persona visitante lo acepta;",
+  "Microsoft Clarity, para análisis de uso agregado y mapas de interacción del sitio cuando la persona visitante lo acepta;",
+  "Meta Pixel, para medir campañas y crear audiencias publicitarias cuando la persona visitante lo acepta;",
   "proveedores de hosting, infraestructura, monitoreo, correo electrónico, analítica técnica, seguridad y pagos;",
   "proveedores de IA o procesamiento de lenguaje, cuando se usen funciones inteligentes de atención o análisis.",
 ];
@@ -119,7 +122,7 @@ export default function PrivacyPage() {
       subtitle="Cómo Escalando Labs recopila, usa, protege y administra datos en su plataforma."
     >
       <p className="rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-4 font-semibold text-[var(--text-strong)]">
-        Última actualización: 11 de junio de 2026
+        Última actualización: 19 de junio de 2026
       </p>
 
       <p>
@@ -247,7 +250,21 @@ export default function PrivacyPage() {
         </p>
       </LegalSection>
 
-      <LegalSection title="7. Campañas y comunicaciones comerciales">
+      <LegalSection title="7. Medición y publicidad del sitio web">
+        <p>
+          Con consentimiento, el sitio puede usar Google Analytics, Google Tag Manager, Microsoft
+          Clarity y Meta Pixel para medir visitas, interacciones con llamados a la acción, navegación
+          y rendimiento de campañas. Estas herramientas pueden usar tecnologías de medición propias
+          para asociar eventos de navegación con una sesión o dispositivo.
+        </p>
+        <p>
+          No activamos estas herramientas hasta que la persona visitante acepta la medición desde el
+          aviso de privacidad. La elección puede modificarse desde el botón “Privacidad y cookies”
+          disponible en el sitio.
+        </p>
+      </LegalSection>
+
+      <LegalSection title="8. Campañas y comunicaciones comerciales">
         <p>
           Escalando Labs permite que negocios usuarios realicen comunicaciones a sus contactos,
           siempre bajo responsabilidad del negocio usuario.
@@ -261,7 +278,7 @@ export default function PrivacyPage() {
         </p>
       </LegalSection>
 
-      <LegalSection title="8. Conservación de datos">
+      <LegalSection title="9. Conservación de datos">
         <p>Conservamos los datos durante el tiempo necesario para:</p>
         <LegalList
           items={[
@@ -283,7 +300,7 @@ export default function PrivacyPage() {
         </p>
       </LegalSection>
 
-      <LegalSection title="9. Seguridad">
+      <LegalSection title="10. Seguridad">
         <p>
           Aplicamos medidas técnicas y organizativas razonables para proteger la información,
           incluyendo controles de acceso, separación por negocio, autenticación, políticas de
@@ -297,7 +314,7 @@ export default function PrivacyPage() {
         </p>
       </LegalSection>
 
-      <LegalSection title="10. Derechos sobre datos personales">
+      <LegalSection title="11. Derechos sobre datos personales">
         <p>Las personas pueden solicitar, cuando corresponda:</p>
         <LegalList
           items={[
@@ -320,7 +337,7 @@ export default function PrivacyPage() {
         </p>
       </LegalSection>
 
-      <LegalSection title="11. Eliminación de datos">
+      <LegalSection title="12. Eliminación de datos">
         <p>Podés solicitar eliminación de datos escribiendo a contacto@escalandolabs.com.</p>
         <p>
           Cuando corresponda, Escalando Labs evaluará la solicitud y eliminará, anonimizará o
@@ -333,7 +350,7 @@ export default function PrivacyPage() {
         </p>
       </LegalSection>
 
-      <LegalSection title="12. Transferencias internacionales">
+      <LegalSection title="13. Transferencias internacionales">
         <p>
           Algunos proveedores tecnológicos pueden procesar o almacenar datos en otros países. Al
           usar Escalando Labs, aceptás que los datos puedan ser tratados por proveedores ubicados
@@ -342,7 +359,7 @@ export default function PrivacyPage() {
         </p>
       </LegalSection>
 
-      <LegalSection title="13. Menores de edad">
+      <LegalSection title="14. Menores de edad">
         <p>
           Escalando Labs está dirigido a negocios y usuarios comerciales. No está diseñado para ser
           utilizado directamente por menores de edad. Si detectamos información de menores tratada
@@ -350,7 +367,7 @@ export default function PrivacyPage() {
         </p>
       </LegalSection>
 
-      <LegalSection title="14. Cambios en esta política">
+      <LegalSection title="15. Cambios en esta política">
         <p>
           Podemos actualizar esta Política de Privacidad para reflejar cambios legales, técnicos,
           comerciales o de funcionamiento de la plataforma.
@@ -361,7 +378,7 @@ export default function PrivacyPage() {
         </p>
       </LegalSection>
 
-      <LegalSection title="15. Contacto">
+      <LegalSection title="16. Contacto">
         <p>Para consultas de privacidad, seguridad o eliminación de datos:</p>
         <p>
           Email: contacto@escalandolabs.com

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import MarketingAnalytics from "./components/MarketingAnalytics";
 
 const siteUrl = "https://escalandolabs.com";
 
@@ -45,6 +46,7 @@ export const metadata: Metadata = {
   },
   other: {
     "facebook-domain-verification": "tbb7n7mei2yxobklfunj2iysvko2rc",
+    "google-site-verification": "0JQkwQfyjT44o7esLqmL58lsduhire02MxJwdokHMnc",
   },
   icons: {
     icon: [
@@ -67,6 +69,7 @@ export default function RootLayout({
     <html lang="es-AR" suppressHydrationWarning className="h-full scroll-smooth antialiased">
       <body className="min-h-full bg-[var(--background)] font-sans text-[var(--text-primary)]">
         {children}
+        <MarketingAnalytics />
       </body>
     </html>
   );

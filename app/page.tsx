@@ -580,6 +580,7 @@ export default function EscalandoLabsLanding() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
+              data-analytics-location="header_demo"
               className="hidden rounded-full bg-[var(--text-strong)] px-5 py-2.5 text-sm font-bold text-[var(--background)] shadow-[var(--shadow-soft)] transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-strong)] sm:inline-flex"
             >
               Demo ↗
@@ -610,12 +611,14 @@ export default function EscalandoLabsLanding() {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-analytics-location="hero_recovery"
                   className="inline-flex items-center justify-center rounded-2xl bg-[var(--text-strong)] px-7 py-4 text-base font-bold text-[var(--background)] shadow-[var(--shadow-strong)] transition hover:-translate-y-0.5"
                 >
                   Quiero recuperar clientes ↗
                 </a>
                 <a
                   href="/demo"
+                  data-analytics-location="hero_demo"
                   className="inline-flex items-center justify-center rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-soft)] px-7 py-4 text-base font-bold text-[var(--text-strong)] transition hover:border-[var(--border-strong)] hover:bg-[var(--surface-strong)]"
                 >
                   Ver demo visual
@@ -708,6 +711,7 @@ export default function EscalandoLabsLanding() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-analytics-location="base_evaluation"
                 className="mt-6 inline-flex w-full items-center justify-center rounded-2xl bg-cyan-400/[0.12] px-6 py-3 font-bold text-[var(--text-strong)] transition hover:-translate-y-0.5 hover:bg-cyan-400/[0.18]"
               >
                 Evaluar mi base de clientes
@@ -784,6 +788,7 @@ export default function EscalandoLabsLanding() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
+              data-analytics-location="attention"
               className="mt-8 inline-flex items-center justify-center rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-soft)] px-6 py-3 text-sm font-bold text-[var(--text-strong)] transition hover:-translate-y-0.5 hover:border-[var(--border-strong)] hover:bg-[var(--surface-strong)]"
             >
               Mejorar mi atención por WhatsApp
@@ -954,7 +959,7 @@ export default function EscalandoLabsLanding() {
         </Reveal>
       </section>
 
-      <section id="planes" className="scroll-mt-28 mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-28">
+      <section id="planes" data-analytics-view="pricing_view" className="scroll-mt-28 mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-28">
         <Reveal className="max-w-3xl">
           <SectionLabel>Planes y pricing</SectionLabel>
           <h2 className="text-4xl font-semibold leading-tight tracking-[-0.045em] text-[var(--text-strong)] md:text-6xl">
@@ -994,6 +999,7 @@ export default function EscalandoLabsLanding() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-analytics-location={`plan_${plan.name.toLowerCase()}`}
                 className="mt-7 inline-flex w-full items-center justify-center rounded-2xl bg-[var(--text-strong)] px-5 py-3.5 text-sm font-bold text-[var(--background)] transition hover:-translate-y-0.5"
               >
                 {plan.cta}
@@ -1058,6 +1064,7 @@ export default function EscalandoLabsLanding() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
+              data-analytics-location="final_cta"
               className="inline-flex items-center justify-center rounded-2xl bg-[var(--text-strong)] px-7 py-4 text-base font-bold text-[var(--background)] shadow-[var(--shadow-strong)] transition hover:-translate-y-0.5"
             >
               Hablar con Escalando Labs ↗

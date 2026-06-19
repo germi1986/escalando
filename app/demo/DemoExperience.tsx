@@ -176,6 +176,7 @@ export default function DemoExperience() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
+              data-analytics-location="demo_header"
               className="rounded-full bg-[var(--text-strong)] px-4 py-2 text-sm font-bold text-[var(--background)] shadow-[var(--shadow-soft)] transition hover:-translate-y-0.5"
             >
               Hablar ahora
@@ -324,6 +325,7 @@ export default function DemoExperience() {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-analytics-location="demo_final_cta"
                   className="inline-flex items-center justify-center rounded-2xl bg-[var(--text-strong)] px-7 py-4 text-base font-bold text-[var(--background)] transition hover:-translate-y-0.5"
                 >
                   Quiero evaluar mi caso
