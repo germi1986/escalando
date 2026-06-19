@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 const consentStorageKey = "escalando-marketing-consent";
 const gaMeasurementId = "G-BM9L0QC9JL";
 const gtmContainerId = "GTM-PP2TMSW5";
-const metaPixelId = "836505099286859";
+const metaPixelId = "3416031278578263";
 const clarityProjectId = "x9l0ixclu5";
 
 type Consent = "accepted" | "rejected" | null;
