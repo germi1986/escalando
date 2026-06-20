@@ -34,6 +34,18 @@ function marketingEventName(anchor: HTMLAnchorElement) {
   return null;
 }
 
+function sanitizeCtaText(value: string | null) {
+  const sanitized = (value || "sin texto")
+    .normalize("NFKC")
+    .replace(/[\u0000-\u001F\u007F]/g, " ")
+    .replace(/[^\p{L}\p{N}\s.,:;!?¿¡-]/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 100);
+
+  return sanitized || "sin texto";
+}
+
 function metaCapiEventForAnchor(anchor: HTMLAnchorElement): MetaCapiEventName | undefined {
   if (!anchor.href.includes("wa.me")) return undefined;
 
@@ -91,14 +103,16 @@ export default function MarketingAnalytics() {
       if (!eventName) return;
 
       const parameters = {
-        cta_text: target.textContent?.trim().slice(0, 100) || "sin texto",
+        cta_text: sanitizeCtaText(target.textContent),
         cta_location: target.dataset.analyticsLocation || window.location.pathname,
         page_path: window.location.pathname,
       };
 
       window.dataLayer?.push({ event: eventName, ...parameters });
       window.gtag?.("event", eventName, parameters);
-      window.fbq?.("trackCustom", eventName, parameters);
+      if (eventName !== "whatsapp_click") {
+        window.fbq?.("trackCustom", eventName, parameters);
+      }
 
       const capiEventName = metaCapiEventForAnchor(target);
       if (capiEventName) sendMetaCapiEvent(capiEventName, parameters);
@@ -205,6 +219,7 @@ export default function MarketingAnalytics() {
           `}</Script>
           {metaPixelId ? <Script id="meta-pixel" strategy="afterInteractive">{`
             !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
+            fbq("set", "autoConfig", false, "${metaPixelId}");
             fbq("init", "${metaPixelId}");
             fbq("track", "PageView");
           `}</Script> : null}
