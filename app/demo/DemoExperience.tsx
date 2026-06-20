@@ -163,7 +163,7 @@ export default function DemoExperience() {
   const visibleEvents = useMemo(() => stage.events, [stage]);
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[var(--background)] text-[var(--text-primary)]">
+    <main data-analytics-view="demo_visual" className="min-h-screen overflow-hidden bg-[var(--background)] text-[var(--text-primary)]">
       <div className="pointer-events-none fixed inset-0">
         <div className="absolute inset-0 opacity-70 [background-image:linear-gradient(115deg,rgba(34,211,238,0.12),transparent_34%,rgba(217,70,239,0.10)_66%,transparent)]" />
         <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,var(--grid-line)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-line)_1px,transparent_1px)] bg-[size:72px_72px]" />

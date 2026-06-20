@@ -2,11 +2,13 @@
 
 import Script from "next/script";
 import { useEffect, useState } from "react";
+import { createMetaEventId, getMetaBrowserIdentifiers } from "@/lib/analytics/browser-identifiers";
+import type { MetaCapiEventName, MetaCustomData } from "@/lib/analytics/capi-types";
 
 const consentStorageKey = "escalando-marketing-consent";
 const gaMeasurementId = "G-BM9L0QC9JL";
 const gtmContainerId = "GTM-PP2TMSW5";
-const metaPixelId = "3416031278578263";
+const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID?.trim();
 const clarityProjectId = "x9l0ixclu5";
 
 type Consent = "accepted" | "rejected" | null;
@@ -30,6 +32,41 @@ function marketingEventName(anchor: HTMLAnchorElement) {
   if (anchor.href.includes("wa.me")) return "whatsapp_click";
   if (anchor.pathname === "/demo") return "demo_view";
   return null;
+}
+
+function metaCapiEventForAnchor(anchor: HTMLAnchorElement): MetaCapiEventName | undefined {
+  if (!anchor.href.includes("wa.me")) return undefined;
+
+  const location = anchor.dataset.analyticsLocation || "";
+  if (location === "final_cta" || location === "demo_final_cta" || location.startsWith("plan_")) {
+    return "Lead";
+  }
+
+  return "Contact";
+}
+
+function sendMetaCapiEvent(eventName: MetaCapiEventName, customData: MetaCustomData) {
+  const eventId = createMetaEventId();
+  const { fbp, fbc } = getMetaBrowserIdentifiers();
+
+  if (metaPixelId) {
+    window.fbq?.("track", eventName, customData, { eventID: eventId });
+  }
+
+  void fetch("/api/meta/conversions", {
+    method: "POST",
+    credentials: "same-origin",
+    keepalive: true,
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({
+      eventName,
+      eventId,
+      eventSourceUrl: window.location.href,
+      ...(fbp ? { fbp } : {}),
+      ...(fbc ? { fbc } : {}),
+      customData,
+    }),
+  }).catch(() => undefined);
 }
 
 export default function MarketingAnalytics() {
@@ -62,6 +99,9 @@ export default function MarketingAnalytics() {
       window.dataLayer?.push({ event: eventName, ...parameters });
       window.gtag?.("event", eventName, parameters);
       window.fbq?.("trackCustom", eventName, parameters);
+
+      const capiEventName = metaCapiEventForAnchor(target);
+      if (capiEventName) sendMetaCapiEvent(capiEventName, parameters);
     };
 
     const trackScroll = () => {
@@ -102,6 +142,7 @@ export default function MarketingAnalytics() {
           window.dataLayer?.push({ event: eventName, ...parameters });
           window.gtag?.("event", eventName, parameters);
           window.fbq?.("trackCustom", eventName, parameters);
+          sendMetaCapiEvent("ViewContent", { ...parameters, content_name: eventName });
           sectionObserver.unobserve(entry.target);
         });
       },
@@ -162,11 +203,11 @@ export default function MarketingAnalytics() {
             gtag("js", new Date());
             gtag("config", "${gaMeasurementId}", { anonymize_ip: true });
           `}</Script>
-          <Script id="meta-pixel" strategy="afterInteractive">{`
+          {metaPixelId ? <Script id="meta-pixel" strategy="afterInteractive">{`
             !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
             fbq("init", "${metaPixelId}");
             fbq("track", "PageView");
-          `}</Script>
+          `}</Script> : null}
         </>
       ) : null}
 
