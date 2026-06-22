@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import MarketingAnalytics from "./components/MarketingAnalytics";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const siteUrl = "https://escalandolabs.com";
 const socialPreview = "/escalando-social-preview.png";
@@ -115,6 +116,7 @@ export default function RootLayout({
       <body className="min-h-full bg-[var(--background)] font-sans text-[var(--text-primary)]">
         {children}
         <MarketingAnalytics />
+        <SpeedInsights />
       </body>
     </html>
   );
