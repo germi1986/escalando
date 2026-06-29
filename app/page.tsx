@@ -16,6 +16,83 @@ const trustBadges = [
   "Datos exportables",
 ];
 
+const heroPipeline = [
+  {
+    label: "Ingreso",
+    value: "Consulta detectada",
+    tone: "ok" as const,
+  },
+  {
+    label: "Contexto",
+    value: "Historial recuperado",
+    tone: "active" as const,
+  },
+  {
+    label: "Handoff",
+    value: "Listo si hace falta",
+    tone: "warn" as const,
+  },
+  {
+    label: "Seguimiento",
+    value: "Proximo paso definido",
+    tone: "active" as const,
+  },
+];
+
+const heroSignals = [
+  {
+    label: "Estado",
+    value: "Seguimiento activo",
+  },
+  {
+    label: "Modo",
+    value: "IA + humano",
+  },
+  {
+    label: "CRM",
+    value: "Trazabilidad lista",
+  },
+];
+
+const proofTiles = [
+  {
+    label: "Setup",
+    title: "Guiado desde el inicio",
+    text: "Diagnostico inicial y configuracion con informacion real del negocio.",
+    tone: "ok" as const,
+  },
+  {
+    label: "Control",
+    title: "Handoff humano activo",
+    text: "El equipo interviene cuando hace falta criterio comercial o cierre.",
+    tone: "active" as const,
+  },
+  {
+    label: "Costos",
+    title: "Terceros aclarados",
+    text: "Los cargos externos se explican antes de activar campanas o volumen.",
+    tone: "warn" as const,
+  },
+  {
+    label: "Datos",
+    title: "Exportables y revisables",
+    text: "Conversaciones, estados y base propia quedan disponibles para auditoria.",
+    tone: "active" as const,
+  },
+  {
+    label: "Limites",
+    title: "Operacion con bordes claros",
+    text: "Queda definido que incluye la implementacion y hasta donde escala.",
+    tone: "neutral" as const,
+  },
+  {
+    label: "Demo",
+    title: "Referencia visual disponible",
+    text: "La demo muestra alcance, logica operativa y experiencia de uso.",
+    tone: "ok" as const,
+  },
+];
+
 const painPoints = [
   {
     title: "Consultas sin próximo paso",
@@ -136,15 +213,6 @@ const comparisonRows = [
   },
 ];
 
-const proofBullets = [
-  "Diagnóstico inicial para entender el punto de partida",
-  "Configuración con información real del negocio",
-  "Control humano cuando hace falta criterio",
-  "Datos y conversaciones con trazabilidad y exportación",
-  "Costos externos aclarados antes de activar campañas",
-  "Demo visual para entender alcance y lógica operativa",
-];
-
 const fitBullets = [
   "Plan Inicial para ordenar y empezar con criterio",
   "Plan Crecimiento para trabajar base propia y recuperar ventas",
@@ -242,15 +310,48 @@ const faqs = [
 
 function SectionLabel({ children }: { children: ReactNode }) {
   return (
-    <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[var(--border-soft)] bg-[var(--surface-soft)] px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-[var(--brand-cyan)] shadow-[var(--shadow-soft)] backdrop-blur-xl">
-      <span className="h-1.5 w-1.5 rounded-full bg-[var(--brand-magenta)] shadow-[0_0_18px_rgba(217,70,239,0.85)]" />
+    <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[var(--border-soft)] bg-[var(--surface-soft)] px-4 py-2 text-[11px] font-bold uppercase tracking-[0.22em] text-[var(--brand-cyan)]">
+      <span className="h-1.5 w-1.5 rounded-full bg-[var(--brand-cyan)]" />
       {children}
     </div>
   );
 }
 
 function CheckIcon() {
-  return <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-[var(--brand-cyan)] shadow-[0_0_18px_rgba(34,211,238,0.55)]" />;
+  return <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-[var(--brand-cyan)]" />;
+}
+
+function StatusBadge({
+  children,
+  tone = "neutral",
+}: {
+  children: ReactNode;
+  tone?: "neutral" | "active" | "ok" | "warn";
+}) {
+  const classes = {
+    neutral:
+      "border-[var(--border-soft)] bg-[var(--surface-soft)] text-[var(--text-secondary)]",
+    active:
+      "border-cyan-400/20 bg-cyan-400/[0.12] text-cyan-100",
+    ok: "border-emerald-400/20 bg-emerald-400/[0.12] text-emerald-100",
+    warn: "border-amber-300/25 bg-amber-300/[0.12] text-amber-100",
+  }[tone];
+
+  const dot = {
+    neutral: "bg-[var(--text-muted)]",
+    active: "bg-cyan-300",
+    ok: "bg-emerald-300",
+    warn: "bg-amber-200",
+  }[tone];
+
+  return (
+    <span
+      className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] ${classes}`}
+    >
+      <span className={`h-1.5 w-1.5 rounded-full ${dot}`} />
+      {children}
+    </span>
+  );
 }
 
 function Glyph({ name }: { name: string }) {
@@ -338,72 +439,87 @@ function Glyph({ name }: { name: string }) {
 function HeroVisual() {
   return (
     <div className="relative mx-auto max-w-xl lg:max-w-none">
-      <div className="absolute -inset-10 rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.20),transparent_58%)] blur-3xl" />
-      <div className="float-soft relative overflow-hidden rounded-[2rem] border border-[var(--border-soft)] bg-[var(--panel)] p-4 shadow-[var(--shadow-strong)] backdrop-blur-2xl">
-        <div className="noise-layer absolute inset-0 opacity-20" />
-        <div className="relative flex items-center justify-between rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-soft)] px-4 py-3">
-          <div className="flex items-center gap-2">
-            <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
-            <span className="h-2.5 w-2.5 rounded-full bg-amber-300/70" />
-            <span className="h-2.5 w-2.5 rounded-full bg-emerald-300/70" />
+      <div className="relative overflow-hidden rounded-[2rem] border border-[var(--border-soft)] bg-[linear-gradient(180deg,rgba(10,18,32,0.98),rgba(9,17,29,0.96))] p-4 shadow-[var(--shadow-strong)]">
+        <div className="absolute inset-x-12 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(56,189,248,0.55),transparent)]" />
+        <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(var(--grid-line)_1px,transparent_1px),linear-gradient(90deg,var(--grid-line)_1px,transparent_1px)] [background-size:28px_28px]" />
+        <div className="relative flex items-center justify-between rounded-[1.25rem] border border-[var(--border-soft)] bg-white/[0.03] px-4 py-3">
+          <div className="flex items-center gap-3">
+            <span className="h-2.5 w-2.5 rounded-full bg-[var(--status-ok)]" />
+            <div>
+              <p className="text-sm font-semibold text-[var(--text-strong)]">Operacion WhatsApp</p>
+              <p className="text-xs text-[var(--text-muted)]">IA comercial + equipo humano + trazabilidad</p>
+            </div>
           </div>
-          <span className="text-xs font-semibold text-[var(--text-muted)]">Sistema comercial · Activo</span>
+          <StatusBadge tone="active">Pipeline en curso</StatusBadge>
         </div>
 
-        <div className="relative grid gap-4 pt-4 md:grid-cols-[1fr_0.9fr]">
+        <div className="relative grid gap-4 pt-4 md:grid-cols-[1.08fr_0.92fr]">
           <div className="space-y-4">
-            <div className="rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-5">
+            <div className="rounded-[1.4rem] border border-[var(--border-soft)] bg-[var(--surface-technical)] p-5 shadow-[var(--shadow-card)]">
               <div className="flex items-center justify-between text-xs text-[var(--text-muted)]">
-                <span>Cliente · 14:32</span>
-                <span>Seguimiento</span>
+                <span>Cliente / 14:32</span>
+                <StatusBadge tone="warn">Seguimiento pendiente</StatusBadge>
               </div>
               <p className="mt-4 text-sm leading-7 text-[var(--text-strong)]">
-                Hola, había pedido precio la semana pasada. ¿Sigue disponible?
+                Hola, habia pedido precio la semana pasada. Sigue disponible?
               </p>
             </div>
 
-            <div className="ml-6 rounded-3xl border border-cyan-400/25 bg-cyan-400/[0.08] p-5 shadow-[0_0_34px_rgba(34,211,238,0.10)]">
-              <div className="flex items-center justify-between text-xs text-[var(--brand-cyan)]">
-                <span>IA comercial</span>
-                <span>Contexto recuperado</span>
+            <div className="ml-4 rounded-[1.4rem] border border-cyan-400/20 bg-cyan-400/[0.08] p-5">
+              <div className="flex items-center justify-between gap-3">
+                <StatusBadge tone="active">IA comercial</StatusBadge>
+                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-cyan-100/80">Contexto recuperado</span>
               </div>
               <p className="mt-4 text-sm leading-7 text-[var(--text-strong)]">
-                Sí. Veo tu consulta anterior y dejo listo el siguiente paso para que no se pierda el seguimiento.
+                Si. Recupero el historial, dejo el siguiente paso visible y marco el caso si hace falta handoff humano.
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
-              <div className="rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-4">
-                <p className="text-xs text-[var(--text-muted)]">Estado</p>
-                <p className="mt-2 text-lg font-semibold text-[var(--text-strong)]">Seguimiento activo</p>
-              </div>
-              <div className="rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-4">
-                <p className="text-xs text-[var(--text-muted)]">Modo</p>
-                <p className="mt-2 text-lg font-semibold text-[var(--text-strong)]">IA + humano</p>
-              </div>
+            <div className="grid gap-3 sm:grid-cols-3">
+              {heroSignals.map((item) => (
+                <div
+                  key={item.label}
+                  className="rounded-[1.1rem] border border-[var(--border-soft)] bg-[var(--surface-neutral)] p-4"
+                >
+                  <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--text-muted)]">{item.label}</p>
+                  <p className="mt-2 text-sm font-semibold text-[var(--text-strong)]">{item.value}</p>
+                </div>
+              ))}
             </div>
           </div>
 
-          <div className="relative overflow-hidden rounded-3xl border border-[var(--border-soft)] bg-[linear-gradient(180deg,var(--surface-soft),transparent)] p-5">
-            <div className="absolute inset-0 opacity-60 [background-image:radial-gradient(circle_at_1px_1px,rgba(34,211,238,0.25)_1px,transparent_0)] [background-size:22px_22px]" />
-            <div className="relative flex h-full min-h-[320px] flex-col justify-between">
-              <div className="flex justify-center pt-4">
-                <BrandMark size="lg" />
+          <div className="rounded-[1.55rem] border border-[var(--border-soft)] bg-[var(--surface-technical)] p-5 shadow-[var(--shadow-card)]">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--text-muted)]">Sala de control</p>
+                <p className="mt-2 text-lg font-semibold text-[var(--text-strong)]">Pipeline comercial visible</p>
               </div>
+              <StatusBadge tone="ok">Trazabilidad activa</StatusBadge>
+            </div>
+            <div className="mt-5">
               <div className="space-y-3">
-                {[
-                  ["Conversaciones", "Con contexto"],
-                  ["Próximo paso", "Definido"],
-                  ["Trazabilidad", "Activa"],
-                ].map(([label, value]) => (
+                {heroPipeline.map((step) => (
                   <div
-                    key={label}
-                    className="flex items-center justify-between rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] px-4 py-3 backdrop-blur-xl"
+                    key={step.label}
+                    className="flex items-center justify-between rounded-[1.1rem] border border-[var(--border-soft)] bg-white/[0.03] px-4 py-3"
                   >
-                    <span className="text-xs text-[var(--text-muted)]">{label}</span>
-                    <span className="text-sm font-bold text-[var(--text-strong)]">{value}</span>
+                    <div>
+                      <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--text-muted)]">{step.label}</p>
+                      <p className="mt-1 text-sm font-semibold text-[var(--text-strong)]">{step.value}</p>
+                    </div>
+                    <StatusBadge tone={step.tone}>Listo</StatusBadge>
                   </div>
                 ))}
+              </div>
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                <div className="rounded-[1.1rem] border border-[var(--border-soft)] bg-[var(--surface-neutral)] p-4">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--text-muted)]">Handoff</p>
+                  <p className="mt-2 text-sm font-semibold text-[var(--text-strong)]">Humano entra con contexto</p>
+                </div>
+                <div className="rounded-[1.1rem] border border-[var(--border-soft)] bg-[var(--surface-neutral)] p-4">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--text-muted)]">Seguimiento</p>
+                  <p className="mt-2 text-sm font-semibold text-[var(--text-strong)]">Proximo paso ya definido</p>
+                </div>
               </div>
             </div>
           </div>
@@ -416,12 +532,12 @@ function HeroVisual() {
 export default function EscalandoLabsLanding() {
   return (
     <main className="min-h-screen overflow-hidden bg-[var(--background)] text-[var(--text-primary)]">
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.18),transparent_32%),radial-gradient(circle_at_80%_15%,rgba(217,70,239,0.10),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(16,185,129,0.12),transparent_34%)]" />
-      <div className="pointer-events-none fixed inset-0 -z-10 opacity-[0.055] [background-image:linear-gradient(var(--grid-line)_1px,transparent_1px),linear-gradient(90deg,var(--grid-line)_1px,transparent_1px)] [background-size:56px_56px]" />
+      <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.18),transparent_26%),radial-gradient(circle_at_top_right,rgba(34,211,238,0.08),transparent_22%),linear-gradient(180deg,#09111d_0%,#0b1220_38%,#111827_100%)]" />
+      <div className="pointer-events-none fixed inset-0 -z-10 opacity-[0.03] [background-image:linear-gradient(var(--grid-line)_1px,transparent_1px),linear-gradient(90deg,var(--grid-line)_1px,transparent_1px)] [background-size:56px_56px]" />
 
       <header className="sticky top-0 z-50 border-b border-[var(--border-soft)] bg-[var(--nav-bg)] backdrop-blur-2xl">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 lg:px-8">
-          <a href="#inicio" aria-label="Ir al inicio" className="rounded-2xl focus:outline-none focus:ring-2 focus:ring-cyan-300/60">
+          <a href="#inicio" aria-label="Ir al inicio" className="rounded-[1.1rem] border border-transparent px-2 py-1.5 transition hover:border-[var(--border-soft)] focus:outline-none focus:ring-2 focus:ring-cyan-300/60">
             <BrandMark showLabel size="sm" />
           </a>
 
@@ -448,7 +564,7 @@ export default function EscalandoLabsLanding() {
               target="_blank"
               rel="noopener noreferrer"
               data-analytics-location="header_whatsapp"
-              className="inline-flex rounded-full bg-[var(--text-strong)] px-4 py-2.5 text-sm font-bold text-[var(--background)] shadow-[var(--shadow-soft)] transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-strong)] sm:px-5"
+              className="inline-flex rounded-full border border-cyan-300/10 bg-[var(--brand-cyan)] px-4 py-2.5 text-sm font-bold text-slate-950 shadow-[var(--shadow-soft)] transition hover:-translate-y-0.5 hover:bg-cyan-300 hover:shadow-[var(--shadow-strong)] sm:px-5"
             >
               <span className="sm:hidden">Diagnóstico ↗</span>
               <span className="hidden sm:inline">Solicitar diagnóstico comercial ↗</span>
@@ -458,16 +574,16 @@ export default function EscalandoLabsLanding() {
       </header>
 
       <section id="inicio" className="relative scroll-mt-28">
-        <div className="mx-auto grid max-w-7xl gap-14 px-5 pb-24 pt-20 lg:grid-cols-[1.04fr_0.96fr] lg:items-center lg:px-8 lg:pb-32 lg:pt-28">
+        <div className="mx-auto grid max-w-7xl gap-14 px-5 pb-24 pt-20 lg:grid-cols-[0.96fr_1.04fr] lg:items-center lg:px-8 lg:pb-32 lg:pt-28">
           <Reveal>
             <div>
-              <div className="inline-flex items-center gap-3 rounded-full border border-[var(--border-soft)] bg-[var(--surface-soft)] px-4 py-2 text-sm font-semibold text-[var(--text-secondary)] shadow-[var(--shadow-soft)] backdrop-blur-xl">
-                <span className="h-2 w-2 rounded-full bg-[var(--brand-cyan)] shadow-[0_0_18px_rgba(34,211,238,0.9)]" />
+              <div className="inline-flex items-center gap-3 rounded-full border border-[var(--border-soft)] bg-[var(--surface-neutral)] px-4 py-2 text-sm font-semibold text-[var(--text-secondary)]">
+                <span className="h-2 w-2 rounded-full bg-[var(--brand-cyan)]" />
                 Para negocios que venden y atienden por WhatsApp
               </div>
 
               <h1 className="mt-8 max-w-5xl text-5xl font-semibold leading-[0.94] tracking-[-0.065em] text-[var(--text-strong)] sm:text-6xl lg:text-7xl">
-                Convertí tu WhatsApp en un <span className="landing-gradient-text">sistema comercial medible.</span>
+                Convertí tu WhatsApp en un <span className="text-cyan-100">sistema comercial medible.</span>
               </h1>
 
               <p className="mt-7 max-w-3xl text-lg leading-8 text-[var(--text-secondary)] sm:text-xl">
@@ -483,14 +599,14 @@ export default function EscalandoLabsLanding() {
                   target="_blank"
                   rel="noopener noreferrer"
                   data-analytics-location="hero_recovery"
-                  className="inline-flex items-center justify-center rounded-2xl bg-[var(--text-strong)] px-7 py-4 text-base font-bold text-[var(--background)] shadow-[var(--shadow-strong)] transition hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center rounded-[1.1rem] border border-cyan-300/10 bg-[var(--brand-cyan)] px-7 py-4 text-base font-bold text-slate-950 shadow-[var(--shadow-strong)] transition hover:-translate-y-0.5 hover:bg-cyan-300"
                 >
                   Solicitar diagnóstico comercial ↗
                 </a>
                 <a
                   href="/demo"
                   data-analytics-location="hero_demo"
-                  className="inline-flex items-center justify-center rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-soft)] px-7 py-4 text-base font-bold text-[var(--text-strong)] transition hover:border-[var(--border-strong)] hover:bg-[var(--surface-strong)]"
+                  className="inline-flex items-center justify-center rounded-[1.1rem] border border-[var(--border-soft)] bg-[var(--surface-neutral)] px-7 py-4 text-base font-bold text-[var(--text-strong)] transition hover:border-[var(--border-strong)] hover:bg-[var(--surface-strong)]"
                 >
                   Ver demo visual
                 </a>
@@ -502,12 +618,7 @@ export default function EscalandoLabsLanding() {
 
               <div className="mt-9 flex flex-wrap gap-2.5">
                 {trustBadges.map((badge) => (
-                  <span
-                    key={badge}
-                    className="rounded-full border border-[var(--border-soft)] bg-[var(--surface-soft)] px-3.5 py-2 text-xs font-semibold text-[var(--text-secondary)]"
-                  >
-                    {badge}
-                  </span>
+                  <StatusBadge key={badge}>{badge}</StatusBadge>
                 ))}
               </div>
             </div>
@@ -540,11 +651,11 @@ export default function EscalandoLabsLanding() {
                 key={item.title}
                 delay={index * 80}
                 as="article"
-                className="problem-card group rounded-3xl border border-[var(--border-soft)] p-7 shadow-[var(--shadow-soft)] transition hover:-translate-y-1 hover:border-[var(--border-strong)] hover:shadow-[var(--shadow-strong)]"
+                className="problem-card group rounded-[1.55rem] border border-[var(--border-soft)] p-7 shadow-[var(--shadow-card)] transition hover:-translate-y-1 hover:border-[var(--border-strong)] hover:shadow-[var(--shadow-soft)]"
                 style={{ "--card-glow": item.accent } as CSSProperties}
               >
                 <div className="mb-7 flex items-start justify-between gap-4">
-                  <div className="grid h-13 w-13 place-items-center rounded-2xl border border-cyan-400/20 bg-cyan-400/[0.08] text-[var(--brand-cyan)] shadow-[0_0_28px_rgba(34,211,238,0.10)]">
+                  <div className="grid h-13 w-13 place-items-center rounded-[1rem] border border-cyan-400/20 bg-cyan-400/[0.08] text-[var(--brand-cyan)]">
                     <Glyph name={item.icon} />
                   </div>
                   <span className="rounded-full border border-[var(--border-soft)] bg-[var(--surface-soft)] px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-[var(--text-muted)]">
@@ -554,7 +665,7 @@ export default function EscalandoLabsLanding() {
                 <h3 className="text-2xl font-semibold tracking-[-0.04em] text-[var(--text-strong)]">{item.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">{item.text}</p>
                 <div className="mt-7 h-1.5 overflow-hidden rounded-full bg-[var(--surface-strong)]">
-                  <div className="pulse-line h-full rounded-full bg-[linear-gradient(90deg,var(--brand-cyan),var(--brand-green),var(--brand-magenta))]" />
+                  <div className="pulse-line h-full rounded-full bg-[linear-gradient(90deg,var(--brand-cyan),var(--brand-blue))]" />
                 </div>
               </Reveal>
             ))}
@@ -578,12 +689,12 @@ export default function EscalandoLabsLanding() {
           </Reveal>
 
           <Reveal delay={120}>
-            <div className="rounded-[2.25rem] border border-[var(--border-soft)] bg-[var(--panel)] p-6 shadow-[var(--shadow-soft)] backdrop-blur-xl">
+            <div className="rounded-[1.7rem] border border-[var(--border-soft)] bg-[var(--surface-technical)] p-6 shadow-[var(--shadow-card)]">
               <div className="grid gap-3">
                 {opportunitySignals.map((signal) => (
                   <div
                     key={signal}
-                    className="flex items-start gap-3 rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-4 text-sm leading-7 text-[var(--text-secondary)]"
+                    className="flex items-start gap-3 rounded-[1.1rem] border border-[var(--border-soft)] bg-[var(--surface-neutral)] p-4 text-sm leading-7 text-[var(--text-secondary)]"
                   >
                     <CheckIcon />
                     <span>{signal}</span>
@@ -631,9 +742,9 @@ export default function EscalandoLabsLanding() {
 
           <div className="grid gap-4">
             {mechanismSteps.map((step, index) => (
-              <Reveal key={step.title} delay={index * 90} as="article" className="rounded-3xl border border-[var(--border-soft)] bg-[var(--panel)] p-7 shadow-[var(--shadow-soft)]">
+              <Reveal key={step.title} delay={index * 90} as="article" className="rounded-[1.55rem] border border-[var(--border-soft)] bg-[var(--surface-technical)] p-7 shadow-[var(--shadow-card)]">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
-                  <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[var(--text-strong)] text-sm font-black text-[var(--background)]">
+                  <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-[1rem] border border-cyan-400/20 bg-cyan-400/[0.08] text-sm font-black text-cyan-100">
                     {step.kpi}
                   </span>
                   <div>
@@ -668,9 +779,9 @@ export default function EscalandoLabsLanding() {
                 key={card.title}
                 delay={index * 80}
                 as="article"
-                className="flex h-full min-h-[280px] flex-col rounded-3xl border border-[var(--border-soft)] bg-[var(--panel)] p-6 shadow-[var(--shadow-soft)] transition hover:-translate-y-1 hover:border-[var(--border-strong)] hover:shadow-[var(--shadow-strong)]"
+                className="flex h-full min-h-[280px] flex-col rounded-[1.55rem] border border-[var(--border-soft)] bg-[var(--surface-neutral)] p-6 shadow-[var(--shadow-card)] transition hover:-translate-y-1 hover:border-[var(--border-strong)] hover:shadow-[var(--shadow-soft)]"
               >
-                <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-cyan-400/20 bg-cyan-400/[0.08] text-[var(--brand-cyan)]">
+                <div className="grid h-12 w-12 shrink-0 place-items-center rounded-[1rem] border border-cyan-400/20 bg-cyan-400/[0.08] text-[var(--brand-cyan)]">
                   <Glyph name={card.icon} />
                 </div>
                 <h3 className="mt-6 text-xl font-semibold tracking-[-0.035em] text-[var(--text-strong)]">{card.title}</h3>
@@ -679,9 +790,9 @@ export default function EscalandoLabsLanding() {
             ))}
           </div>
 
-          <Reveal delay={120} className="mt-12 overflow-hidden rounded-[2rem] border border-[var(--border-soft)] bg-[var(--panel)] shadow-[var(--shadow-soft)]">
+          <Reveal delay={120} className="mt-12 overflow-hidden rounded-[1.7rem] border border-[var(--border-soft)] bg-[var(--surface-technical)] shadow-[var(--shadow-card)]">
             <div className="overflow-x-auto">
-              <div className="grid min-w-[860px] grid-cols-[0.8fr_1fr_1fr_1.15fr_1.25fr] border-b border-[var(--border-soft)] bg-[var(--surface-soft)] text-xs font-bold uppercase tracking-[0.16em] text-[var(--text-muted)]">
+              <div className="grid min-w-[860px] grid-cols-[0.8fr_1fr_1fr_1.15fr_1.25fr] border-b border-[var(--border-soft)] bg-white/[0.04] text-xs font-bold uppercase tracking-[0.16em] text-[var(--text-muted)]">
                 <div className="p-4">Criterio</div>
                 <div className="p-4">Chatbot básico</div>
                 <div className="p-4">CRM tradicional</div>
@@ -697,7 +808,7 @@ export default function EscalandoLabsLanding() {
                   <div className="p-4 text-sm leading-6 text-[var(--text-secondary)]">{row.chatbot}</div>
                   <div className="p-4 text-sm leading-6 text-[var(--text-secondary)]">{row.crm}</div>
                   <div className="p-4 text-sm leading-6 text-[var(--text-secondary)]">{row.platforms}</div>
-                  <div className="bg-cyan-400/[0.055] p-4 text-sm font-semibold leading-6 text-[var(--text-strong)]">{row.escalando}</div>
+                  <div className="border-l border-cyan-400/20 bg-cyan-400/[0.08] p-4 text-sm font-semibold leading-6 text-[var(--text-strong)]">{row.escalando}</div>
                 </div>
               ))}
             </div>
@@ -721,19 +832,33 @@ export default function EscalandoLabsLanding() {
           </Reveal>
 
           <Reveal delay={120}>
-            <div className="rounded-[2rem] border border-[var(--border-soft)] bg-[var(--surface-soft)] p-8 shadow-[var(--shadow-soft)] backdrop-blur-xl">
-              <div className="grid gap-4 sm:grid-cols-2">
-                {proofBullets.map((item) => (
-                  <div key={item} className="flex gap-3 text-sm leading-7 text-[var(--text-secondary)]">
-                    <CheckIcon />
-                    <span>{item}</span>
+            <div className="rounded-[1.7rem] border border-[var(--border-soft)] bg-[var(--surface-technical)] p-8 shadow-[var(--shadow-strong)]">
+              <div className="flex items-center justify-between gap-4 border-b border-[var(--border-soft)] pb-5">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--text-muted)]">Zona de certeza</p>
+                  <p className="mt-2 text-2xl font-semibold tracking-[-0.03em] text-[var(--text-strong)]">Implementacion visible y riesgo acotado</p>
+                </div>
+                <StatusBadge tone="ok">Control activo</StatusBadge>
+              </div>
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                {proofTiles.map((item) => (
+                  <div
+                    key={item.title}
+                    className="rounded-[1.15rem] border border-[var(--border-soft)] bg-white/[0.03] p-4"
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--text-muted)]">{item.label}</p>
+                      <StatusBadge tone={item.tone}>{item.label}</StatusBadge>
+                    </div>
+                    <p className="mt-3 text-sm font-semibold text-[var(--text-strong)]">{item.title}</p>
+                    <p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">{item.text}</p>
                   </div>
                 ))}
               </div>
               <a
                 href="/demo"
                 data-analytics-location="risk_demo"
-                className="mt-8 inline-flex items-center justify-center rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] px-6 py-3 text-sm font-bold text-[var(--text-strong)] transition hover:-translate-y-0.5 hover:border-[var(--border-strong)]"
+                className="mt-8 inline-flex items-center justify-center rounded-[1.1rem] border border-cyan-300/10 bg-[var(--brand-cyan)] px-6 py-3 text-sm font-bold text-slate-950 transition hover:-translate-y-0.5 hover:bg-cyan-300"
               >
                 Ver demo visual
               </a>
@@ -760,7 +885,7 @@ export default function EscalandoLabsLanding() {
           {fitBullets.map((item) => (
             <div
               key={item}
-              className="flex items-start gap-3 rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-4 text-sm leading-7 text-[var(--text-secondary)]"
+              className="flex items-start gap-3 rounded-[1.1rem] border border-[var(--border-soft)] bg-[var(--surface-neutral)] p-4 text-sm leading-7 text-[var(--text-secondary)]"
             >
               <CheckIcon />
               <span>{item}</span>
@@ -774,14 +899,14 @@ export default function EscalandoLabsLanding() {
               key={plan.name}
               delay={index * 90}
               as="article"
-              className={`relative rounded-[2rem] border p-7 shadow-[var(--shadow-soft)] ${
+              className={`relative rounded-[1.7rem] border p-7 shadow-[var(--shadow-card)] ${
                 plan.featured
-                  ? "border-cyan-400/35 bg-cyan-400/[0.08] lg:-mt-4 lg:mb-4"
-                  : "border-[var(--border-soft)] bg-[var(--panel)]"
+                  ? "border-cyan-400/35 bg-[var(--surface-technical)] lg:-mt-4 lg:mb-4"
+                  : "border-[var(--border-soft)] bg-[var(--surface-neutral)]"
               }`}
             >
               {plan.featured ? (
-                <div className="absolute right-6 top-6 rounded-full bg-[var(--brand-magenta)] px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-white">
+                <div className="absolute right-6 top-6 rounded-full border border-cyan-300/20 bg-cyan-400/[0.12] px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-cyan-100">
                   Recomendado
                 </div>
               ) : null}
@@ -798,7 +923,7 @@ export default function EscalandoLabsLanding() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-analytics-location={`plan_${plan.name.toLowerCase()}`}
-                className="mt-7 inline-flex w-full items-center justify-center rounded-2xl bg-[var(--text-strong)] px-5 py-3.5 text-sm font-bold text-[var(--background)] transition hover:-translate-y-0.5"
+                className="mt-7 inline-flex w-full items-center justify-center rounded-[1.1rem] border border-cyan-300/10 bg-[var(--brand-cyan)] px-5 py-3.5 text-sm font-bold text-slate-950 transition hover:-translate-y-0.5 hover:bg-cyan-300"
               >
                 Solicitar diagnóstico comercial ↗
               </a>
@@ -810,7 +935,7 @@ export default function EscalandoLabsLanding() {
                   </div>
                 ))}
               </div>
-              <div className="mt-7 rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-4">
+              <div className="mt-7 rounded-[1.1rem] border border-[var(--border-soft)] bg-white/[0.03] p-4">
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--text-muted)]">Límites sugeridos</p>
                 <ul className="mt-3 space-y-2 text-sm leading-6 text-[var(--text-secondary)]">
                   {plan.limits.map((limit) => (
