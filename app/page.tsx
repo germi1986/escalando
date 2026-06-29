@@ -11,228 +11,145 @@ function whatsappUrl(message: string) {
 
 const trustBadges = [
   "IA + humano",
-  "CRM WhatsApp",
+  "Seguimiento con contexto",
   "Campañas responsables",
-  "Base recuperable",
-  "Auditoría operativa",
   "Datos exportables",
 ];
 
 const painPoints = [
   {
-    title: "Consultas que se pierden",
-    text: "WhatsApp recibe intención de compra todo el día, pero muchas conversaciones quedan sin seguimiento real.",
+    title: "Consultas sin próximo paso",
+    text: "Las conversaciones entran, se responden como se puede y muchas terminan sin criterio de seguimiento ni cierre claro.",
     icon: "chat",
-    signal: "Sin próximo paso",
+    signal: "Se enfrían",
     accent: "rgba(34, 211, 238, 0.22)",
   },
   {
-    title: "Clientes dormidos",
-    text: "La base ya existe: clientes que compraron, preguntaron o quedaron cerca de cerrar y nunca volvieron a ser contactados.",
-    icon: "sleep",
-    signal: "Valor inmóvil",
+    title: "Clientes que nadie retoma",
+    text: "Personas que pidieron información, compraron o quedaron cerca de avanzar vuelven a perderse porque todo depende de memoria humana.",
+    icon: "recover",
+    signal: "Valor dormido",
     accent: "rgba(52, 211, 153, 0.22)",
   },
   {
-    title: "Equipo sin sistema",
-    text: "Cada operador responde como puede, sin contexto, sin historial comercial claro y sin métricas de operación.",
+    title: "Promesas sin trazabilidad",
+    text: "Cuando un operador cambia, el historial se corta y el negocio deja de saber qué se prometió, qué quedó pendiente y quién debía seguir.",
     icon: "team",
-    signal: "Memoria humana",
+    signal: "Sin control",
     accent: "rgba(37, 99, 235, 0.2)",
   },
   {
-    title: "Campañas mal usadas",
-    text: "Enviar por enviar no es estrategia. En WhatsApp, la insistencia sin criterio puede dañar la línea y la reputación.",
-    icon: "warning",
-    signal: "Riesgo de bloqueo",
-    accent: "rgba(251, 146, 60, 0.24)",
-  },
-  {
-    title: "Más ads, menos control",
-    text: "Comprar leads nuevos cada vez cuesta más. Antes de invertir más, conviene ordenar lo que ya tenés.",
-    icon: "chart",
-    signal: "Costo creciente",
-    accent: "rgba(217, 70, 239, 0.2)",
-  },
-  {
-    title: "Datos atrapados",
-    text: "Contactos, notas, pedidos y oportunidades quedan repartidos en celulares, chats, planillas y memoria humana.",
+    title: "Datos dispersos",
+    text: "WhatsApp, planillas y notas sueltas fragmentan la operación. Se atiende, pero después cuesta medir, revisar y ordenar.",
     icon: "data",
-    signal: "Información dispersa",
+    signal: "Información rota",
     accent: "rgba(45, 212, 191, 0.24)",
   },
 ];
 
-const selectedArguments = [
-  {
-    title: "La base propia vale más de lo que parece",
-    text: "Tus clientes, consultas y conversaciones históricas ya tienen vínculo con tu negocio. La oportunidad está en ordenarlas y volverlas accionables.",
-    use: "Oportunidad comercial",
-    icon: "database",
-  },
-  {
-    title: "Antes de comprar leads, recuperá los que ya tenés",
-    text: "Cuando los anuncios se encarecen, trabajar mejor la base existente puede ser una decisión más eficiente y controlable.",
-    use: "Insight de conversión",
-    icon: "recover",
-  },
-  {
-    title: "Campañas responsables, no spam",
-    text: "WhatsApp necesita segmentación, frecuencia, horarios y criterio. El sistema prioriza cuidado operativo antes que volumen ciego.",
-    use: "Diferencial de seguridad",
-    icon: "shield",
-  },
-  {
-    title: "IA entrenada con información real",
-    text: "La IA no responde desde frases genéricas: trabaja con horarios, políticas, promociones, productos, tono y objetivos del negocio.",
-    use: "Diferencial técnico",
-    icon: "brain",
-  },
-  {
-    title: "Implementación acompañada",
-    text: "No entregamos una herramienta vacía. Configuramos el sistema con criterio comercial para que tenga sentido en la operación real.",
-    use: "Diferencial de servicio",
-    icon: "hands",
-  },
+const opportunitySignals = [
+  "Clientes que compraron una vez y no volvieron",
+  "Consultas que pidieron información y quedaron sin seguimiento",
+  "Oportunidades que hoy dependen de que alguien se acuerde",
+  "Base propia desaprovechada mientras sube el costo de adquirir nuevos leads",
 ];
 
-const solutionSteps = [
+const mechanismSteps = [
   {
     kpi: "01",
-    title: "Atiende",
-    text: "La IA responde preguntas frecuentes, entiende promociones y mantiene una conversación clara con información del negocio.",
+    title: "Atiende con información real",
+    text: "La IA responde con contexto del negocio, no con frases genéricas. Horarios, promociones, políticas y límites quedan configurados desde el inicio.",
   },
   {
     kpi: "02",
-    title: "Ordena",
-    text: "Centraliza clientes, conversaciones, estados y datos comerciales para que WhatsApp deje de ser una bandeja caótica.",
+    title: "Ordena conversaciones y estados",
+    text: "Cada contacto deja historial, estado comercial y próximo paso para que WhatsApp deje de depender de memoria o velocidad individual.",
   },
   {
     kpi: "03",
-    title: "Deriva",
-    text: "Cuando hace falta criterio humano, el equipo puede tomar la conversación sin perder contexto ni trazabilidad.",
+    title: "Deriva cuando hace falta criterio",
+    text: "Si la conversación requiere cierre, excepción o sensibilidad humana, el equipo toma el caso sin perder contexto.",
   },
   {
     kpi: "04",
-    title: "Recupera",
-    text: "Ayuda a reactivar clientes dormidos, consultas frías y oportunidades que quedaron sin cierre comercial.",
+    title: "Recupera oportunidades dormidas",
+    text: "La base propia se vuelve accionable para reactivar consultas frías, clientes inactivos y seguimientos pendientes.",
+  },
+  {
+    kpi: "05",
+    title: "Deja trazabilidad para medir",
+    text: "Las conversaciones, decisiones y datos quedan registradas para ajustar la operación sin operar a ciegas.",
   },
 ];
 
-const customerCareUseCases = [
+const differenceCards = [
   {
-    title: "Reclamos con contexto",
-    text: "El equipo puede ver historial, notas y estado de la conversación antes de responder, evitando empezar de cero cada vez.",
-    icon: "service",
+    title: "No vende automatización ciega",
+    text: "La prioridad no es responder por responder. Es sostener una operación comercial usable y revisable.",
+    icon: "shield",
   },
   {
-    title: "Cambios y devoluciones",
-    text: "La IA puede orientar con políticas simples y derivar a una persona cuando el caso necesita criterio o autorización.",
-    icon: "return",
+    title: "No te deja solo con la implementación",
+    text: "El sistema se configura con información real del negocio para que el arranque tenga sentido operativo.",
+    icon: "hands",
   },
   {
-    title: "Postventa y seguimiento",
-    text: "No todo contacto es una venta inmediata. También sirve para acompañar, resolver dudas y sostener la relación con el cliente.",
-    icon: "clock",
-  },
-  {
-    title: "Derivación a humano",
-    text: "Cuando aparece enojo, urgencia o un caso sensible, el sistema ayuda a salir del piloto automático y pasar al equipo correcto.",
+    title: "No reemplaza al equipo cuando hace falta criterio",
+    text: "La IA asiste y ordena. El control humano aparece donde conviene cuidar cierre, tono o excepción.",
     icon: "handoff",
   },
-];
-
-const safeCampaigns = [
-  "No vendemos spam ni promesas de miles de mensajes sin estrategia.",
-  "Cuidamos horarios, frecuencia y reputación del número.",
-  "Priorizamos clientes con relación previa, contexto o consentimiento válido.",
-  "Medimos progresivamente antes de escalar volumen.",
-];
-
-const databaseSignals = [
-  "Clientes que compraron una vez y no volvieron",
-  "Personas que pidieron precio y quedaron frías",
-  "Pedidos o consultas abandonadas",
-  "Contactos importados desde CSV o fuentes disponibles",
-  "Segmentos por estado, interés o historial",
-  "Datos descargables para no quedar cautivo del sistema",
-];
-
-const features = [
   {
-    title: "IA comercial configurable",
-    text: "Identidad, horarios, envíos, pagos, políticas, FAQ, promociones y objetivos comerciales.",
-  },
-  {
-    title: "Conversaciones centralizadas",
-    text: "Bandeja para ordenar WhatsApp con modo IA / humano, alertas operativas y continuidad de atención.",
-  },
-  {
-    title: "CRM de clientes",
-    text: "Carga manual, importación CSV, edición, exportación y controles para trabajar sobre la base propia.",
-  },
-  {
-    title: "Campañas responsables",
-    text: "Estados, activación controlada, lotes, horarios y criterios de seguridad para no enviar por enviar.",
-  },
-  {
-    title: "Auditoría y salud",
-    text: "Señales de actividad, watchdog, errores, campañas y controles críticos para no operar a ciegas.",
-  },
-  {
-    title: "Integraciones a medida",
-    text: "Base técnica para conectar WhatsApp, automatizaciones y sistemas externos según necesidad y alcance.",
-  },
-];
-
-const howItWorks = [
-  {
-    title: "Diagnóstico",
-    text: "Revisamos cómo vendés por WhatsApp, qué información existe y dónde se pierden oportunidades.",
-  },
-  {
-    title: "Configuración",
-    text: "Cargamos conocimiento real del negocio: horarios, respuestas, promociones, límites y tono comercial.",
-  },
-  {
-    title: "Activación cuidada",
-    text: "La IA empieza a asistir, el equipo conserva control y las campañas se prueban de forma progresiva.",
-  },
-  {
-    title: "Medición y ajuste",
-    text: "Se revisan señales de operación para mejorar respuestas, seguimiento y recuperación de clientes.",
+    title: "No propone campañas sin cuidado operativo",
+    text: "Segmentación, frecuencia y contexto importan más que el volumen ciego cuando se trabaja sobre WhatsApp.",
+    icon: "warning",
   },
 ];
 
 const comparisonRows = [
   {
-    label: "Enfoque",
+    label: "Qué resuelve",
     chatbot: "Responder mensajes",
-    crm: "Registrar clientes",
-    platforms: "Dar herramientas configurables",
-    escalando: "Convertir WhatsApp en operación comercial medible",
+    crm: "Registrar información",
+    platforms: "Ofrecer herramientas configurables",
+    escalando: "Ordenar WhatsApp como sistema comercial medible",
   },
   {
     label: "Implementación",
     chatbot: "Flujos básicos",
     crm: "Carga y adopción interna",
-    platforms: "El cliente configura gran parte del sistema",
-    escalando: "Plataforma + configuración + criterio comercial",
+    platforms: "El cliente arma gran parte del sistema",
+    escalando: "Plataforma más configuración acompañada",
   },
   {
-    label: "Campañas",
-    chatbot: "Broadcast simple o limitado",
-    crm: "Acciones externas",
-    platforms: "Muy potentes, pero requieren estrategia",
-    escalando: "Segmentación, frecuencia y límites sanos",
-  },
-  {
-    label: "Base dormida",
-    chatbot: "No suele ser el eje",
-    crm: "Depende del uso del equipo",
+    label: "Seguimiento",
+    chatbot: "Limitado al chat",
+    crm: "Depende del equipo",
     platforms: "Posible, pero no siempre guiado",
-    escalando: "Recuperación comercial como prioridad",
+    escalando: "Contexto, estado y próximo paso en la misma operación",
   },
+  {
+    label: "Campañas y base propia",
+    chatbot: "No suele ser el foco",
+    crm: "Necesita procesos externos",
+    platforms: "Potente, pero con más complejidad operativa",
+    escalando: "Recuperación y campañas responsables como parte del sistema",
+  },
+];
+
+const proofBullets = [
+  "Diagnóstico inicial para entender el punto de partida",
+  "Configuración con información real del negocio",
+  "Control humano cuando hace falta criterio",
+  "Datos y conversaciones con trazabilidad y exportación",
+  "Costos externos aclarados antes de activar campañas",
+  "Demo visual para entender alcance y lógica operativa",
+];
+
+const fitBullets = [
+  "Plan Inicial para ordenar y empezar con criterio",
+  "Plan Crecimiento para trabajar base propia y recuperar ventas",
+  "Plan Escala para más volumen, más operadores o integraciones",
+  "Setup visible desde el principio y costos externos aclarados",
 ];
 
 const plans = [
@@ -241,8 +158,7 @@ const plans = [
     subtitle: "WhatsApp IA",
     price: "USD 149",
     setup: "Setup desde USD 300",
-    target: "Para negocios que quieren ordenar y automatizar la atención por WhatsApp.",
-    cta: "Empezar ordenado",
+    target: "Para negocios que quieren ordenar la atención y dejar de depender de chats sueltos.",
     featured: false,
     includes: [
       "1 negocio y 1 número de WhatsApp",
@@ -261,8 +177,7 @@ const plans = [
     subtitle: "Recuperación Comercial",
     price: "USD 299",
     setup: "Setup desde USD 500",
-    target: "Para negocios con base de clientes que quieren recuperar ventas y medir mejor.",
-    cta: "Recuperar clientes",
+    target: "Para negocios con base propia que necesitan recuperar oportunidades y medir mejor el seguimiento.",
     featured: true,
     includes: [
       "Todo lo del plan Inicial",
@@ -281,8 +196,7 @@ const plans = [
     subtitle: "Operación IA a Medida",
     price: "USD 599",
     setup: "Setup desde USD 1.000",
-    target: "Para equipos con más volumen, varios operadores o integraciones externas.",
-    cta: "Evaluar mi caso",
+    target: "Para equipos con más volumen, varios operadores o necesidad de integraciones externas.",
     featured: false,
     includes: [
       "Todo lo del plan Crecimiento",
@@ -300,24 +214,29 @@ const plans = [
 
 const faqs = [
   {
-    question: "¿Escalando Labs reemplaza a mi equipo?",
+    question: "¿Reemplaza a mi equipo?",
     answer:
-      "No. La IA atiende, ordena y ayuda a recuperar oportunidades, pero el equipo puede intervenir cuando haga falta criterio humano o cierre comercial.",
+      "No. La IA asiste; el equipo interviene cuando hace falta criterio, excepción comercial o cierre humano.",
   },
   {
-    question: "¿Puedo hacer campañas masivas?",
+    question: "¿Sirve para campañas masivas?",
     answer:
-      "La idea no es enviar por enviar. Trabajamos campañas progresivas, segmentadas y cuidadas para proteger la línea, la reputación y la experiencia del cliente.",
+      "Solo si hay segmentación, contexto y uso responsable. La lógica no es enviar por volumen sino cuidar la operación y la relación con la base.",
   },
   {
     question: "¿Los costos de WhatsApp están incluidos?",
     answer:
-      "No necesariamente. WhatsApp Business Platform, Twilio, Meta u otros proveedores pueden cobrar aparte según país, categoría y uso del mensaje.",
+      "No siempre. WhatsApp Business Platform, Twilio, Meta u otros proveedores pueden cobrar aparte según país, categoría y uso.",
   },
   {
-    question: "¿Tengo que diseñar todos los flujos yo?",
+    question: "¿Tengo que diseñar todo yo?",
     answer:
-      "No. El diferencial es implementación acompañada: se configura el sistema con información real del negocio y criterio comercial.",
+      "No. La implementación es acompañada: se configura el sistema con información real del negocio y criterio comercial.",
+  },
+  {
+    question: "¿Sirve para cualquier negocio?",
+    answer:
+      "No. Encaja mejor cuando WhatsApp ya es parte real de la operación comercial y hay conversaciones, seguimiento o base propia para ordenar.",
   },
 ];
 
@@ -347,11 +266,12 @@ function Glyph({ name }: { name: string }) {
     );
   }
 
-  if (name === "sleep") {
+  if (name === "recover") {
     return (
       <svg className={common} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M5 18h8l-8-8h8" />
-        <path d="M15 6h5l-5 5h5" />
+        <path d="M4 12a8 8 0 1 0 2.3-5.7" />
+        <path d="M4 4v6h6" />
+        <path d="M12 8v5l3 2" />
       </svg>
     );
   }
@@ -367,42 +287,12 @@ function Glyph({ name }: { name: string }) {
     );
   }
 
-  if (name === "warning") {
-    return (
-      <svg className={common} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M12 3 22 20H2L12 3Z" />
-        <path d="M12 9v5" />
-        <path d="M12 17h.01" />
-      </svg>
-    );
-  }
-
-  if (name === "chart") {
-    return (
-      <svg className={common} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M4 19V5" />
-        <path d="M4 19h16" />
-        <path d="m7 15 4-4 3 3 5-7" />
-      </svg>
-    );
-  }
-
   if (name === "data" || name === "database") {
     return (
       <svg className={common} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <ellipse cx="12" cy="6" rx="7" ry="3" />
         <path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6" />
         <path d="M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6" />
-      </svg>
-    );
-  }
-
-  if (name === "recover") {
-    return (
-      <svg className={common} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M4 12a8 8 0 1 0 2.3-5.7" />
-        <path d="M4 4v6h6" />
-        <path d="M12 8v5l3 2" />
       </svg>
     );
   }
@@ -416,51 +306,17 @@ function Glyph({ name }: { name: string }) {
     );
   }
 
-  if (name === "brain") {
+  if (name === "warning") {
     return (
       <svg className={common} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M9 4.5a3 3 0 0 0-3 3v.4A3.5 3.5 0 0 0 4.5 14 3.5 3.5 0 0 0 8 19h1" />
-        <path d="M15 4.5a3 3 0 0 1 3 3v.4A3.5 3.5 0 0 1 19.5 14 3.5 3.5 0 0 1 16 19h-1" />
-        <path d="M12 5v14" />
-        <path d="M9 9h3" />
-        <path d="M12 13h3" />
+        <path d="M12 3 22 20H2L12 3Z" />
+        <path d="M12 9v5" />
+        <path d="M12 17h.01" />
       </svg>
     );
   }
 
-  if (name === "service") {
-    return (
-      <svg className={common} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M5 5.5h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-7l-4.5 3v-3H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Z" />
-        <path d="M8 10h8" />
-        <path d="M8 13h5" />
-        <path d="M17.5 18.5l2 2" />
-      </svg>
-    );
-  }
-
-  if (name === "return") {
-    return (
-      <svg className={common} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M9 7H6.5A2.5 2.5 0 0 0 4 9.5v7A2.5 2.5 0 0 0 6.5 19h10A3.5 3.5 0 0 0 20 15.5" />
-        <path d="M9 3 5 7l4 4" />
-        <path d="M5 7h10.5A4.5 4.5 0 0 1 20 11.5V12" />
-      </svg>
-    );
-  }
-
-  if (name === "clock") {
-    return (
-      <svg className={common} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
-        <path d="M12 7v5l3 2" />
-        <path d="M5.7 5.7 4.3 4.3" />
-        <path d="M18.3 5.7 19.7 4.3" />
-      </svg>
-    );
-  }
-
-  if (name === "handoff") {
+  if (name === "handoff" || name === "hands") {
     return (
       <svg className={common} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M7.5 12.5 10 15a2.4 2.4 0 0 0 3.4 0l3.1-3.1a2 2 0 0 0 0-2.8 2 2 0 0 0-2.8 0L12 10.8" />
@@ -491,7 +347,7 @@ function HeroVisual() {
             <span className="h-2.5 w-2.5 rounded-full bg-amber-300/70" />
             <span className="h-2.5 w-2.5 rounded-full bg-emerald-300/70" />
           </div>
-          <span className="text-xs font-semibold text-[var(--text-muted)]">WhatsApp Ops · En vivo</span>
+          <span className="text-xs font-semibold text-[var(--text-muted)]">Sistema comercial · Activo</span>
         </div>
 
         <div className="relative grid gap-4 pt-4 md:grid-cols-[1fr_0.9fr]">
@@ -499,31 +355,31 @@ function HeroVisual() {
             <div className="rounded-3xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-5">
               <div className="flex items-center justify-between text-xs text-[var(--text-muted)]">
                 <span>Cliente · 14:32</span>
-                <span>Inbound</span>
+                <span>Seguimiento</span>
               </div>
               <p className="mt-4 text-sm leading-7 text-[var(--text-strong)]">
-                Hola, compré hace unos meses. ¿Sigue vigente la promo de esta semana?
+                Hola, había pedido precio la semana pasada. ¿Sigue disponible?
               </p>
             </div>
 
             <div className="ml-6 rounded-3xl border border-cyan-400/25 bg-cyan-400/[0.08] p-5 shadow-[0_0_34px_rgba(34,211,238,0.10)]">
               <div className="flex items-center justify-between text-xs text-[var(--brand-cyan)]">
                 <span>IA comercial</span>
-                <span>Respuesta sugerida</span>
+                <span>Contexto recuperado</span>
               </div>
               <p className="mt-4 text-sm leading-7 text-[var(--text-strong)]">
-                Sí, sigue vigente hasta el jueves. Te puedo pasar opciones y dejar el pedido listo si querés.
+                Sí. Veo tu consulta anterior y dejo listo el siguiente paso para que no se pierda el seguimiento.
               </p>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div className="rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-4">
-                <p className="text-xs text-[var(--text-muted)]">Modo</p>
-                <p className="mt-2 text-lg font-semibold text-[var(--text-strong)]">IA + humano</p>
+                <p className="text-xs text-[var(--text-muted)]">Estado</p>
+                <p className="mt-2 text-lg font-semibold text-[var(--text-strong)]">Seguimiento activo</p>
               </div>
               <div className="rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-4">
-                <p className="text-xs text-[var(--text-muted)]">Base</p>
-                <p className="mt-2 text-lg font-semibold text-[var(--text-strong)]">recuperable</p>
+                <p className="text-xs text-[var(--text-muted)]">Modo</p>
+                <p className="mt-2 text-lg font-semibold text-[var(--text-strong)]">IA + humano</p>
               </div>
             </div>
           </div>
@@ -537,8 +393,8 @@ function HeroVisual() {
               <div className="space-y-3">
                 {[
                   ["Conversaciones", "Con contexto"],
-                  ["Campañas cuidadas", "Activo"],
-                  ["Control humano", "OK"],
+                  ["Próximo paso", "Definido"],
+                  ["Trazabilidad", "Activa"],
                 ].map(([label, value]) => (
                   <div
                     key={label}
@@ -573,7 +429,7 @@ export default function EscalandoLabsLanding() {
             <a className="transition hover:text-[var(--text-strong)]" href="#problema">Problema</a>
             <a className="transition hover:text-[var(--text-strong)]" href="#oportunidad">Oportunidad</a>
             <a className="transition hover:text-[var(--text-strong)]" href="#solucion">Solución</a>
-            <a className="transition hover:text-[var(--text-strong)]" href="#atencion">Atención</a>
+            <a className="transition hover:text-[var(--text-strong)]" href="#diferencial">Diferencial</a>
             <a className="transition hover:text-[var(--text-strong)]" href="#planes">Planes</a>
           </nav>
 
@@ -588,14 +444,14 @@ export default function EscalandoLabsLanding() {
               <ThemeToggle />
             </div>
             <a
-              href={whatsappUrl("Hola, quiero hablar con Escalando Labs sobre mi operación de WhatsApp.")}
+              href={whatsappUrl("Hola, quiero solicitar un diagnóstico comercial sobre mi operación en WhatsApp.")}
               target="_blank"
               rel="noopener noreferrer"
               data-analytics-location="header_whatsapp"
               className="inline-flex rounded-full bg-[var(--text-strong)] px-4 py-2.5 text-sm font-bold text-[var(--background)] shadow-[var(--shadow-soft)] transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-strong)] sm:px-5"
             >
-              <span className="sm:hidden">Hablar ↗</span>
-              <span className="hidden sm:inline">Hablar por WhatsApp ↗</span>
+              <span className="sm:hidden">Diagnóstico ↗</span>
+              <span className="hidden sm:inline">Solicitar diagnóstico comercial ↗</span>
             </a>
           </div>
         </div>
@@ -611,22 +467,25 @@ export default function EscalandoLabsLanding() {
               </div>
 
               <h1 className="mt-8 max-w-5xl text-5xl font-semibold leading-[0.94] tracking-[-0.065em] text-[var(--text-strong)] sm:text-6xl lg:text-7xl">
-                Recuperá conversaciones que hoy se enfrían antes de convertirse en <span className="landing-gradient-text">ventas.</span>
+                Convertí tu WhatsApp en un <span className="landing-gradient-text">sistema comercial medible.</span>
               </h1>
 
-              <p className="mt-7 max-w-2xl text-lg leading-8 text-[var(--text-secondary)] sm:text-xl">
-                No es solo un chatbot. Es una operación comercial asistida por IA para responder mejor, cuidar el control humano y convertir conversaciones viejas en nuevas oportunidades.
+              <p className="mt-7 max-w-3xl text-lg leading-8 text-[var(--text-secondary)] sm:text-xl">
+                Escalando Labs transforma WhatsApp en una operación comercial con IA y control humano para que cada conversación tenga contexto, seguimiento y próximo paso.
+              </p>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-[var(--text-muted)]">
+                Muchas ventas no se pierden por falta de mensajes. Se pierden porque WhatsApp queda suelto: respuestas sin criterio, clientes sin historial claro y oportunidades que se enfrían sin seguimiento.
               </p>
 
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <a
-                  href={whatsappUrl("Hola, quiero evaluar si puedo recuperar oportunidades desde mi WhatsApp.")}
+                  href={whatsappUrl("Hola, quiero solicitar un diagnóstico comercial sobre mi operación en WhatsApp.")}
                   target="_blank"
                   rel="noopener noreferrer"
                   data-analytics-location="hero_recovery"
                   className="inline-flex items-center justify-center rounded-2xl bg-[var(--text-strong)] px-7 py-4 text-base font-bold text-[var(--background)] shadow-[var(--shadow-strong)] transition hover:-translate-y-0.5"
                 >
-                  Evaluar mi WhatsApp ↗
+                  Solicitar diagnóstico comercial ↗
                 </a>
                 <a
                   href="/demo"
@@ -635,6 +494,10 @@ export default function EscalandoLabsLanding() {
                 >
                   Ver demo visual
                 </a>
+              </div>
+
+              <div className="mt-4 max-w-2xl text-sm leading-6 text-[var(--text-muted)]">
+                Revisamos tu operación en WhatsApp, detectamos dónde se enfrían oportunidades y evaluamos si Escalando Labs encaja en tu negocio.
               </div>
 
               <div className="mt-9 flex flex-wrap gap-2.5">
@@ -658,19 +521,26 @@ export default function EscalandoLabsLanding() {
 
       <section id="problema" className="scroll-mt-28 border-y border-[var(--border-soft)] bg-[var(--section-soft)]">
         <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-28">
-          <Reveal className="max-w-3xl">
-            <SectionLabel>El problema real</SectionLabel>
+          <Reveal className="max-w-4xl">
+            <SectionLabel>Problema</SectionLabel>
             <h2 className="text-4xl font-semibold leading-tight tracking-[-0.045em] text-[var(--text-strong)] md:text-6xl">
               La venta no se pierde solo por falta de demanda. También se pierde por falta de sistema.
             </h2>
             <p className="mt-6 text-lg leading-8 text-[var(--text-secondary)]">
-              WhatsApp concentra ventas, soporte, consultas y promesas comerciales. Sin sistema, todo depende de memoria, velocidad y buena voluntad.
+              WhatsApp concentra consultas, cierres, reclamos y seguimiento. Sin un sistema, todo depende de memoria, velocidad y buena voluntad.
+            </p>
+            <p className="mt-4 max-w-3xl text-base leading-7 text-[var(--text-muted)]">
+              Cuando cada operador responde como puede, sin historial comercial claro ni criterios compartidos, el negocio queda expuesto a conversaciones que no avanzan, clientes que no vuelven y decisiones que nadie puede revisar después.
             </p>
           </Reveal>
 
-          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {painPoints.map((item, index) => (
-              <Reveal key={item.title} delay={index * 80} as="article" className="problem-card group rounded-3xl border border-[var(--border-soft)] p-7 shadow-[var(--shadow-soft)] transition hover:-translate-y-1 hover:border-[var(--border-strong)] hover:shadow-[var(--shadow-strong)]"
+              <Reveal
+                key={item.title}
+                delay={index * 80}
+                as="article"
+                className="problem-card group rounded-3xl border border-[var(--border-soft)] p-7 shadow-[var(--shadow-soft)] transition hover:-translate-y-1 hover:border-[var(--border-strong)] hover:shadow-[var(--shadow-strong)]"
                 style={{ "--card-glow": item.accent } as CSSProperties}
               >
                 <div className="mb-7 flex items-start justify-between gap-4">
@@ -695,24 +565,25 @@ export default function EscalandoLabsLanding() {
       <section id="oportunidad" className="scroll-mt-28 mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-28">
         <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <Reveal>
-            <SectionLabel>Oportunidad comercial</SectionLabel>
+            <SectionLabel>Oportunidad</SectionLabel>
             <h2 className="text-4xl font-semibold leading-tight tracking-[-0.045em] text-[var(--text-strong)] md:text-6xl">
               Tu próxima venta puede estar en una conversación vieja, no en un anuncio nuevo.
             </h2>
             <p className="mt-6 text-lg leading-8 text-[var(--text-secondary)]">
-              La base propia vale más de lo que parece. Antes de comprar más leads, conviene revisar clientes que ya conocen tu marca, preguntaron, compraron o quedaron cerca de cerrar.
+              La base propia suele valer más de lo que parece cuando se puede ordenar, segmentar y volver accionable.
+            </p>
+            <p className="mt-4 max-w-3xl text-base leading-7 text-[var(--text-muted)]">
+              Muchos negocios ya tienen clientes que compraron, personas que pidieron precio, consultas que quedaron frías y seguimientos que nunca se hicieron. Antes de invertir más en adquisición, conviene revisar cuánto valor ya existe dentro de WhatsApp y cuánto de ese valor hoy se pierde por falta de sistema.
             </p>
           </Reveal>
 
           <Reveal delay={120}>
             <div className="rounded-[2.25rem] border border-[var(--border-soft)] bg-[var(--panel)] p-6 shadow-[var(--shadow-soft)] backdrop-blur-xl">
-              <div className="grid gap-3 sm:grid-cols-2">
-                {databaseSignals.map((signal, index) => (
+              <div className="grid gap-3">
+                {opportunitySignals.map((signal) => (
                   <div
                     key={signal}
-                    className={`flex items-start gap-3 rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-4 text-sm leading-7 text-[var(--text-secondary)] ${
-                      index === 0 ? "sm:col-span-2" : ""
-                    }`}
+                    className="flex items-start gap-3 rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-4 text-sm leading-7 text-[var(--text-secondary)]"
                   >
                     <CheckIcon />
                     <span>{signal}</span>
@@ -720,55 +591,46 @@ export default function EscalandoLabsLanding() {
                 ))}
               </div>
               <a
-                href={whatsappUrl("Hola, quiero evaluar mi base de clientes y oportunidades de recuperación.")}
+                href={whatsappUrl("Hola, quiero un diagnóstico consultivo sobre mi operación en WhatsApp y mi base de clientes.")}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-analytics-location="base_evaluation"
                 className="mt-6 inline-flex w-full items-center justify-center rounded-2xl bg-cyan-400/[0.12] px-6 py-3 font-bold text-[var(--text-strong)] transition hover:-translate-y-0.5 hover:bg-cyan-400/[0.18]"
               >
-                Evaluar mi base de clientes
+                Solicitar diagnóstico comercial ↗
               </a>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden border-y border-[var(--border-soft)] bg-[var(--panel)]">
-        <div className="absolute inset-0 opacity-40 [background-image:radial-gradient(circle_at_20%_20%,rgba(217,70,239,0.16),transparent_30%),radial-gradient(circle_at_75%_35%,rgba(34,211,238,0.14),transparent_28%)]" />
-        <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-24 lg:grid-cols-[0.95fr_1.05fr] lg:px-8 lg:py-28">
-          <Reveal>
-            <SectionLabel>IA bien integrada</SectionLabel>
-            <h2 className="text-4xl font-semibold leading-tight tracking-[-0.045em] text-[var(--text-strong)] md:text-6xl">
-              La IA conversacional ya no es experimental. El problema es integrarla bien.
-            </h2>
-          </Reveal>
-          <Reveal delay={120}>
-            <div className="rounded-[2rem] border border-[var(--border-soft)] bg-[var(--surface-soft)] p-8 shadow-[var(--shadow-soft)] backdrop-blur-xl">
-              <p className="text-2xl font-semibold leading-snug tracking-[-0.035em] text-[var(--text-strong)]">
-                Muchos negocios ya probaron IA. Pocos la conectaron con base de clientes, reglas comerciales, seguimiento, control humano y medición.
-              </p>
-              <p className="mt-5 text-base leading-8 text-[var(--text-secondary)]">
-                Escalando Labs apunta a esa brecha: no se trata de “tener IA”, sino de convertirla en una operación comercial concreta, cuidada y revisable.
+              <p className="mt-3 text-sm leading-6 text-[var(--text-muted)]">
+                Un diagnóstico consultivo sobre tu operación en WhatsApp: cómo atendés hoy, dónde se enfrían oportunidades y qué conviene ordenar primero.
               </p>
             </div>
           </Reveal>
         </div>
       </section>
 
-      <section id="solucion" className="scroll-mt-28 mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-28">
-        <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+      <section id="solucion" className="scroll-mt-28 border-y border-[var(--border-soft)] bg-[var(--panel)]">
+        <div className="mx-auto grid max-w-7xl gap-14 px-5 py-24 lg:grid-cols-[0.9fr_1.1fr] lg:px-8 lg:py-28">
           <Reveal className="lg:sticky lg:top-28">
-            <SectionLabel>La solución</SectionLabel>
+            <SectionLabel>Mecanismo</SectionLabel>
             <h2 className="text-4xl font-semibold leading-tight tracking-[-0.045em] text-[var(--text-strong)] md:text-6xl">
-              Convertimos tu WhatsApp en una operación comercial medible.
+              WhatsApp deja de ser una bandeja suelta cuando cada conversación entra en un sistema.
             </h2>
             <p className="mt-6 text-lg leading-8 text-[var(--text-secondary)]">
-              Escalando Labs combina IA, CRM, campañas cuidadas, auditoría e intervención humana para que cada conversación tenga contexto y próximo paso.
+              Escalando Labs combina atención asistida por IA, contexto comercial, CRM y control humano para que cada contacto tenga estado, historial y próximo paso.
             </p>
+            <p className="mt-4 text-base leading-7 text-[var(--text-muted)]">
+              No se trata solo de automatizar respuestas. Se trata de hacer que cada conversación deje información útil, pueda ser continuada por una persona y alimente una operación comercial que no dependa del azar.
+            </p>
+            <a
+              href="/demo"
+              data-analytics-location="hero_demo"
+              className="mt-8 inline-flex items-center justify-center rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-soft)] px-6 py-3 text-sm font-bold text-[var(--text-strong)] transition hover:-translate-y-0.5 hover:border-[var(--border-strong)] hover:bg-[var(--surface-strong)]"
+            >
+              Ver demo visual
+            </a>
           </Reveal>
 
-          <div id="como-funciona" className="grid gap-4">
-            {solutionSteps.map((step, index) => (
+          <div className="grid gap-4">
+            {mechanismSteps.map((step, index) => (
               <Reveal key={step.title} delay={index * 90} as="article" className="rounded-3xl border border-[var(--border-soft)] bg-[var(--panel)] p-7 shadow-[var(--shadow-soft)]">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
                   <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[var(--text-strong)] text-sm font-black text-[var(--background)]">
@@ -785,216 +647,126 @@ export default function EscalandoLabsLanding() {
         </div>
       </section>
 
-      <section id="atencion" className="relative overflow-hidden border-y border-[var(--border-soft)] bg-[var(--section-soft)]">
-        <div className="absolute inset-0 opacity-50 [background-image:radial-gradient(circle_at_18%_20%,rgba(52,211,153,0.14),transparent_30%),radial-gradient(circle_at_82%_42%,rgba(34,211,238,0.14),transparent_28%)]" />
-        <div className="relative mx-auto grid max-w-7xl gap-12 px-5 py-24 lg:grid-cols-[0.95fr_1.05fr] lg:items-start lg:px-8 lg:py-28">
-          <Reveal className="lg:sticky lg:top-28">
-            <SectionLabel>Atención y postventa</SectionLabel>
+      <section id="diferencial" className="scroll-mt-28 border-y border-[var(--border-soft)] bg-[var(--section-soft)]">
+        <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-28">
+          <Reveal className="max-w-4xl">
+            <SectionLabel>Diferencial</SectionLabel>
             <h2 className="text-4xl font-semibold leading-tight tracking-[-0.045em] text-[var(--text-strong)] md:text-6xl">
-              También sirve cuando el cliente no viene a comprar.
+              No alcanza con responder mensajes. Hay que convertirlos en operación comercial.
             </h2>
             <p className="mt-6 text-lg leading-8 text-[var(--text-secondary)]">
-              Reclamos, cambios, devoluciones, consultas posteriores y casos sensibles necesitan orden, contexto y derivación humana. WhatsApp no es solo venta: también es experiencia de cliente.
+              El diferencial de Escalando Labs no es solo la IA. Es cómo conecta atención, contexto, seguimiento y control humano dentro de una operación medible.
             </p>
-            <a
-              href={whatsappUrl("Hola, quiero mejorar la atención y postventa de mi negocio por WhatsApp.")}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-analytics-location="attention"
-              className="mt-8 inline-flex items-center justify-center rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-soft)] px-6 py-3 text-sm font-bold text-[var(--text-strong)] transition hover:-translate-y-0.5 hover:border-[var(--border-strong)] hover:bg-[var(--surface-strong)]"
-            >
-              Mejorar mi atención por WhatsApp
-            </a>
+            <p className="mt-4 max-w-3xl text-base leading-7 text-[var(--text-muted)]">
+              Un chatbot puede responder. Un CRM puede registrar. Una plataforma puede dar herramientas. Escalando Labs apunta a otra cosa: que WhatsApp funcione como un sistema comercial serio para PyMEs y equipos reales.
+            </p>
           </Reveal>
 
-          <div className="grid gap-5 sm:grid-cols-2">
-            {customerCareUseCases.map((item, index) => (
+          <div className="mt-14 grid items-stretch gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {differenceCards.map((card, index) => (
               <Reveal
-                key={item.title}
-                delay={index * 85}
-                as="article"
-                className="group flex min-h-[245px] flex-col rounded-3xl border border-[var(--border-soft)] bg-[var(--panel)] p-6 shadow-[var(--shadow-soft)] transition hover:-translate-y-1 hover:border-[var(--border-strong)] hover:shadow-[var(--shadow-strong)]"
-              >
-                <div className="grid h-12 w-12 place-items-center rounded-2xl border border-emerald-400/20 bg-emerald-400/[0.08] text-[var(--brand-green)] shadow-[0_0_28px_rgba(52,211,153,0.10)]">
-                  <Glyph name={item.icon} />
-                </div>
-                <h3 className="mt-6 text-2xl font-semibold tracking-[-0.035em] text-[var(--text-strong)]">{item.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">{item.text}</p>
-                <div className="mt-auto pt-6 text-xs font-black uppercase tracking-[0.16em] text-[var(--brand-cyan)]">
-                  Atención con trazabilidad
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-[var(--border-soft)] bg-[var(--section-soft)]">
-        <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-28">
-          <Reveal className="max-w-3xl">
-            <SectionLabel>5 argumentos clave</SectionLabel>
-            <h2 className="text-4xl font-semibold leading-tight tracking-[-0.045em] text-[var(--text-strong)] md:text-6xl">
-              El diferencial no está en responder rápido. Está en vender mejor sin perder control.
-            </h2>
-          </Reveal>
-
-          <div className="mt-14 grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-            {selectedArguments.map((argument, index) => (
-              <Reveal
-                key={argument.title}
+                key={card.title}
                 delay={index * 80}
                 as="article"
-                className="flex h-full min-h-[315px] flex-col rounded-3xl border border-[var(--border-soft)] bg-[var(--panel)] p-6 shadow-[var(--shadow-soft)] transition hover:-translate-y-1 hover:border-[var(--border-strong)] hover:shadow-[var(--shadow-strong)]"
+                className="flex h-full min-h-[280px] flex-col rounded-3xl border border-[var(--border-soft)] bg-[var(--panel)] p-6 shadow-[var(--shadow-soft)] transition hover:-translate-y-1 hover:border-[var(--border-strong)] hover:shadow-[var(--shadow-strong)]"
               >
                 <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-cyan-400/20 bg-cyan-400/[0.08] text-[var(--brand-cyan)]">
-                  <Glyph name={argument.icon} />
+                  <Glyph name={card.icon} />
                 </div>
-                <p className="mt-6 min-h-10 text-xs font-black uppercase tracking-[0.16em] text-[var(--brand-green)]">{argument.use}</p>
-                <h3 className="mt-3 text-xl font-semibold tracking-[-0.035em] text-[var(--text-strong)]">{argument.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">{argument.text}</p>
-                <div className="mt-auto pt-6">
-                  <span className="inline-flex h-1.5 w-14 rounded-full bg-[linear-gradient(90deg,var(--brand-cyan),var(--brand-green))]" />
-                </div>
+                <h3 className="mt-6 text-xl font-semibold tracking-[-0.035em] text-[var(--text-strong)]">{card.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">{card.text}</p>
               </Reveal>
             ))}
           </div>
+
+          <Reveal delay={120} className="mt-12 overflow-hidden rounded-[2rem] border border-[var(--border-soft)] bg-[var(--panel)] shadow-[var(--shadow-soft)]">
+            <div className="overflow-x-auto">
+              <div className="grid min-w-[860px] grid-cols-[0.8fr_1fr_1fr_1.15fr_1.25fr] border-b border-[var(--border-soft)] bg-[var(--surface-soft)] text-xs font-bold uppercase tracking-[0.16em] text-[var(--text-muted)]">
+                <div className="p-4">Criterio</div>
+                <div className="p-4">Chatbot básico</div>
+                <div className="p-4">CRM tradicional</div>
+                <div className="p-4">Plataformas</div>
+                <div className="p-4 text-[var(--brand-cyan)]">Escalando Labs</div>
+              </div>
+              {comparisonRows.map((row) => (
+                <div
+                  key={row.label}
+                  className="grid min-w-[860px] grid-cols-[0.8fr_1fr_1fr_1.15fr_1.25fr] border-b border-[var(--border-soft)] last:border-b-0"
+                >
+                  <div className="p-4 text-sm font-bold text-[var(--text-strong)]">{row.label}</div>
+                  <div className="p-4 text-sm leading-6 text-[var(--text-secondary)]">{row.chatbot}</div>
+                  <div className="p-4 text-sm leading-6 text-[var(--text-secondary)]">{row.crm}</div>
+                  <div className="p-4 text-sm leading-6 text-[var(--text-secondary)]">{row.platforms}</div>
+                  <div className="bg-cyan-400/[0.055] p-4 text-sm font-semibold leading-6 text-[var(--text-strong)]">{row.escalando}</div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      <section className="relative overflow-hidden border-b border-[var(--border-soft)] bg-[var(--panel)]">
-        <div className="absolute inset-0 opacity-40 [background-image:radial-gradient(circle_at_20%_20%,rgba(251,146,60,0.16),transparent_30%),radial-gradient(circle_at_75%_35%,rgba(34,211,238,0.14),transparent_28%)]" />
-        <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-24 lg:grid-cols-[0.95fr_1.05fr] lg:px-8 lg:py-28">
+      <section className="border-y border-[var(--border-soft)] bg-[var(--panel)]">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-24 lg:grid-cols-[0.95fr_1.05fr] lg:px-8 lg:py-28">
           <Reveal>
-            <SectionLabel>No es spam, es estrategia</SectionLabel>
+            <SectionLabel>Prueba y riesgo</SectionLabel>
             <h2 className="text-4xl font-semibold leading-tight tracking-[-0.045em] text-[var(--text-strong)] md:text-6xl">
-              En WhatsApp, volumen sin criterio es riesgo.
+              Antes de activar, necesitás claridad. Después, necesitás control.
             </h2>
+            <p className="mt-6 text-lg leading-8 text-[var(--text-secondary)]">
+              Escalando Labs no promete magia ni volumen ciego. Propone una implementación cuidada, con límites claros y operación revisable.
+            </p>
+            <p className="mt-4 text-base leading-7 text-[var(--text-muted)]">
+              La mejor prueba posible hoy no es inventar autoridad. Es mostrar con transparencia qué se configura, qué control conserva el negocio, qué depende de terceros y cómo se ordena la operación antes de escalar.
+            </p>
           </Reveal>
+
           <Reveal delay={120}>
             <div className="rounded-[2rem] border border-[var(--border-soft)] bg-[var(--surface-soft)] p-8 shadow-[var(--shadow-soft)] backdrop-blur-xl">
-              <p className="text-2xl font-semibold leading-snug tracking-[-0.035em] text-[var(--text-strong)]">
-                En WhatsApp no existe la campaña masiva sana si no hay segmentación, frecuencia y vínculo real.
-              </p>
-              <div className="mt-7 grid gap-4 sm:grid-cols-2">
-                {safeCampaigns.map((item) => (
+              <div className="grid gap-4 sm:grid-cols-2">
+                {proofBullets.map((item) => (
                   <div key={item} className="flex gap-3 text-sm leading-7 text-[var(--text-secondary)]">
                     <CheckIcon />
                     <span>{item}</span>
                   </div>
                 ))}
               </div>
+              <a
+                href="/demo"
+                data-analytics-location="risk_demo"
+                className="mt-8 inline-flex items-center justify-center rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] px-6 py-3 text-sm font-bold text-[var(--text-strong)] transition hover:-translate-y-0.5 hover:border-[var(--border-strong)]"
+              >
+                Ver demo visual
+              </a>
             </div>
           </Reveal>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-28">
-        <Reveal className="max-w-3xl">
-          <SectionLabel>Cómo funciona</SectionLabel>
-          <h2 className="text-4xl font-semibold leading-tight tracking-[-0.045em] text-[var(--text-strong)] md:text-6xl">
-            Un camino simple para pasar de WhatsApp caótico a sistema comercial.
-          </h2>
-        </Reveal>
-        <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {howItWorks.map((item, index) => (
-            <Reveal key={item.title} delay={index * 90} as="article" className="rounded-3xl border border-[var(--border-soft)] bg-[var(--panel)] p-6 shadow-[var(--shadow-soft)]">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-[var(--surface-strong)] text-sm font-black text-[var(--brand-cyan)]">
-                {index + 1}
-              </span>
-              <h3 className="mt-5 text-xl font-semibold tracking-[-0.035em] text-[var(--text-strong)]">{item.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">{item.text}</p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      <section id="funcionalidades" className="border-y border-[var(--border-soft)] bg-[var(--section-soft)]">
-        <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-28">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <Reveal className="max-w-3xl">
-              <SectionLabel>Funcionalidades</SectionLabel>
-              <h2 className="text-4xl font-semibold leading-tight tracking-[-0.045em] text-[var(--text-strong)] md:text-6xl">
-                Plataforma, operación y criterio comercial en un solo sistema.
-              </h2>
-            </Reveal>
-            <Reveal delay={120}>
-              <p className="max-w-md text-sm leading-7 text-[var(--text-muted)]">
-                Las integraciones externas se plantean como implementación según caso, alcance técnico y necesidad real del negocio.
-              </p>
-            </Reveal>
-          </div>
-
-          <div className="mt-14 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {features.map((feature, index) => (
-              <Reveal key={feature.title} delay={index * 70} as="article" className="rounded-3xl border border-[var(--border-soft)] bg-[var(--panel)] p-6 shadow-[var(--shadow-soft)] transition hover:-translate-y-1 hover:border-[var(--border-strong)]">
-                <h3 className="text-lg font-semibold tracking-[-0.03em] text-[var(--text-strong)]">{feature.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">{feature.text}</p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-28">
-        <Reveal className="max-w-3xl">
-          <SectionLabel>Comparativa</SectionLabel>
-          <h2 className="text-4xl font-semibold leading-tight tracking-[-0.045em] text-[var(--text-strong)] md:text-6xl">
-            Las grandes plataformas te dan herramientas. Escalando Labs te ayuda a convertirlas en operación.
-          </h2>
-          <p className="mt-6 text-lg leading-8 text-[var(--text-secondary)]">
-            Muchas herramientas son muy buenas según el caso. Nuestro diferencial está en combinar plataforma, implementación, estrategia y adaptación a PyMEs reales de la región.
-          </p>
-        </Reveal>
-
-        <div className="mt-12 grid gap-4 md:hidden">
-          {comparisonRows.map((row) => (
-            <article key={row.label} className="rounded-3xl border border-[var(--border-soft)] bg-[var(--panel)] p-5 shadow-[var(--shadow-soft)]">
-              <p className="text-xs font-black uppercase tracking-[0.18em] text-[var(--brand-cyan)]">{row.label}</p>
-              <p className="mt-3 text-base font-semibold leading-7 text-[var(--text-strong)]">{row.escalando}</p>
-              <div className="mt-5 grid gap-3 border-t border-[var(--border-soft)] pt-4 text-sm leading-6 text-[var(--text-secondary)]">
-                <p><span className="font-bold text-[var(--text-strong)]">Chatbot:</span> {row.chatbot}</p>
-                <p><span className="font-bold text-[var(--text-strong)]">CRM:</span> {row.crm}</p>
-                <p><span className="font-bold text-[var(--text-strong)]">Plataformas:</span> {row.platforms}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <Reveal delay={120} className="mt-12 hidden overflow-hidden rounded-[2rem] border border-[var(--border-soft)] bg-[var(--panel)] shadow-[var(--shadow-soft)] md:block">
-          <div className="overflow-x-auto">
-            <div className="grid min-w-[860px] grid-cols-[0.72fr_1fr_1fr_1.15fr_1.3fr] border-b border-[var(--border-soft)] bg-[var(--surface-soft)] text-xs font-bold uppercase tracking-[0.16em] text-[var(--text-muted)]">
-              <div className="p-4">Criterio</div>
-              <div className="p-4">Chatbot básico</div>
-              <div className="p-4">CRM tradicional</div>
-              <div className="p-4">Plataformas globales</div>
-              <div className="p-4 text-[var(--brand-cyan)]">Escalando Labs</div>
-            </div>
-            {comparisonRows.map((row) => (
-              <div
-                key={row.label}
-                className="grid min-w-[860px] grid-cols-[0.72fr_1fr_1fr_1.15fr_1.3fr] border-b border-[var(--border-soft)] last:border-b-0"
-              >
-                <div className="p-4 text-sm font-bold text-[var(--text-strong)]">{row.label}</div>
-                <div className="p-4 text-sm leading-6 text-[var(--text-secondary)]">{row.chatbot}</div>
-                <div className="p-4 text-sm leading-6 text-[var(--text-secondary)]">{row.crm}</div>
-                <div className="p-4 text-sm leading-6 text-[var(--text-secondary)]">{row.platforms}</div>
-                <div className="bg-cyan-400/[0.055] p-4 text-sm font-semibold leading-6 text-[var(--text-strong)]">{row.escalando}</div>
-              </div>
-            ))}
-          </div>
-        </Reveal>
-      </section>
-
       <section id="planes" data-analytics-view="pricing_view" className="scroll-mt-28 mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-28">
-        <Reveal className="max-w-3xl">
-          <SectionLabel>Planes y pricing</SectionLabel>
+        <Reveal className="max-w-4xl">
+          <SectionLabel>Pricing + encaje</SectionLabel>
           <h2 className="text-4xl font-semibold leading-tight tracking-[-0.045em] text-[var(--text-strong)] md:text-6xl">
-            Precios pensados para software, implementación y acompañamiento.
+            Precios pensados para software, implementación y criterio comercial.
           </h2>
           <p className="mt-6 text-lg leading-8 text-[var(--text-secondary)]">
-            No competimos por barato ni prometemos mensajes ilimitados. El precio debe reflejar configuración, criterio comercial y operación responsable.
+            No competimos por ser lo más barato ni por prometer mensajes ilimitados. El precio refleja configuración, acompañamiento y operación responsable.
+          </p>
+          <p className="mt-4 max-w-3xl text-base leading-7 text-[var(--text-muted)]">
+            El pricing tiene que ayudar a responder dos preguntas: qué tipo de operación estás comprando y si tu caso encaja hoy. No es una compra impulsiva. Es una decisión operativa.
           </p>
         </Reveal>
+
+        <div className="mt-10 grid gap-3 md:grid-cols-2">
+          {fitBullets.map((item) => (
+            <div
+              key={item}
+              className="flex items-start gap-3 rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-soft)] p-4 text-sm leading-7 text-[var(--text-secondary)]"
+            >
+              <CheckIcon />
+              <span>{item}</span>
+            </div>
+          ))}
+        </div>
 
         <div className="mt-14 grid gap-5 lg:grid-cols-3">
           {plans.map((plan, index) => (
@@ -1022,13 +794,13 @@ export default function EscalandoLabsLanding() {
                 <p className="mt-2 text-sm font-semibold text-[var(--brand-cyan)]">{plan.setup}</p>
               </div>
               <a
-                href={whatsappUrl(`Hola, me interesa el Plan ${plan.name} de Escalando Labs y quiero evaluar mi caso.`)}
+                href={whatsappUrl(`Hola, quiero solicitar un diagnóstico comercial para evaluar si el Plan ${plan.name} encaja en mi operación de WhatsApp.`)}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-analytics-location={`plan_${plan.name.toLowerCase()}`}
                 className="mt-7 inline-flex w-full items-center justify-center rounded-2xl bg-[var(--text-strong)] px-5 py-3.5 text-sm font-bold text-[var(--background)] transition hover:-translate-y-0.5"
               >
-                {plan.cta}
+                Solicitar diagnóstico comercial ↗
               </a>
               <div className="mt-7 space-y-3">
                 {plan.includes.map((item) => (
@@ -1058,10 +830,16 @@ export default function EscalandoLabsLanding() {
       <section className="border-y border-[var(--border-soft)] bg-[var(--section-soft)]">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-24 lg:grid-cols-[0.9fr_1.1fr] lg:px-8 lg:py-28">
           <Reveal>
-            <SectionLabel>Preguntas frecuentes</SectionLabel>
+            <SectionLabel>Objeciones</SectionLabel>
             <h2 className="text-4xl font-semibold leading-tight tracking-[-0.045em] text-[var(--text-strong)] md:text-6xl">
-              Claro antes de empezar. Medible después de activar.
+              Lo importante no es automatizar más. Es automatizar con criterio.
             </h2>
+            <p className="mt-6 text-lg leading-8 text-[var(--text-secondary)]">
+              Estas son las dudas que normalmente frenan la decisión y cómo se resuelven.
+            </p>
+            <p className="mt-4 text-base leading-7 text-[var(--text-muted)]">
+              Si una objeción es válida, se responde con límites claros, no con promesas infladas.
+            </p>
           </Reveal>
           <div className="grid gap-4">
             {faqs.map((faq, index) => (
@@ -1080,39 +858,43 @@ export default function EscalandoLabsLanding() {
             <BrandMark size="lg" />
           </div>
           <h2 className="mx-auto mt-8 max-w-4xl text-4xl font-semibold leading-tight tracking-[-0.055em] text-[var(--text-strong)] md:text-6xl">
-            WhatsApp deja de ser caos y empieza a ser sistema.
+            WhatsApp deja de ser caos cuando pasa a tener sistema.
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[var(--text-secondary)]">
-            Atendé, clasificá, recuperá y medí desde un solo lugar, con IA entrenada para tu negocio y control humano cuando corresponde.
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-[var(--text-secondary)]">
+            Escalando Labs te ayuda a ordenar, atender, recuperar y medir desde un solo lugar, con IA y control humano.
+          </p>
+          <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-[var(--text-muted)]">
+            Si hoy tu operación comercial depende de memoria humana, respuestas aisladas y seguimientos manuales, el problema no es responder más rápido. El problema es no tener sistema. El siguiente paso es diagnosticar qué parte de tu operación conviene ordenar primero.
           </p>
           <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
             <a
-              href={whatsappUrl("Hola, quiero hablar con Escalando Labs para evaluar mi operación de WhatsApp.")}
+              href={whatsappUrl("Hola, quiero solicitar un diagnóstico comercial para evaluar mi operación en WhatsApp.")}
               target="_blank"
               rel="noopener noreferrer"
               data-analytics-location="final_cta"
               className="inline-flex items-center justify-center rounded-2xl bg-[var(--text-strong)] px-7 py-4 text-base font-bold text-[var(--background)] shadow-[var(--shadow-strong)] transition hover:-translate-y-0.5"
             >
-              Hablar con Escalando Labs ↗
+              Solicitar diagnóstico comercial ↗
             </a>
             <a
-              href="#planes"
+              href="/demo"
+              data-analytics-location="final_demo"
               className="inline-flex items-center justify-center rounded-2xl border border-[var(--border-soft)] bg-[var(--surface-soft)] px-7 py-4 text-base font-bold text-[var(--text-strong)] transition hover:border-[var(--border-strong)]"
             >
-              Ver planes
+              Ver demo visual
             </a>
           </div>
         </Reveal>
       </section>
 
       <a
-        href={whatsappUrl("Hola, quiero evaluar mi operación de WhatsApp con Escalando Labs.")}
+        href={whatsappUrl("Hola, quiero solicitar un diagnóstico comercial para mi operación en WhatsApp.")}
         target="_blank"
         rel="noopener noreferrer"
         data-analytics-location="mobile_sticky_cta"
         className="fixed bottom-4 right-4 z-40 inline-flex items-center justify-center rounded-full bg-[var(--text-strong)] px-5 py-3 text-sm font-bold text-[var(--background)] shadow-[var(--shadow-strong)] sm:hidden"
       >
-        Evaluar mi WhatsApp ↗
+        Diagnóstico ↗
       </a>
 
       <footer className="border-t border-[var(--border-soft)] px-5 py-10 lg:px-8">
@@ -1132,7 +914,7 @@ export default function EscalandoLabsLanding() {
               Eliminación de datos
             </a>
           </nav>
-          <p>© {new Date().getFullYear()} Escalando Labs. Automatización comercial con IA para WhatsApp.</p>
+          <p>© {new Date().getFullYear()} Escalando Labs. Operación comercial medible para WhatsApp.</p>
         </div>
       </footer>
     </main>

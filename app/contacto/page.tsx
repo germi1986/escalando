@@ -18,8 +18,8 @@ export default function ContactPage() {
       eyebrow="Contacto oficial"
     >
       <p>
-        Escalando Labs es una plataforma SaaS para negocios que quieren gestionar conversaciones,
-        clientes, campañas responsables, atención humana e IA comercial conectada a WhatsApp.
+        Escalando Labs ayuda a convertir WhatsApp en una operación comercial medible con IA,
+        seguimiento, trazabilidad y control humano cuando hace falta criterio.
       </p>
 
       <LegalSection title="Canal principal">

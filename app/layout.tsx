@@ -29,7 +29,7 @@ const structuredData = {
       operatingSystem: "Web",
       url: siteUrl,
       description:
-        "Plataforma de IA comercial para WhatsApp con CRM, atención humana, recuperación de clientes y campañas responsables.",
+        "Sistema comercial medible para WhatsApp con IA, control humano, seguimiento y trazabilidad operativa.",
     },
   ],
 };
@@ -37,28 +37,28 @@ const structuredData = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Escalando Labs | IA comercial para WhatsApp",
+    default: "Escalando Labs | Sistema comercial medible para WhatsApp",
     template: "%s | Escalando Labs",
   },
   description:
-    "Automatización comercial con IA para WhatsApp: atención automática, CRM, campañas responsables, recuperación de clientes y auditoría operativa para negocios.",
+    "Convertí WhatsApp en una operación comercial medible con IA y control humano. Escalando Labs ordena conversaciones, seguimiento y trazabilidad comercial.",
   keywords: [
     "IA para WhatsApp",
-    "chatbot para WhatsApp",
-    "automatización comercial por WhatsApp",
+    "sistema comercial para WhatsApp",
+    "seguimiento comercial por WhatsApp",
     "CRM WhatsApp",
+    "operación comercial medible",
     "campañas WhatsApp responsables",
-    "atención automática WhatsApp",
     "recuperación de clientes por WhatsApp",
-    "automatización con IA para negocios",
+    "control humano con IA",
   ],
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Escalando Labs | IA comercial para WhatsApp",
+    title: "Escalando Labs | Sistema comercial medible para WhatsApp",
     description:
-      "Convertí WhatsApp en una operación comercial medible: IA, CRM, campañas responsables y recuperación de clientes.",
+      "Convertí WhatsApp en una operación comercial medible con IA, control humano, seguimiento y trazabilidad.",
     url: "/",
     siteName: "Escalando Labs",
     locale: "es_AR",
@@ -68,13 +68,13 @@ export const metadata: Metadata = {
         url: socialPreview,
         width: 1200,
         height: 630,
-        alt: "Escalando Labs: IA comercial para WhatsApp",
+        alt: "Escalando Labs: sistema comercial medible para WhatsApp",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Escalando Labs | IA comercial para WhatsApp",
+    title: "Escalando Labs | Sistema comercial medible para WhatsApp",
     description:
       "Atendé, ordená, recuperá y medí tus conversaciones comerciales de WhatsApp con IA y control humano.",
     images: [socialPreview],
