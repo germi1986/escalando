@@ -25,7 +25,7 @@ Replace the rejected editorial landing with a dark premium, product-led landing 
 ## Verification
 
 - Active implementation commit: `946bb19abf3154f6fab2d07aa1df3d63ea359efe`.
-- Vercel deployment: `dpl_FpWHbG7EVSCWdutUXZ4TtNhjh88C`.
+- Verified Vercel deployment: `dpl_FpWHbG7EVSCWdutUXZ4TtNhjh88C`.
 - Deployment status: `READY`.
 - Next.js 16.2.6 compiled successfully.
 - TypeScript completed successfully.
@@ -38,4 +38,4 @@ Replace the rejected editorial landing with a dark premium, product-led landing 
 
 `https://escalando-git-agent-landing-stabilization-holazapas-projects.vercel.app/`
 
-PR #2 remains draft pending Germán’s visual review.
+PR #2 remains draft. Desktop and mobile visual acceptance remain pending Germán’s review.
