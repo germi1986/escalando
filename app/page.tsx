@@ -1,7 +1,7 @@
-import './home-stable.css'
-import './home-consent-overrides.css'
-import HomeStable from './HomeStable'
+import './home-dark-premium.css'
+import './home-dark-consent-overrides.css'
+import HomeDarkPremium from './HomeDarkPremium'
 
 export default function HomePage() {
-  return <HomeStable />
+  return <HomeDarkPremium />
 }
