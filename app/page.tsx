@@ -1,6 +1,6 @@
-﻿import "./home-v45.css";
-import HomeV45 from "./HomeV45";
+import './home-stable.css'
+import HomeStable from './HomeStable'
 
 export default function HomePage() {
-  return <HomeV45 />;
+  return <HomeStable />
 }
