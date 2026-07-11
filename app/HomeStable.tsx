@@ -1,6 +1,20 @@
 import Image from 'next/image'
+import { Archivo, IBM_Plex_Mono } from 'next/font/google'
 
-const DIAGNOSTIC_URL = `https://wa.me/5491153230859?text=${encodeURIComponent(
+const archivo = Archivo({
+  subsets: ['latin'],
+  variable: '--font-editorial',
+  display: 'swap',
+})
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-technical',
+  display: 'swap',
+})
+
+const WHATSAPP_URL = `https://wa.me/5491153230859?text=${encodeURIComponent(
   'Hola, quiero evaluar cómo ordenar la atención y el seguimiento comercial de mi negocio con Escalando Labs.',
 )}`
 
@@ -12,119 +26,126 @@ const NAV_ITEMS = [
   { label: 'FAQ', href: '#faq' },
 ]
 
-const HERO_PROOFS = [
-  'Respuestas con contexto',
-  'Seguimiento trazable',
-  'Takeover humano',
-]
-
-const PROBLEMS = [
+const PROBLEM_ROWS = [
   {
     index: '01',
     title: 'Las consultas quedan repartidas.',
-    text: 'El equipo atiende en varios canales y pierde contexto, prioridades y próximos pasos.',
+    text: 'El equipo atiende en varios canales y pierde contexto, prioridad y próximos pasos.',
   },
   {
     index: '02',
     title: 'El seguimiento depende de la memoria.',
-    text: 'Las oportunidades se enfrían porque nadie sabe con claridad cuándo retomar cada conversación.',
+    text: 'Las oportunidades se enfrían porque nadie ve con claridad cuándo retomar cada conversación.',
   },
   {
     index: '03',
-    title: 'La automatización trabaja sin criterio.',
-    text: 'Un bot aislado responde, pero no organiza la operación ni sabe cuándo debe intervenir una persona.',
+    title: 'La automatización trabaja aislada.',
+    text: 'Un bot puede responder, pero no organiza la operación ni sabe cuándo debe intervenir una persona.',
   },
 ]
 
-const FLOW_STEPS = [
+const OPERATING_STEPS = [
   {
-    number: '01',
+    index: '01',
+    label: 'ENTRADA',
     title: 'Centralizá la conversación',
-    text: 'Cada consulta entra al mismo flujo con contacto, canal, intención y estado comercial.',
+    text: 'Cada consulta entra con contacto, canal, intención y estado comercial.',
   },
   {
-    number: '02',
+    index: '02',
+    label: 'CRITERIO',
     title: 'Usá IA con reglas reales',
-    text: 'La IA responde lo repetible, propone próximos pasos y respeta políticas, horarios y límites.',
+    text: 'La IA responde lo repetible y respeta políticas, horarios y límites.',
   },
   {
-    number: '03',
-    title: 'Seguimiento con control humano',
-    text: 'El equipo ve qué necesita atención, toma el control y deja todo el historial trazado.',
+    index: '03',
+    label: 'SEGUIMIENTO',
+    title: 'Conservá el próximo paso',
+    text: 'El sistema deja visible qué hacer, cuándo hacerlo y quién debe intervenir.',
+  },
+  {
+    index: '04',
+    label: 'CONTROL',
+    title: 'Tomá el control humano',
+    text: 'El equipo entra con todo el contexto cuando hace falta criterio o negociación.',
   },
 ]
 
-const USE_CASES = [
+const INDUSTRY_CASES = [
   {
-    tag: 'Gastronomía',
+    index: 'A',
+    sector: 'Gastronomía',
     title: 'Consultas, pedidos y clientes que vuelven.',
-    text: 'Respondé preguntas frecuentes, ordená pedidos y retomá clientes sin depender de listas improvisadas.',
+    text: 'Respondé preguntas frecuentes, ordená pedidos y retomá clientes sin listas improvisadas.',
   },
   {
-    tag: 'Servicios',
+    index: 'B',
+    sector: 'Servicios',
     title: 'Presupuestos con próximo paso claro.',
     text: 'Registrá intención, urgencia y estado para que cada consulta avance hasta una decisión.',
   },
   {
-    tag: 'Comercios',
+    index: 'C',
+    sector: 'Comercios',
     title: 'Stock, ventas y seguimiento en un solo lugar.',
-    text: 'Unificá conversaciones y oportunidades para que el equipo no pierda ventas entre chats.',
+    text: 'Unificá conversaciones y oportunidades para no perder ventas entre chats.',
   },
   {
-    tag: 'Salud y turnos',
+    index: 'D',
+    sector: 'Salud y turnos',
     title: 'Atención ágil con derivación responsable.',
-    text: 'Automatizá lo repetible y pasá los casos sensibles a una persona con contexto completo.',
+    text: 'Automatizá lo repetible y pasá casos sensibles a una persona con contexto completo.',
   },
 ]
 
-const PLANS = [
+const PRICING_PLANS = [
   {
     name: 'Inicial',
-    subtitle: 'WhatsApp + IA',
+    eyebrow: 'WHATSAPP + IA',
     price: 'USD 149',
     setup: 'Setup desde USD 300',
-    description: 'Para ordenar la atención y responder con contexto desde un canal principal.',
-    features: [
+    target: 'Para ordenar la atención y responder con contexto desde un canal principal.',
+    featured: false,
+    cta: 'Evaluar plan Inicial',
+    items: [
       '1 negocio y 1 canal principal',
       'IA comercial configurada',
       'Panel de conversaciones',
       'Modo IA / humano',
       'Base de conocimiento inicial',
     ],
-    featured: false,
-    cta: 'Evaluar plan Inicial',
   },
   {
     name: 'Crecimiento',
-    subtitle: 'CRM + follow up',
+    eyebrow: 'CRM + FOLLOW UP',
     price: 'USD 299',
     setup: 'Setup desde USD 500',
-    description: 'Para recuperar oportunidades y trabajar el seguimiento comercial de forma medible.',
-    features: [
+    target: 'Para recuperar oportunidades y trabajar el seguimiento comercial de forma medible.',
+    featured: true,
+    cta: 'Evaluar plan Crecimiento',
+    items: [
       'Todo lo del plan Inicial',
       'CRM conversacional',
       'Follow up automático',
       'Campañas responsables',
       'Segmentación de clientes',
     ],
-    featured: true,
-    cta: 'Evaluar plan Crecimiento',
   },
   {
     name: 'Escala',
-    subtitle: 'Multicanal a medida',
+    eyebrow: 'MULTICANAL A MEDIDA',
     price: 'USD 599',
     setup: 'Setup desde USD 1.000',
-    description: 'Para equipos con más volumen, operadores, integraciones o flujos personalizados.',
-    features: [
+    target: 'Para equipos con más volumen, operadores, integraciones o flujos personalizados.',
+    featured: false,
+    cta: 'Consultar implementación',
+    items: [
       'Todo lo del plan Crecimiento',
       'Canales adicionales',
       'Flujos personalizados',
       'Automatizaciones n8n',
       'Soporte prioritario',
     ],
-    featured: false,
-    cta: 'Consultar implementación',
   },
 ]
 
@@ -156,27 +177,27 @@ const FAQ_ITEMS = [
   },
 ]
 
-function planUrl(planName: string) {
-  return `https://wa.me/5491153230859?text=${encodeURIComponent(
-    `Hola, quiero evaluar el plan ${planName} de Escalando Labs para mi negocio.`,
-  )}`
+function Brand() {
+  return (
+    <a className="editorial-brand" href="#inicio" aria-label="Escalando Labs inicio">
+      <span className="editorial-brand__mark" aria-hidden="true">
+        <Image src="/brand-icon.png" alt="" width={34} height={34} priority />
+      </span>
+      <span className="editorial-brand__wordmark">
+        ESCALANDO
+        <strong>LABS</strong>
+      </span>
+    </a>
+  )
 }
 
 function SiteHeader() {
   return (
-    <header className="stable-header" aria-label="Navegación principal">
-      <div className="stable-header__inner">
-        <a className="stable-brand" href="#inicio" aria-label="Escalando Labs inicio">
-          <span className="stable-brand__mark" aria-hidden="true">
-            <Image src="/brand-icon.png" alt="" width={34} height={34} priority />
-          </span>
-          <span className="stable-brand__wordmark">
-            ESCALANDO
-            <strong>LABS</strong>
-          </span>
-        </a>
+    <header className="editorial-header" aria-label="Navegación principal">
+      <div className="editorial-header__inner">
+        <Brand />
 
-        <nav className="stable-nav" aria-label="Secciones de la página">
+        <nav className="editorial-nav" aria-label="Secciones de la página">
           {NAV_ITEMS.map((item) => (
             <a href={item.href} key={item.href}>
               {item.label}
@@ -184,17 +205,20 @@ function SiteHeader() {
           ))}
         </nav>
 
-        <div className="stable-header__actions">
-          <a className="stable-link-button" href="/demo">
+        <div className="editorial-header__actions">
+          <a className="editorial-text-link" href="/demo">
             Ver demo
           </a>
-          <a className="stable-primary-button stable-primary-button--compact" href={DIAGNOSTIC_URL} target="_blank" rel="noreferrer">
-            Hablar por WhatsApp
+          <a className="editorial-action editorial-action--compact" href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+            Evaluar operación
           </a>
         </div>
 
-        <details className="stable-mobile-nav">
-          <summary aria-label="Abrir navegación">Menú</summary>
+        <details className="editorial-mobile-nav">
+          <summary aria-label="Abrir navegación">
+            <span>MENÚ</span>
+            <i aria-hidden="true">+</i>
+          </summary>
           <div>
             {NAV_ITEMS.map((item) => (
               <a href={item.href} key={item.href}>
@@ -202,8 +226,8 @@ function SiteHeader() {
               </a>
             ))}
             <a href="/demo">Ver demo</a>
-            <a href={DIAGNOSTIC_URL} target="_blank" rel="noreferrer">
-              Hablar por WhatsApp
+            <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+              Evaluar operación
             </a>
           </div>
         </details>
@@ -212,70 +236,96 @@ function SiteHeader() {
   )
 }
 
-function ProductPreview() {
+function OperationsConsole() {
+  const conversations = [
+    { initials: 'CM', name: 'Carla Méndez', subject: 'Precio del plan', time: 'AHORA', active: true },
+    { initials: 'DR', name: 'Diego Ramos', subject: 'Stock disponible', time: '04 MIN', active: false },
+    { initials: 'CN', name: 'Clínica Nova', subject: 'Caso sensible', time: '12 MIN', active: false },
+  ]
+
   return (
-    <div className="stable-product" aria-label="Ejemplo ilustrativo del panel comercial">
-      <div className="stable-product__topbar">
-        <div aria-hidden="true"><span /><span /><span /></div>
-        <strong>Escalando Labs · operación comercial</strong>
-        <em>Ejemplo ilustrativo</em>
+    <div className="ops-console" aria-label="Ejemplo ilustrativo del panel comercial">
+      <div className="ops-console__top">
+        <div>
+          <span>ESC / OPS</span>
+          <strong>OPERACIÓN COMERCIAL</strong>
+        </div>
+        <p>WHATSAPP + IA + CRM</p>
+        <em>● EN LÍNEA</em>
       </div>
 
-      <div className="stable-product__modes" aria-label="Áreas del sistema">
-        <span className="is-active">Atender</span>
-        <span>Seguimiento</span>
-        <span>Recuperar</span>
-      </div>
+      <div className="ops-console__body">
+        <aside className="ops-console__inbox" aria-label="Conversaciones">
+          <header>
+            <span>01</span>
+            <strong>CONVERSACIONES</strong>
+          </header>
 
-      <div className="stable-product__workspace">
-        <aside className="stable-product__inbox" aria-label="Conversaciones">
-          <p>Conversaciones</p>
-          {[
-            ['CM', 'Carla Méndez', 'Precio del plan', 'Ahora'],
-            ['DR', 'Diego Ramos', 'Stock disponible', '4 min'],
-            ['CN', 'Clínica Nova', 'Caso sensible', '12 min'],
-          ].map(([initials, name, message, time], index) => (
-            <article className={index === 0 ? 'is-active' : ''} key={name}>
-              <span>{initials}</span>
-              <div><strong>{name}</strong><small>{message}</small></div>
-              <em>{time}</em>
+          {conversations.map((conversation) => (
+            <article className={conversation.active ? 'is-active' : ''} key={conversation.name}>
+              <span>{conversation.initials}</span>
+              <div>
+                <strong>{conversation.name}</strong>
+                <small>{conversation.subject}</small>
+              </div>
+              <em>{conversation.time}</em>
             </article>
           ))}
         </aside>
 
-        <section className="stable-product__chat" aria-label="Conversación activa">
+        <section className="ops-console__conversation" aria-label="Conversación activa">
           <header>
             <div>
-              <strong>Carla Méndez</strong>
-              <span>WhatsApp · intención: precio</span>
+              <span>CARLA MÉNDEZ / WHATSAPP</span>
+              <strong>INTENCIÓN: PRECIO + CIERRE</strong>
             </div>
-            <em>IA en control</em>
+            <em>IA EN CONTROL</em>
           </header>
 
-          <div className="stable-product__messages">
+          <div className="ops-console__messages">
             <p className="is-inbound">Hola, quería saber el precio del plan mensual.</p>
-            <span>Intención detectada: precio + cierre</span>
-            <p className="is-ai">¡Hola, Carla! Te paso las opciones y te marco cuál conviene según tu equipo.</p>
+            <span>INTENCIÓN DETECTADA / PRIORIDAD ALTA</span>
+            <p className="is-ai">
+              ¡Hola, Carla! Te paso las opciones y te marco cuál conviene según tu equipo.
+            </p>
             <p className="is-inbound is-short">Perfecto. ¿Cómo puedo pagarlo?</p>
           </div>
 
-          <div className="stable-product__next-step">
-            <span>Próximo paso sugerido</span>
+          <div className="ops-console__next">
+            <span>PRÓXIMO PASO SUGERIDO</span>
             <strong>Enviar propuesta y programar seguimiento</strong>
+            <button type="button">APLICAR →</button>
           </div>
         </section>
 
-        <aside className="stable-product__context" aria-label="Contexto comercial">
-          <p>Contexto comercial</p>
-          <div><span>Estado</span><strong>Oportunidad</strong></div>
-          <div><span>Prioridad</span><strong>Alta</strong></div>
-          <div><span>SLA</span><strong>6 minutos</strong></div>
-          <div><span>Takeover</span><strong>Disponible</strong></div>
+        <aside className="ops-console__data" aria-label="Contexto comercial">
+          <header>
+            <span>02</span>
+            <strong>CONTEXTO</strong>
+          </header>
+          <dl>
+            <div>
+              <dt>ESTADO</dt>
+              <dd>OPORTUNIDAD</dd>
+            </div>
+            <div>
+              <dt>PRIORIDAD</dt>
+              <dd>ALTA</dd>
+            </div>
+            <div>
+              <dt>SLA</dt>
+              <dd>06 MIN</dd>
+            </div>
+            <div>
+              <dt>TAKEOVER</dt>
+              <dd>DISPONIBLE</dd>
+            </div>
+          </dl>
         </aside>
       </div>
 
-      <div className="stable-product__flow" aria-label="Flujo comercial resumido">
-        {['Consulta', 'Contexto', 'Próximo paso', 'Resultado'].map((item, index) => (
+      <div className="ops-console__footer" aria-label="Flujo comercial resumido">
+        {['CONSULTA', 'CONTEXTO', 'PRÓXIMO PASO', 'RESULTADO'].map((item, index) => (
           <div key={item}>
             <span>{String(index + 1).padStart(2, '0')}</span>
             <strong>{item}</strong>
@@ -286,20 +336,256 @@ function ProductPreview() {
   )
 }
 
-function SiteFooter() {
+export default function HomeStable() {
   return (
-    <footer className="stable-footer">
-      <div className="stable-footer__inner">
+    <div className={`landing-editorial ${archivo.variable} ${plexMono.variable}`} id="inicio">
+      <a className="editorial-skip-link" href="#contenido-principal">
+        Ir al contenido principal
+      </a>
+
+      <SiteHeader />
+
+      <main id="contenido-principal">
+        <section className="editorial-hero" aria-labelledby="editorial-hero-title">
+          <div className="editorial-hero__index" aria-hidden="true">
+            <span>01</span>
+            <p>OPERACIÓN<br />COMERCIAL</p>
+          </div>
+
+          <div className="editorial-hero__copy">
+            <p className="editorial-kicker">PARA EQUIPOS QUE VENDEN POR WHATSAPP</p>
+            <h1 id="editorial-hero-title">
+              Que ninguna consulta quede <span>sin seguimiento.</span>
+            </h1>
+            <p className="editorial-hero__description">
+              Escalando Labs reúne WhatsApp, IA y CRM para responder, priorizar y retomar oportunidades
+              desde un solo lugar, con control humano cuando hace falta.
+            </p>
+
+            <div className="editorial-hero__actions">
+              <a className="editorial-action" href="/demo">
+                Ver demo interactiva
+              </a>
+              <a className="editorial-secondary-action" href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+                Hablar por WhatsApp
+              </a>
+            </div>
+
+            <dl className="editorial-hero__proofs">
+              <div>
+                <dt>01</dt>
+                <dd>RESPUESTAS CON CONTEXTO</dd>
+              </div>
+              <div>
+                <dt>02</dt>
+                <dd>SEGUIMIENTO TRAZABLE</dd>
+              </div>
+              <div>
+                <dt>03</dt>
+                <dd>TAKEOVER HUMANO</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div className="editorial-hero__product">
+            <div className="editorial-product-label">
+              <span>PRODUCTO / VISTA OPERATIVA</span>
+              <em>EJEMPLO ILUSTRATIVO</em>
+            </div>
+            <OperationsConsole />
+          </div>
+        </section>
+
+        <section className="editorial-signal-strip" aria-label="Propuesta de plataforma">
+          <p>UN PANEL BASE. MÓDULOS Y FLUJOS CONFIGURABLES SEGÚN CADA INDUSTRIA.</p>
+          <div>
+            <span>GASTRONOMÍA</span>
+            <span>SERVICIOS</span>
+            <span>COMERCIOS</span>
+            <span>SALUD Y TURNOS</span>
+          </div>
+        </section>
+
+        <section className="editorial-section editorial-problem" id="plataforma">
+          <div className="editorial-section__head">
+            <p className="editorial-kicker">02 / EL PROBLEMA</p>
+            <h2>WhatsApp vende. El desorden comercial hace perder oportunidades.</h2>
+            <p>
+              Escalando Labs no agrega otro canal: convierte las conversaciones existentes en una operación visible,
+              compartida y medible.
+            </p>
+          </div>
+
+          <div className="editorial-problem__rows">
+            {PROBLEM_ROWS.map((problem) => (
+              <article key={problem.index}>
+                <span>{problem.index}</span>
+                <h3>{problem.title}</h3>
+                <p>{problem.text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="editorial-section editorial-flow" id="como-funciona">
+          <div className="editorial-section__head editorial-section__head--split">
+            <p className="editorial-kicker">03 / CÓMO FUNCIONA</p>
+            <h2>Una sola secuencia para atender, seguir y convertir.</h2>
+            <p>
+              La automatización trabaja dentro de reglas claras. El equipo conserva el control de la relación comercial.
+            </p>
+          </div>
+
+          <ol className="editorial-flow__sequence">
+            {OPERATING_STEPS.map((step) => (
+              <li key={step.index}>
+                <span>{step.index}</span>
+                <p>{step.label}</p>
+                <h3>{step.title}</h3>
+                <small>{step.text}</small>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="editorial-system">
+          <div className="editorial-system__copy">
+            <p className="editorial-kicker">04 / UNA OPERACIÓN, NO UN BOT</p>
+            <h2>La IA resuelve lo repetible. El sistema conserva el contexto.</h2>
+            <p>
+              Cada conversación deja información útil: quién consultó, qué necesita, qué se respondió, cuándo hay que
+              retomar y quién debe intervenir.
+            </p>
+          </div>
+
+          <div className="editorial-system__ledger" aria-label="Capacidades operativas">
+            <div>
+              <span>ENTRADA</span>
+              <strong>Conversaciones centralizadas</strong>
+              <p>Contacto, canal, intención y prioridad en un mismo flujo.</p>
+            </div>
+            <div>
+              <span>MEMORIA</span>
+              <strong>Contexto compartido</strong>
+              <p>IA y equipo humano trabajan sobre el mismo historial.</p>
+            </div>
+            <div>
+              <span>ACCIÓN</span>
+              <strong>Próximos pasos visibles</strong>
+              <p>Seguimiento, campañas y takeover con reglas configurables.</p>
+            </div>
+            <div>
+              <span>CONTROL</span>
+              <strong>Operación medible</strong>
+              <p>Estados, tiempos y resultados trazados para mejorar decisiones.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="editorial-section editorial-cases" id="casos">
+          <div className="editorial-section__head">
+            <p className="editorial-kicker">05 / CASOS DE USO</p>
+            <h2>El mismo panel. Distintas formas de vender.</h2>
+            <p>El lenguaje, los módulos, las métricas y los flujos se configuran según el tipo de negocio.</p>
+          </div>
+
+          <div className="editorial-cases__matrix">
+            {INDUSTRY_CASES.map((item) => (
+              <article key={item.index}>
+                <header>
+                  <span>{item.index}</span>
+                  <p>{item.sector}</p>
+                </header>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="editorial-section editorial-pricing" id="precios">
+          <span id="planes" className="editorial-anchor-alias" aria-hidden="true" />
+
+          <div className="editorial-section__head">
+            <p className="editorial-kicker">06 / PRECIOS</p>
+            <h2>Empezá con el alcance correcto. Escalá cuando la operación lo pida.</h2>
+            <p>
+              Software, configuración y acompañamiento se cotizan con claridad. Los proveedores externos se estiman
+              antes de activar la operación.
+            </p>
+          </div>
+
+          <div className="editorial-pricing__columns">
+            {PRICING_PLANS.map((plan, index) => {
+              const planUrl = `https://wa.me/5491153230859?text=${encodeURIComponent(
+                `Hola, quiero evaluar el plan ${plan.name} de Escalando Labs para mi negocio.`,
+              )}`
+
+              return (
+                <article className={plan.featured ? 'is-featured' : ''} key={plan.name}>
+                  <header>
+                    <span>{String(index + 1).padStart(2, '0')}</span>
+                    <p>{plan.eyebrow}</p>
+                    {plan.featured ? <em>RECOMENDADO</em> : null}
+                  </header>
+                  <h3>{plan.name}</h3>
+                  <strong>{plan.price}<small> / MES</small></strong>
+                  <p>{plan.setup}</p>
+                  <blockquote>{plan.target}</blockquote>
+                  <ul>
+                    {plan.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                  <a href={planUrl} target="_blank" rel="noreferrer">
+                    {plan.cta} <span aria-hidden="true">→</span>
+                  </a>
+                </article>
+              )
+            })}
+          </div>
+        </section>
+
+        <section className="editorial-section editorial-faq" id="faq">
+          <div className="editorial-section__head">
+            <p className="editorial-kicker">07 / PREGUNTAS FRECUENTES</p>
+            <h2>Lo importante antes de evaluar una implementación.</h2>
+          </div>
+
+          <div className="editorial-faq__rows">
+            {FAQ_ITEMS.map((item, index) => (
+              <details key={item.question}>
+                <summary>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <strong>{item.question}</strong>
+                  <i aria-hidden="true">+</i>
+                </summary>
+                <p>{item.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section className="editorial-final-cta" id="diagnostico">
+          <div>
+            <p className="editorial-kicker">08 / SIGUIENTE PASO</p>
+            <h2>No vendemos un bot. Diseñamos una operación comercial.</h2>
+          </div>
+          <p>Revisemos cómo atendés hoy, dónde se enfrían oportunidades y qué conviene ordenar primero.</p>
+          <div>
+            <a className="editorial-final-cta__primary" href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+              Evaluar mi operación
+            </a>
+            <a className="editorial-final-cta__secondary" href="/demo">
+              Ver la demo
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <footer className="editorial-footer">
         <div>
-          <a className="stable-brand" href="#inicio" aria-label="Escalando Labs inicio">
-            <span className="stable-brand__mark" aria-hidden="true">
-              <Image src="/brand-icon.png" alt="" width={34} height={34} />
-            </span>
-            <span className="stable-brand__wordmark">
-              ESCALANDO
-              <strong>LABS</strong>
-            </span>
-          </a>
+          <Brand />
           <p>Sistema comercial conversacional con IA y control humano.</p>
         </div>
 
@@ -311,208 +597,7 @@ function SiteFooter() {
         </nav>
 
         <p>© {new Date().getFullYear()} Escalando Labs.</p>
-      </div>
-    </footer>
-  )
-}
-
-export default function HomeStable() {
-  return (
-    <div className="landing-stable" id="inicio">
-      <a className="stable-skip-link" href="#contenido-principal">
-        Ir al contenido principal
-      </a>
-      <SiteHeader />
-
-      <main id="contenido-principal">
-        <section className="stable-hero" aria-labelledby="stable-hero-title">
-          <div className="stable-hero__copy">
-            <p className="stable-eyebrow">PARA EQUIPOS QUE VENDEN POR WHATSAPP</p>
-            <h1 id="stable-hero-title">
-              Que ninguna consulta quede <span>sin seguimiento.</span>
-            </h1>
-            <p className="stable-hero__description">
-              Escalando Labs reúne WhatsApp, IA y CRM para responder, priorizar y retomar oportunidades desde un solo lugar, con control humano cuando hace falta.
-            </p>
-
-            <div className="stable-hero__actions">
-              <a className="stable-primary-button" href="/demo">
-                Ver demo interactiva
-              </a>
-              <a className="stable-secondary-button" href={DIAGNOSTIC_URL} target="_blank" rel="noreferrer">
-                Hablar por WhatsApp
-              </a>
-            </div>
-
-            <div className="stable-hero__proofs" aria-label="Capacidades principales">
-              {HERO_PROOFS.map((proof) => <span key={proof}>{proof}</span>)}
-            </div>
-
-            <div className="stable-provider-card" aria-label="Integración oficial de WhatsApp">
-              <div className="stable-provider-card__icon">
-                <Image src="/whatsapp-icon.png" alt="WhatsApp" width={34} height={34} />
-              </div>
-              <div>
-                <span>WhatsApp Business Platform</span>
-                <strong>Meta Tech Provider</strong>
-              </div>
-              <p>Infraestructura oficial preparada para operaciones multiempresa.</p>
-            </div>
-          </div>
-
-          <ProductPreview />
-        </section>
-
-        <section className="stable-trust-strip" aria-label="Tipos de negocio">
-          <p>Un panel base, configurable según la operación de cada negocio.</p>
-          <div>
-            {['Gastronomía', 'Servicios', 'Comercios', 'Salud y turnos'].map((item) => (
-              <span key={item}>{item}</span>
-            ))}
-          </div>
-        </section>
-
-        <section className="stable-section stable-problem" id="plataforma">
-          <div className="stable-section__intro">
-            <p className="stable-kicker">EL PROBLEMA</p>
-            <h2>WhatsApp vende. El desorden comercial hace perder oportunidades.</h2>
-            <p>Escalando Labs no agrega otro canal: convierte las conversaciones existentes en una operación visible y medible.</p>
-          </div>
-
-          <div className="stable-problem__grid">
-            {PROBLEMS.map((item) => (
-              <article key={item.index}>
-                <span>{item.index}</span>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="stable-section stable-flow" id="como-funciona">
-          <div className="stable-section__intro stable-section__intro--centered">
-            <p className="stable-kicker">CÓMO FUNCIONA</p>
-            <h2>Una sola secuencia para atender, seguir y convertir.</h2>
-            <p>La automatización trabaja dentro de reglas claras y el equipo conserva el control de la relación comercial.</p>
-          </div>
-
-          <div className="stable-flow__grid">
-            {FLOW_STEPS.map((step) => (
-              <article key={step.number}>
-                <span>{step.number}</span>
-                <h3>{step.title}</h3>
-                <p>{step.text}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="stable-section stable-product-story">
-          <div className="stable-product-story__copy">
-            <p className="stable-kicker">UNA OPERACIÓN, NO UN BOT</p>
-            <h2>La IA resuelve lo repetible. El sistema conserva el contexto.</h2>
-            <p>
-              Cada conversación deja información útil: quién consultó, qué necesita, qué se respondió, cuándo hay que retomar y quién debe intervenir.
-            </p>
-            <ul>
-              <li>Base de conocimiento y políticas del negocio.</li>
-              <li>Priorización y próximos pasos comerciales.</li>
-              <li>Historial compartido entre IA y personas.</li>
-              <li>Campañas y reactivación con límites configurables.</li>
-            </ul>
-          </div>
-
-          <div className="stable-product-story__summary" aria-label="Resumen del producto">
-            <span>Conversaciones</span>
-            <strong>Contexto compartido</strong>
-            <i aria-hidden="true" />
-            <span>CRM + seguimiento</span>
-            <strong>Próximos pasos visibles</strong>
-            <i aria-hidden="true" />
-            <span>Equipo humano</span>
-            <strong>Control cuando importa</strong>
-          </div>
-        </section>
-
-        <section className="stable-section stable-cases" id="casos">
-          <div className="stable-section__intro">
-            <p className="stable-kicker">CASOS DE USO</p>
-            <h2>El mismo panel, adaptado a distintas formas de vender.</h2>
-            <p>El lenguaje, los módulos, las métricas y los flujos pueden configurarse según el tipo de negocio.</p>
-          </div>
-
-          <div className="stable-cases__grid">
-            {USE_CASES.map((item) => (
-              <article key={item.tag}>
-                <span>{item.tag}</span>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="stable-section stable-pricing" id="precios">
-          <span id="planes" className="stable-anchor-alias" aria-hidden="true" />
-          <div className="stable-section__intro">
-            <p className="stable-kicker">PRECIOS</p>
-            <h2>Empezá con el alcance correcto y escalá cuando la operación lo pida.</h2>
-            <p>Software, configuración y acompañamiento se cotizan con claridad. Los proveedores externos se estiman antes de activar la operación.</p>
-          </div>
-
-          <div className="stable-pricing__grid">
-            {PLANS.map((plan) => (
-              <article className={plan.featured ? 'is-featured' : ''} key={plan.name}>
-                {plan.featured ? <span className="stable-pricing__badge">Recomendado</span> : null}
-                <p>Plan {plan.name}</p>
-                <h3>{plan.subtitle}</h3>
-                <strong>{plan.price}<small> / mes</small></strong>
-                <em>{plan.setup}</em>
-                <span>{plan.description}</span>
-                <ul>
-                  {plan.features.map((feature) => <li key={feature}>{feature}</li>)}
-                </ul>
-                <a href={planUrl(plan.name)} target="_blank" rel="noreferrer">
-                  {plan.cta}
-                </a>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="stable-section stable-faq" id="faq">
-          <div className="stable-section__intro">
-            <p className="stable-kicker">PREGUNTAS FRECUENTES</p>
-            <h2>Lo importante antes de evaluar una implementación.</h2>
-          </div>
-
-          <div className="stable-faq__list">
-            {FAQ_ITEMS.map((item) => (
-              <details key={item.question}>
-                <summary>{item.question}</summary>
-                <p>{item.answer}</p>
-              </details>
-            ))}
-          </div>
-        </section>
-
-        <section className="stable-final-cta" id="diagnostico">
-          <p className="stable-kicker">SIGUIENTE PASO</p>
-          <h2>No vendemos un bot. Diseñamos una operación comercial.</h2>
-          <p>Revisemos cómo atendés hoy, dónde se enfrían oportunidades y qué conviene ordenar primero.</p>
-          <div>
-            <a className="stable-primary-button" href={DIAGNOSTIC_URL} target="_blank" rel="noreferrer">
-              Evaluar mi operación
-            </a>
-            <a className="stable-secondary-button" href="/demo">
-              Ver la demo
-            </a>
-          </div>
-        </section>
-      </main>
-
-      <SiteFooter />
+      </footer>
     </div>
   )
 }
