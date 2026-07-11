@@ -93,7 +93,7 @@ Every section must have one dominant idea and one obvious next visual element.
 
 ### 2. Hero
 
-Recommended headline:
+Headline:
 
 `Convertí cada conversación en una oportunidad con próximo paso.`
 
@@ -103,7 +103,7 @@ Supporting copy:
 
 Actions:
 
-- Primary: `Ver cómo funciona` or `Ver demo`.
+- Primary: `Ver demo`.
 - Secondary: `Hablar por WhatsApp`.
 
 The product visual is the hero’s main visual anchor. It should show a calm, believable conversation workspace with:
@@ -204,13 +204,13 @@ A subtle connecting line or progression is acceptable. The hierarchy must come f
 
 ### 8. Product Depth
 
-One larger product showcase with two or three focused views:
+Use one larger product showcase with exactly three focused views:
 
 - conversation and takeover;
 - customer context and follow-up;
 - campaign planning and safeguards.
 
-These views may overlap slightly or transition through CSS-only interaction, but the default page must remain fully understandable without interaction.
+The three views may overlap slightly or transition through CSS-only interaction, but the default page must remain fully understandable without interaction.
 
 The product visuals must be illustrative and must not imply unavailable production features.
 
