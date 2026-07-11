@@ -1,0 +1,33 @@
+body > aside[aria-label="Preferencias de privacidad"] {
+  max-width: 760px !important;
+  border: 2px solid #111317 !important;
+  border-radius: 0 !important;
+  color: #111317 !important;
+  background: #faf9f5 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+body > aside[aria-label="Preferencias de privacidad"] p:first-child {
+  font-family: var(--font-editorial), Arial, sans-serif;
+  font-size: 1.15rem !important;
+  letter-spacing: -0.025em;
+}
+
+body > aside[aria-label="Preferencias de privacidad"] a,
+body > aside[aria-label="Preferencias de privacidad"] button {
+  border-radius: 0 !important;
+  font-family: var(--font-technical), monospace;
+  text-transform: uppercase;
+}
+
+body > aside[aria-label="Preferencias de privacidad"] button {
+  border: 1px solid #111317 !important;
+  box-shadow: none !important;
+}
+
+body > aside[aria-label="Preferencias de privacidad"] button:last-child {
+  color: #faf9f5 !important;
+  background: #2557f6 !important;
+  border-color: #2557f6 !important;
+}
