@@ -294,7 +294,7 @@ function OperationsConsole() {
           <div className="ops-console__next">
             <span>PRÓXIMO PASO SUGERIDO</span>
             <strong>Enviar propuesta y programar seguimiento</strong>
-            <button type="button">APLICAR →</button>
+            <button type="button" disabled aria-hidden="true">APLICAR →</button>
           </div>
         </section>
 
