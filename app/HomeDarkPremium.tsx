@@ -28,24 +28,24 @@ const OUTCOMES = [
   {
     icon: 'message',
     title: 'Venta cerrada',
-    text: 'La conversación conserva contexto hasta el próximo paso.',
+    text: 'WhatsApp, historial y seguimiento en un mismo flujo comercial.',
   },
   {
     icon: 'route',
     title: 'Pago o turno confirmado',
-    text: 'El equipo ve estado, responsable y seguimiento.',
+    text: 'El equipo ve estado, responsable y qué acción sigue.',
   },
   {
     icon: 'shield',
-    title: 'Campaña revisada',
-    text: 'Segmentación, consentimiento y frecuencia antes del envío.',
+    title: 'Difusión revisada',
+    text: 'Listas de difusión, segmentación y consentimiento antes del envío.',
   },
 ] as const
 
 const PROBLEMS = [
-  'Las consultas llegan por WhatsApp, Instagram, web o Messenger y quedan repartidas entre personas.',
-  'El seguimiento depende de memoria, planillas o buena voluntad.',
-  'Las promociones se envían sin suficiente segmentación ni medición.',
+  'WhatsApp, Instagram, web y Messenger terminan repartidos entre personas.',
+  'El seguimiento depende de memoria o planillas sueltas.',
+  'Las campañas y listas de difusión salen sin suficiente trazabilidad.',
 ]
 
 const RESPONSIBLE_RULES = [
@@ -54,68 +54,41 @@ const RESPONSIBLE_RULES = [
     text: 'Trabajar sobre contactos que aceptaron recibir comunicaciones y respetar las solicitudes de baja.',
   },
   {
-    title: 'Audiencias con sentido',
-    text: 'Elegir a quién contactar según relación, interés, etapa comercial y objetivo de la campaña.',
+    title: 'Listas con criterio',
+    text: 'Armar listas de difusión y campañas según relación, interés, etapa comercial y objetivo.',
   },
   {
     title: 'Frecuencia controlada',
     text: 'Definir horarios, pausas y límites para no saturar al cliente ni deteriorar el canal.',
-  },
-  {
-    title: 'Mensajes oficiales',
-    text: 'Usar las categorías y plantillas requeridas por WhatsApp cuando la conversación se inicia desde el negocio.',
   },
 ]
 
 const FLOW_STEPS = [
   {
     eyebrow: 'Entrada',
-    title: 'Entender antes de responder',
-    text: 'La consulta entra con contacto, canal, intención e historial para que la respuesta no empiece de cero.',
+    title: 'Responder con contexto',
+    text: 'La consulta entra con contacto, canal e historial para que el equipo no arranque desde cero.',
   },
   {
-    eyebrow: 'Atención',
-    title: 'Automatizar dentro de reglas',
-    text: 'La IA resuelve lo repetible según políticas, horarios y conocimiento configurado para el negocio.',
-  },
-  {
-    eyebrow: 'Seguimiento',
-    title: 'Conservar el próximo paso',
-    text: 'El sistema deja visible qué oportunidad requiere acción, cuándo retomarla y quién debe intervenir.',
+    eyebrow: 'Operación',
+    title: 'Ordenar seguimiento y ventas',
+    text: 'IA y equipo humano trabajan sobre el mismo cliente, la misma oportunidad y la misma conversación.',
   },
   {
     eyebrow: 'Activación',
-    title: 'Intervenir con criterio',
-    text: 'Una persona toma el control o se activa una campaña segmentada cuando el contexto realmente lo justifica.',
+    title: 'Activar campañas y listas',
+    text: 'Las listas de difusión y campañas salen con segmentación, frecuencia y plantillas cuando hacen falta.',
   },
 ]
 
 const CHANNELS = [
-  { name: 'WhatsApp', state: 'Principal', detail: 'WhatsApp Business Platform oficial para atención y comunicaciones comerciales.' },
+  { name: 'WhatsApp', state: 'Principal', detail: 'WhatsApp Business Platform oficial para atención, seguimiento y campañas.' },
   { name: 'Instagram', state: 'Integrable', detail: 'DMs centralizables según alcance técnico y configuración de la cuenta.' },
-  { name: 'Messenger', state: 'Integrable', detail: 'Conversaciones sociales organizadas dentro de la misma operación compartida.' },
-  { name: 'Web', state: 'Configurable', detail: 'Formularios, chats o consultas web conectables al flujo comercial.' },
-  { name: 'Otros canales', state: 'Según alcance', detail: 'Integraciones adicionales se definen por necesidad, costo, pruebas y soporte.' },
+  { name: 'Messenger', state: 'Integrable', detail: 'Conversaciones sociales dentro de la misma operación compartida.' },
+  { name: 'Web', state: 'Configurable', detail: 'Formularios, chat y consultas web conectables al flujo comercial.' },
 ]
 
-const INDUSTRIES = [
-  {
-    name: 'Gastronomía',
-    result: 'Pedidos, consultas y clientes que vuelven',
-  },
-  {
-    name: 'Servicios',
-    result: 'Presupuestos y oportunidades con seguimiento',
-  },
-  {
-    name: 'Comercios',
-    result: 'Stock, ventas y recuperación de clientes',
-  },
-  {
-    name: 'Turnos',
-    result: 'Atención ágil y derivación responsable',
-  },
-]
+
 
 const PRICING_PLANS = [
   {
@@ -185,14 +158,9 @@ const FAQ_ITEMS = [
       'WhatsApp es el canal principal y se trabaja sobre WhatsApp Business Platform. Instagram, Messenger, web y otros canales pueden integrarse según alcance, validación técnica y configuración de cada negocio.',
   },
   {
-    question: '¿Puedo enviar promociones a cualquier contacto?',
+    question: '¿Puedo usar listas de difusión y campañas masivas?',
     answer:
-      'Las campañas deben respetar el consentimiento del cliente, las solicitudes de baja y las políticas de WhatsApp. Escalando Labs no está pensado para mensajes masivos indiscriminados.',
-  },
-  {
-    question: '¿Qué pasa fuera de la ventana de atención de WhatsApp?',
-    answer:
-      'Cuando corresponde iniciar una comunicación desde el negocio, WhatsApp puede exigir una plantilla aprobada. La implementación se configura según el caso de uso y las reglas vigentes del proveedor.',
+      'Las listas de difusión y campañas deben respetar el consentimiento del cliente, las solicitudes de baja y las políticas de WhatsApp. Escalando Labs no está pensado para mensajes masivos indiscriminados.',
   },
   {
     question: '¿La IA reemplaza al equipo?',
@@ -658,11 +626,10 @@ export default function HomeDarkPremium() {
                 WhatsApp Business Platform oficial - Tech Provider de Meta
               </div>
               <h1>
-                Convertí conversaciones de WhatsApp y otros canales en oportunidades <span>con próximo paso.</span>
+                WhatsApp, clientes y ventas <span>en una sola operación.</span>
               </h1>
               <p className="dark-hero__lead">
-                Escalando Labs reúne WhatsApp Business Platform, IA, CRM conversacional y canales integrables para ordenar la atención, recuperar oportunidades
-                y mantener control humano sobre cada conversación importante.
+                Escalando Labs trabaja sobre la API oficial de WhatsApp, integra otros canales y ordena atención, seguimiento, listas de difusión y campañas responsables con IA y control humano.
               </p>
               <div className="dark-hero__actions">
                 <a className="dark-button" href="/demo">
@@ -675,9 +642,9 @@ export default function HomeDarkPremium() {
               </div>
 
               <div className="dark-hero__trust">
+                <span><i aria-hidden="true" /> API oficial de WhatsApp</span>
                 <span><i aria-hidden="true" /> Tech Provider de Meta</span>
-                <span><i aria-hidden="true" /> WhatsApp principal, canales integrables</span>
-                <span><i aria-hidden="true" /> Control humano disponible</span>
+                <span><i aria-hidden="true" /> Listas de difusión y campañas responsables</span>
               </div>
             </div>
 
@@ -771,11 +738,10 @@ export default function HomeDarkPremium() {
         <ScrollReveal as="section" className="dark-section dark-whatsapp-change" id="campanias">
           <div className="dark-shell dark-whatsapp-change__inner">
             <div className="dark-whatsapp-change__copy">
-              <p className="dark-eyebrow dark-eyebrow--amber">WhatsApp cambió las reglas</p>
-              <h2>Cuando cada mensaje cuesta, enviar a todos deja de ser una estrategia.</h2>
+              <p className="dark-eyebrow dark-eyebrow--amber">Campañas y difusión</p>
+              <h2>La API oficial exige criterio. Las listas de difusión también.</h2>
               <p>
-                Las comunicaciones comerciales oficiales requieren más criterio: consentimiento, categorías, plantillas
-                cuando corresponda, frecuencia, calidad del número y costos de proveedor.
+                Las comunicaciones comerciales oficiales requieren consentimiento, segmentación, plantillas cuando corresponda, frecuencia sana y costos visibles.
               </p>
               <p>
                 Escalando Labs no elimina esas reglas. Ayuda a convertirlas en una operación más ordenada, selectiva y
@@ -873,7 +839,7 @@ export default function HomeDarkPremium() {
           <div className="dark-shell dark-product-depth__inner">
             <div className="dark-product-depth__copy">
               <p className="dark-eyebrow">Producto real, configuración por negocio</p>
-              <h2>Una pantalla pensada para operar, no para improvisar.</h2>
+              <h2>Una pantalla pensada para operar sin improvisar.</h2>
               <p>
                 El equipo ve conversación activa, contexto comercial, métricas y próximo paso sin reconstruir la historia del cliente.
               </p>
@@ -892,25 +858,6 @@ export default function HomeDarkPremium() {
           </div>
         </ScrollReveal>
 
-        <ScrollReveal as="section" className="dark-section dark-industries">
-          <div className="dark-shell">
-            <SectionIntro
-              eyebrow="Configurable por industria"
-              title="Un mismo panel. Módulos, lenguaje y métricas según tu negocio."
-              text="La base operativa es una sola. La experiencia se adapta al tipo de venta, atención y seguimiento que necesita cada empresa."
-            />
-
-            <div className="dark-industries__list">
-              {INDUSTRIES.map((industry, index) => (
-                <article className={index === 0 ? 'is-active' : ''} key={industry.name}>
-                  <span>{industry.name}</span>
-                  <strong>{industry.result}</strong>
-                  <Icon name="arrow" />
-                </article>
-              ))}
-            </div>
-          </div>
-        </ScrollReveal>
 
         <ScrollReveal as="section" className="dark-section dark-pricing" id="precios">
           <span id="planes" className="dark-anchor-alias" aria-hidden="true" />
@@ -962,7 +909,7 @@ export default function HomeDarkPremium() {
             <div className="dark-faq__intro">
               <p className="dark-eyebrow">Preguntas frecuentes</p>
               <h2>Lo importante antes de evaluar una implementación.</h2>
-              <p>Transparencia sobre Meta, costos externos, plantillas, consentimiento, implementación, control humano y canales adicionales.</p>
+              <p>Transparencia sobre Meta, costos externos, control humano, campañas, listas de difusión y canales adicionales.</p>
             </div>
 
             <div className="dark-faq__items">

@@ -22,278 +22,152 @@ type Scene = {
 
 const SCENES: Scene[] = [
   {
-    "eyebrow": "API oficial de Meta",
-    "title": "WhatsApp Business Platform oficial",
-    "text": "Atención y campañas sobre la API oficial, con implementación como Tech Provider de Meta.",
-    "status": "Tech Provider de Meta",
-    "channel": "WhatsApp",
-    "accent": "green",
-    "inbox": [
-      {
-        "name": "Carla Méndez",
-        "meta": "Consulta por implementación",
-        "tag": "API oficial"
-      },
-      {
-        "name": "Óptica Sur",
-        "meta": "Ventana cerrada",
-        "tag": "Plantilla"
-      },
-      {
-        "name": "Hotel Plaza",
-        "meta": "Seguimiento pendiente",
-        "tag": "CRM"
-      }
+    eyebrow: 'API oficial de Meta',
+    title: 'WhatsApp Business Platform oficial',
+    text: 'Atención, seguimiento, listas de difusión y campañas sobre la API oficial, con implementación como Tech Provider de Meta.',
+    status: 'API oficial + Tech Provider',
+    channel: 'WhatsApp',
+    accent: 'green',
+    inbox: [
+      { name: 'Carla Méndez', meta: 'Consulta por implementación', tag: 'API oficial' },
+      { name: 'Óptica Sur', meta: 'Plantilla aprobada', tag: 'Difusión' },
+      { name: 'Hotel Plaza', meta: 'Seguimiento pendiente', tag: 'CRM' },
     ],
-    "main": {
-      "title": "Canal verificado y operativo",
-      "message": "El negocio atiende desde WhatsApp Business Platform, conserva trazabilidad y usa plantillas cuando corresponde.",
-      "result": "Integración oficial lista",
-      "detail": "Sin sellos inventados ni categorías incorrectas."
+    main: {
+      title: 'Credencial técnica visible',
+      message: 'El negocio atiende desde WhatsApp Business Platform, conserva trazabilidad y usa plantillas cuando corresponde.',
+      result: 'Implementación oficial lista',
+      detail: 'Sin badges inventados ni categorías incorrectas.',
     },
-    "side": [
-      {
-        "label": "Proveedor",
-        "value": "Meta"
-      },
-      {
-        "label": "Condición",
-        "value": "Tech Provider"
-      },
-      {
-        "label": "Canal principal",
-        "value": "WhatsApp"
-      }
-    ]
+    side: [
+      { label: 'Canal', value: 'WhatsApp' },
+      { label: 'API', value: 'Oficial' },
+      { label: 'Condición', value: 'Tech Provider' },
+    ],
   },
   {
-    "eyebrow": "Operación multicanal",
-    "title": "Conversaciones centralizadas",
-    "text": "WhatsApp primero, con Instagram, Messenger, web y otros canales integrables según alcance.",
-    "status": "Canales configurables",
-    "channel": "Multicanal",
-    "accent": "blue",
-    "inbox": [
-      {
-        "name": "Diego Suárez",
-        "meta": "Instagram DM",
-        "tag": "Integrable"
-      },
-      {
-        "name": "Martina López",
-        "meta": "Formulario web",
-        "tag": "Web"
-      },
-      {
-        "name": "Carla Méndez",
-        "meta": "WhatsApp",
-        "tag": "Principal"
-      }
+    eyebrow: 'Operación multicanal',
+    title: 'Conversaciones centralizadas',
+    text: 'WhatsApp primero, con Instagram, Messenger, web y otros canales integrables según alcance.',
+    status: 'Canales configurables',
+    channel: 'Multicanal',
+    accent: 'blue',
+    inbox: [
+      { name: 'Diego Suárez', meta: 'Instagram DM', tag: 'Integrable' },
+      { name: 'Martina López', meta: 'Formulario web', tag: 'Web' },
+      { name: 'Carla Méndez', meta: 'WhatsApp', tag: 'Principal' },
     ],
-    "main": {
-      "title": "Un contexto compartido",
-      "message": "Cada conversación entra con canal, contacto, intención y estado para que el equipo opere sin perder continuidad.",
-      "result": "Conversación derivada al equipo",
-      "detail": "El origen cambia. La operación sigue siendo una sola."
+    main: {
+      title: 'Un contexto compartido',
+      message: 'Cada conversación entra con canal, contacto, intención y estado para que el equipo opere sin perder continuidad.',
+      result: 'Conversación derivada al equipo',
+      detail: 'El origen cambia. La operación sigue siendo una sola.',
     },
-    "side": [
-      {
-        "label": "WhatsApp",
-        "value": "Principal"
-      },
-      {
-        "label": "Instagram",
-        "value": "Integrable"
-      },
-      {
-        "label": "Web",
-        "value": "Configurable"
-      }
-    ]
+    side: [
+      { label: 'WhatsApp', value: 'Principal' },
+      { label: 'Instagram', value: 'Integrable' },
+      { label: 'Web', value: 'Configurable' },
+    ],
   },
   {
-    "eyebrow": "IA con control",
-    "title": "Respuestas con contexto y criterio humano",
-    "text": "La IA resuelve lo repetible y escala al equipo cuando aparece una excepción comercial.",
-    "status": "Humano disponible",
-    "channel": "IA + equipo",
-    "accent": "violet",
-    "inbox": [
-      {
-        "name": "Clínica Nova",
-        "meta": "Caso sensible",
-        "tag": "Humano"
-      },
-      {
-        "name": "Studio 24",
-        "meta": "Objeción de precio",
-        "tag": "IA"
-      },
-      {
-        "name": "Panadería Central",
-        "meta": "Consulta frecuente",
-        "tag": "Auto"
-      }
+    eyebrow: 'IA con control',
+    title: 'Respuestas con contexto y criterio humano',
+    text: 'La IA resuelve lo repetible y escala al equipo cuando aparece una excepción comercial.',
+    status: 'Humano disponible',
+    channel: 'IA + equipo',
+    accent: 'violet',
+    inbox: [
+      { name: 'Clínica Nova', meta: 'Caso sensible', tag: 'Humano' },
+      { name: 'Studio 24', meta: 'Objeción de precio', tag: 'IA' },
+      { name: 'Panadería Central', meta: 'Consulta frecuente', tag: 'Auto' },
     ],
-    "main": {
-      "title": "La respuesta no empieza de cero",
-      "message": "El sistema lee historial, reglas del negocio y etapa comercial antes de sugerir o enviar una respuesta.",
-      "result": "Takeover humano activado",
-      "detail": "El operador recibe resumen, intención y próximo mensaje sugerido."
+    main: {
+      title: 'La respuesta no empieza de cero',
+      message: 'El sistema lee historial, reglas del negocio y etapa comercial antes de sugerir o enviar una respuesta.',
+      result: 'Takeover humano activado',
+      detail: 'El operador recibe resumen, intención y siguiente mensaje sugerido.',
     },
-    "side": [
-      {
-        "label": "Contexto",
-        "value": "Historial completo"
-      },
-      {
-        "label": "Reglas",
-        "value": "Por negocio"
-      },
-      {
-        "label": "Control",
-        "value": "Manual o IA"
-      }
-    ]
+    side: [
+      { label: 'Contexto', value: 'Historial completo' },
+      { label: 'Reglas', value: 'Por negocio' },
+      { label: 'Control', value: 'Manual o IA' },
+    ],
   },
   {
-    "eyebrow": "CRM conversacional",
-    "title": "Próximo paso comercial visible",
-    "text": "Cada conversación queda conectada con oportunidad, responsable, etapa y seguimiento.",
-    "status": "Seguimiento activo",
-    "channel": "CRM",
-    "accent": "amber",
-    "inbox": [
-      {
-        "name": "Carla Méndez",
-        "meta": "Plan Crecimiento",
-        "tag": "Alta"
-      },
-      {
-        "name": "Diego Ramos",
-        "meta": "Presupuesto enviado",
-        "tag": "Retomar"
-      },
-      {
-        "name": "Marina Vega",
-        "meta": "Pago pendiente",
-        "tag": "Cobro"
-      }
+    eyebrow: 'CRM conversacional',
+    title: 'Seguimiento comercial visible',
+    text: 'Cada conversación queda conectada con oportunidad, responsable, etapa y seguimiento.',
+    status: 'Seguimiento activo',
+    channel: 'CRM',
+    accent: 'amber',
+    inbox: [
+      { name: 'Carla Méndez', meta: 'Plan Crecimiento', tag: 'Alta' },
+      { name: 'Diego Ramos', meta: 'Presupuesto enviado', tag: 'Retomar' },
+      { name: 'Marina Vega', meta: 'Pago pendiente', tag: 'Cobro' },
     ],
-    "main": {
-      "title": "Oportunidad recuperada",
-      "message": "El equipo ve qué hay que hacer, cuándo retomarlo y qué información ya tiene el cliente.",
-      "result": "Próximo seguimiento programado",
-      "detail": "Mañana 10:30, responsable asignado."
+    main: {
+      title: 'Oportunidad recuperada',
+      message: 'El equipo ve qué hay que hacer, cuándo retomarlo y qué información ya tiene el cliente.',
+      result: 'Seguimiento programado',
+      detail: 'Mañana 10:30, responsable asignado.',
     },
-    "side": [
-      {
-        "label": "Etapa",
-        "value": "Evaluación"
-      },
-      {
-        "label": "Prioridad",
-        "value": "Alta"
-      },
-      {
-        "label": "Responsable",
-        "value": "Comercial"
-      }
-    ]
+    side: [
+      { label: 'Etapa', value: 'Evaluación' },
+      { label: 'Prioridad', value: 'Alta' },
+      { label: 'Responsable', value: 'Comercial' },
+    ],
   },
   {
-    "eyebrow": "Campañas responsables",
-    "title": "Segmentación antes de enviar",
-    "text": "Audiencias, consentimiento, frecuencia y plantillas se revisan antes de activar una campaña.",
-    "status": "Borrador revisado",
-    "channel": "Campañas",
-    "accent": "rose",
-    "inbox": [
-      {
-        "name": "Clientes inactivos",
-        "meta": "468 contactos",
-        "tag": "Audiencia"
-      },
-      {
-        "name": "Bajas recientes",
-        "meta": "Excluidas",
-        "tag": "Regla"
-      },
-      {
-        "name": "Promo julio",
-        "meta": "Plantilla requerida",
-        "tag": "Revisar"
-      }
+    eyebrow: 'Campañas responsables',
+    title: 'Listas de difusión con criterio',
+    text: 'Audiencias, consentimiento, frecuencia y plantillas se revisan antes de activar campañas o listas de difusión.',
+    status: 'Borrador revisado',
+    channel: 'Campañas',
+    accent: 'rose',
+    inbox: [
+      { name: 'Clientes inactivos', meta: '468 contactos', tag: 'Audiencia' },
+      { name: 'Bajas recientes', meta: 'Excluidas', tag: 'Regla' },
+      { name: 'Promo julio', meta: 'Plantilla requerida', tag: 'Revisar' },
     ],
-    "main": {
-      "title": "Campaña revisada antes del envío",
-      "message": "La plataforma ayuda a enviar con permiso, objetivo y frecuencia controlada, no a saturar una base.",
-      "result": "Lista para aprobación",
-      "detail": "Consentimiento, bajas y horario considerados."
+    main: {
+      title: 'Campaña revisada antes del envío',
+      message: 'La plataforma ayuda a enviar con permiso, objetivo y frecuencia controlada, no a saturar una base.',
+      result: 'Lista para aprobación',
+      detail: 'Consentimiento, bajas y horario considerados.',
     },
-    "side": [
-      {
-        "label": "Segmento",
-        "value": "Inactivos"
-      },
-      {
-        "label": "Frecuencia",
-        "value": "Controlada"
-      },
-      {
-        "label": "Plantilla",
-        "value": "Según caso"
-      }
-    ]
+    side: [
+      { label: 'Segmento', value: 'Inactivos' },
+      { label: 'Frecuencia', value: 'Controlada' },
+      { label: 'Plantilla', value: 'Según caso' },
+    ],
   },
   {
-    "eyebrow": "Resultados operativos",
-    "title": "Ventas, turnos y pagos con trazabilidad",
-    "text": "El foco está en resultados concretos: venta cerrada, pago recibido, turno confirmado y seguimiento medible.",
-    "status": "Operación medible",
-    "channel": "Métricas",
-    "accent": "slate",
-    "inbox": [
-      {
-        "name": "Venta cerrada",
-        "meta": "Plan mensual",
-        "tag": "Resultado"
-      },
-      {
-        "name": "Pago recibido",
-        "meta": "Link confirmado",
-        "tag": "Cobro"
-      },
-      {
-        "name": "Turno confirmado",
-        "meta": "Mañana 15:00",
-        "tag": "Agenda"
-      }
+    eyebrow: 'Resultados operativos',
+    title: 'Ventas, turnos y pagos con trazabilidad',
+    text: 'El foco está en resultados concretos: venta cerrada, pago recibido, turno confirmado y seguimiento medible.',
+    status: 'Operación medible',
+    channel: 'Métricas',
+    accent: 'slate',
+    inbox: [
+      { name: 'Venta cerrada', meta: 'Plan mensual', tag: 'Resultado' },
+      { name: 'Pago recibido', meta: 'Link confirmado', tag: 'Cobro' },
+      { name: 'Turno confirmado', meta: 'Mañana 15:00', tag: 'Agenda' },
     ],
-    "main": {
-      "title": "Resultados del día",
-      "message": "La operación deja señales visibles para priorizar, medir y corregir sin depender de memoria o planillas sueltas.",
-      "result": "Venta cerrada",
-      "detail": "Pago recibido y seguimiento postventa creado."
+    main: {
+      title: 'Resultados del día',
+      message: 'La operación deja señales visibles para priorizar, medir y corregir sin depender de memoria o planillas sueltas.',
+      result: 'Venta cerrada',
+      detail: 'Pago recibido y seguimiento postventa creado.',
     },
-    "side": [
-      {
-        "label": "Activas",
-        "value": "42"
-      },
-      {
-        "label": "Seguimientos",
-        "value": "11"
-      },
-      {
-        "label": "Humanos",
-        "value": "6"
-      }
-    ]
-  }
+    side: [
+      { label: 'Activas', value: '42' },
+      { label: 'Seguimientos', value: '11' },
+      { label: 'Humanos', value: '6' },
+    ],
+  },
 ]
 
-const AUTO_ROTATE_MS = 6500
+const AUTO_ROTATE_MS = 5200
 
 function ArrowIcon({ direction }: { direction: 'prev' | 'next' }) {
   return (
@@ -310,6 +184,7 @@ export default function HeroProductCarousel() {
   const touchStartX = useRef<number | null>(null)
 
   const activeScene = SCENES[activeIndex]
+  const isCredentialScene = activeIndex === 0
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -391,7 +266,11 @@ export default function HeroProductCarousel() {
         <em>{activeScene.status}</em>
       </div>
 
-      <div className={`hero-carousel__scene hero-carousel__scene--${activeScene.accent}`} aria-live="polite">
+      <div className={`hero-carousel__autoplay${isPaused || reduceMotion ? ' is-paused' : ''}`} aria-hidden="true">
+        <span key={`${activeIndex}-${isPaused}-${reduceMotion}`} style={{ animationDuration: `${AUTO_ROTATE_MS}ms` }} />
+      </div>
+
+      <div key={activeScene.title} className={`hero-carousel__scene hero-carousel__scene--${activeScene.accent}`} aria-live="polite">
         <aside className="hero-carousel__inbox" aria-label="Conversaciones de ejemplo">
           <header>
             <span>Operación</span>
@@ -414,6 +293,13 @@ export default function HeroProductCarousel() {
             <span>{activeScene.eyebrow}</span>
             <h2>{activeScene.title}</h2>
             <p>{activeScene.text}</p>
+            {isCredentialScene ? (
+              <div className="hero-carousel__credential-strip">
+                <strong>API oficial</strong>
+                <strong>Tech Provider</strong>
+                <strong>WhatsApp principal</strong>
+              </div>
+            ) : null}
           </div>
 
           <div className="hero-carousel__message">
@@ -444,18 +330,21 @@ export default function HeroProductCarousel() {
         <button type="button" onClick={controls.previous} aria-label="Ver escena anterior">
           <ArrowIcon direction="prev" />
         </button>
-        <div className="hero-carousel__dots" role="tablist" aria-label="Escenas del carrusel">
-          {SCENES.map((scene, index) => (
-            <button
-              type="button"
-              key={scene.title}
-              className={index === activeIndex ? 'is-active' : ''}
-              onClick={() => controls.goTo(index)}
-              aria-label={`Ver escena ${index + 1}: ${scene.title}`}
-              aria-selected={index === activeIndex}
-              role="tab"
-            />
-          ))}
+        <div className="hero-carousel__dots-wrap">
+          <div className="hero-carousel__scene-count" aria-hidden="true">{String(activeIndex + 1).padStart(2, '0')} / {String(SCENES.length).padStart(2, '0')}</div>
+          <div className="hero-carousel__dots" role="tablist" aria-label="Escenas del carrusel">
+            {SCENES.map((scene, index) => (
+              <button
+                type="button"
+                key={scene.title}
+                className={index === activeIndex ? 'is-active' : ''}
+                onClick={() => controls.goTo(index)}
+                aria-label={`Ver escena ${index + 1}: ${scene.title}`}
+                aria-selected={index === activeIndex}
+                role="tab"
+              />
+            ))}
+          </div>
         </div>
         <button type="button" onClick={controls.next} aria-label="Ver escena siguiente">
           <ArrowIcon direction="next" />
