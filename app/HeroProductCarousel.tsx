@@ -1,6 +1,6 @@
 'use client'
 
-import type { KeyboardEvent, TouchEvent } from 'react'
+import type { FocusEvent, KeyboardEvent, TouchEvent } from 'react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
 type Scene = {
@@ -34,10 +34,10 @@ const SCENES: Scene[] = [
       { name: 'Hotel Plaza', meta: 'Seguimiento pendiente', tag: 'CRM' },
     ],
     main: {
-      title: 'Credencial técnica visible',
+      title: 'Integración sobre la API oficial',
       message: 'El negocio atiende desde WhatsApp Business Platform, conserva trazabilidad y usa plantillas cuando corresponde.',
-      result: 'Implementación oficial lista',
-      detail: 'Sin badges inventados ni categorías incorrectas.',
+      result: 'Infraestructura preparada para operar',
+      detail: 'Trazabilidad, plantillas y reglas oficiales cuando corresponde.',
     },
     side: [
       { label: 'Canal', value: 'WhatsApp' },
@@ -177,14 +177,28 @@ function ArrowIcon({ direction }: { direction: 'prev' | 'next' }) {
   )
 }
 
+function WhatsAppLogo() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 40 40">
+      <circle cx="20" cy="20" r="20" fill="#25D366" />
+      <path
+        fill="#fff"
+        d="M20.08 8.4c-6.43 0-11.65 5.19-11.65 11.58 0 2.04.54 4.03 1.56 5.79l-1.65 6.02 6.2-1.62a11.75 11.75 0 0 0 5.54 1.41h.01c6.43 0 11.66-5.19 11.66-11.59 0-3.09-1.22-6-3.41-8.18a11.7 11.7 0 0 0-8.26-3.4Zm0 21.2h-.01a9.76 9.76 0 0 1-4.97-1.36l-.36-.21-3.68.96.99-3.57-.23-.37a9.6 9.6 0 0 1-1.49-5.08c0-5.32 4.36-9.66 9.73-9.66 2.6 0 5.05 1.01 6.89 2.84a9.58 9.58 0 0 1 2.84 6.81c0 5.33-4.37 9.65-9.71 9.65Zm5.3-7.25c-.29-.14-1.72-.84-1.99-.94-.26-.1-.45-.14-.64.14-.19.29-.73.94-.9 1.13-.16.19-.33.22-.62.08-.29-.14-1.2-.44-2.29-1.39-.85-.75-1.42-1.67-1.59-1.96-.16-.29-.01-.45.12-.59.12-.12.29-.32.43-.48.14-.16.19-.28.29-.47.09-.19.04-.37-.02-.51-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.47-.64-.48h-.55c-.19 0-.5.07-.76.35-.26.29-.99.97-.99 2.36s1.01 2.74 1.15 2.93c.14.19 1.98 3.02 4.79 4.23.67.29 1.19.46 1.59.59.67.21 1.28.18 1.76.11.53-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.55-.33Z"
+      />
+    </svg>
+  )
+}
+
 export default function HeroProductCarousel() {
   const [activeIndex, setActiveIndex] = useState(0)
-  const [isPaused, setIsPaused] = useState(false)
+  const [isManuallyPaused, setIsManuallyPaused] = useState(false)
+  const [isInteractionPaused, setIsInteractionPaused] = useState(false)
   const [reduceMotion, setReduceMotion] = useState(false)
   const touchStartX = useRef<number | null>(null)
 
   const activeScene = SCENES[activeIndex]
   const isCredentialScene = activeIndex === 0
+  const isAutoPlayPaused = isManuallyPaused || isInteractionPaused || reduceMotion
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -197,14 +211,14 @@ export default function HeroProductCarousel() {
   }, [])
 
   useEffect(() => {
-    if (isPaused || reduceMotion) return undefined
+    if (isAutoPlayPaused) return undefined
 
     const timer = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % SCENES.length)
     }, AUTO_ROTATE_MS)
 
     return () => window.clearInterval(timer)
-  }, [isPaused, reduceMotion])
+  }, [isAutoPlayPaused])
 
   const controls = useMemo(
     () => ({
@@ -242,16 +256,28 @@ export default function HeroProductCarousel() {
     else controls.previous()
   }
 
+  function handleFocus(event: FocusEvent<HTMLElement>) {
+    if (event.currentTarget.contains(event.target)) {
+      setIsInteractionPaused(true)
+    }
+  }
+
+  function handleBlur(event: FocusEvent<HTMLElement>) {
+    if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+      setIsInteractionPaused(false)
+    }
+  }
+
   return (
     <section
       className="hero-carousel"
       aria-roledescription="carousel"
       aria-label="Escenas de producto de Escalando Labs"
-      onFocus={() => setIsPaused(true)}
-      onBlur={() => setIsPaused(false)}
+      onFocusCapture={handleFocus}
+      onBlurCapture={handleBlur}
       onKeyDown={handleKeyDown}
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
+      onMouseEnter={() => setIsInteractionPaused(true)}
+      onMouseLeave={() => setIsInteractionPaused(false)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       tabIndex={0}
@@ -266,8 +292,8 @@ export default function HeroProductCarousel() {
         <em>{activeScene.status}</em>
       </div>
 
-      <div className={`hero-carousel__autoplay${isPaused || reduceMotion ? ' is-paused' : ''}`} aria-hidden="true">
-        <span key={`${activeIndex}-${isPaused}-${reduceMotion}`} style={{ animationDuration: `${AUTO_ROTATE_MS}ms` }} />
+      <div className={`hero-carousel__autoplay${isAutoPlayPaused ? ' is-paused' : ''}`} aria-hidden="true">
+        <span key={`${activeIndex}-${isAutoPlayPaused}-${reduceMotion}`} style={{ animationDuration: `${AUTO_ROTATE_MS}ms` }} />
       </div>
 
       <div key={activeScene.title} className={`hero-carousel__scene hero-carousel__scene--${activeScene.accent}`} aria-live="polite">
@@ -288,9 +314,20 @@ export default function HeroProductCarousel() {
           ))}
         </aside>
 
-        <main className="hero-carousel__main">
+        <div className="hero-carousel__main">
           <div className="hero-carousel__copy">
             <span>{activeScene.eyebrow}</span>
+            {isCredentialScene ? (
+              <div className="hero-carousel__whatsapp-presence" aria-label="WhatsApp Business Platform oficial">
+                <span className="hero-carousel__whatsapp-logo">
+                  <WhatsAppLogo />
+                </span>
+                <div>
+                  <strong>WhatsApp</strong>
+                  <small>Business Platform oficial</small>
+                </div>
+              </div>
+            ) : null}
             <h2>{activeScene.title}</h2>
             <p>{activeScene.text}</p>
             {isCredentialScene ? (
@@ -314,7 +351,7 @@ export default function HeroProductCarousel() {
               <small>{activeScene.main.detail}</small>
             </div>
           </div>
-        </main>
+        </div>
 
         <aside className="hero-carousel__side" aria-label="Indicadores de la escena">
           {activeScene.side.map((item) => (
@@ -332,7 +369,7 @@ export default function HeroProductCarousel() {
         </button>
         <div className="hero-carousel__dots-wrap">
           <div className="hero-carousel__scene-count" aria-hidden="true">{String(activeIndex + 1).padStart(2, '0')} / {String(SCENES.length).padStart(2, '0')}</div>
-          <div className="hero-carousel__dots" role="tablist" aria-label="Escenas del carrusel">
+          <div className="hero-carousel__dots" aria-label="Escenas del carrusel">
             {SCENES.map((scene, index) => (
               <button
                 type="button"
@@ -340,16 +377,24 @@ export default function HeroProductCarousel() {
                 className={index === activeIndex ? 'is-active' : ''}
                 onClick={() => controls.goTo(index)}
                 aria-label={`Ver escena ${index + 1}: ${scene.title}`}
-                aria-selected={index === activeIndex}
-                role="tab"
+                aria-current={index === activeIndex ? 'true' : undefined}
               />
             ))}
           </div>
+          <button
+            type="button"
+            className="hero-carousel__pause"
+            onClick={() => setIsManuallyPaused((current) => !current)}
+            aria-pressed={isManuallyPaused}
+          >
+            {isManuallyPaused ? 'Reanudar carrusel' : 'Pausar carrusel'}
+          </button>
         </div>
         <button type="button" onClick={controls.next} aria-label="Ver escena siguiente">
           <ArrowIcon direction="next" />
         </button>
       </div>
+      <p className="hero-carousel__caption">Vista ilustrativa · Los datos y resultados mostrados son ejemplos de operación.</p>
     </section>
   )
 }

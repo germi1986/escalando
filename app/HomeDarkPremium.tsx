@@ -119,7 +119,7 @@ const PRICING_PLANS = [
       'Todo lo del plan Inicial',
       'CRM conversacional',
       'Follow up automático',
-      'Campañas responsables',
+      'Listas de difusión y campañas responsables',
       'Segmentación de clientes',
     ],
   },
@@ -473,8 +473,8 @@ function ProductWorkspace() {
             <div className="product-next-step">
               <span className="product-next-step__icon"><Icon name="route" /></span>
               <div>
-                <small>Próximo paso sugerido</small>
-                <strong>Preparar diagnóstico y retomar mañana</strong>
+                <small>Acción comercial sugerida</small>
+                <strong>Preparar diagnóstico y seguimiento mañana</strong>
               </div>
               <button type="button" disabled aria-hidden="true">Programar</button>
             </div>
@@ -514,7 +514,7 @@ function ProductWorkspace() {
               </div>
               <span className="is-future" />
               <div>
-                <small>Próximo</small>
+                <small>Seguimiento</small>
                 <strong>Seguimiento comercial</strong>
               </div>
             </div>
@@ -670,7 +670,7 @@ export default function HomeDarkPremium() {
           <div className="dark-shell">
             <SectionIntro
               eyebrow="Operación comercial compartida"
-              title="Consultas, clientes y próximos pasos en un mismo lugar."
+              title="Consultas, clientes y seguimiento en un mismo lugar."
               text="Escalando Labs conecta atención, contexto y seguimiento para que cada conversación tenga continuidad, sin importar si empezó en WhatsApp, Instagram, Messenger, web u otro canal integrable."
             />
 
@@ -706,7 +706,7 @@ export default function HomeDarkPremium() {
                   <i aria-hidden="true" />
                   <span>Intención detectada</span>
                   <i aria-hidden="true" />
-                  <span>Próximo paso</span>
+                  <span>Acción comercial</span>
                   <i aria-hidden="true" />
                   <strong>Resultado</strong>
                 </div>
@@ -720,7 +720,7 @@ export default function HomeDarkPremium() {
             <div className="dark-channels__copy">
               <p className="dark-eyebrow">Claridad multicanal</p>
               <h2>WhatsApp es el canal principal. La operación puede ordenar más canales sin duplicar trabajo.</h2>
-              <p>Las conversaciones se organizan en un contexto compartido: contacto, canal de origen, intención, historial, responsable y próximo paso comercial.</p>
+              <p>Las conversaciones se organizan en un contexto compartido: contacto, canal de origen, intención, historial, responsable y seguimiento comercial.</p>
             </div>
 
             <div className="dark-channels__grid">
@@ -841,7 +841,7 @@ export default function HomeDarkPremium() {
               <p className="dark-eyebrow">Producto real, configuración por negocio</p>
               <h2>Una pantalla pensada para operar sin improvisar.</h2>
               <p>
-                El equipo ve conversación activa, contexto comercial, métricas y próximo paso sin reconstruir la historia del cliente.
+                El equipo ve conversación activa, contexto comercial, métricas y seguimiento sin reconstruir la historia del cliente.
               </p>
 
               <ul>
@@ -879,7 +879,7 @@ export default function HomeDarkPremium() {
                   <article className={plan.featured ? 'is-featured' : ''} key={plan.name}>
                     <header>
                       <span>{plan.eyebrow}</span>
-                      {plan.featured ? <em>Más elegido</em> : null}
+                      {plan.featured ? <em>Recomendado</em> : null}
                     </header>
                     <h3>{plan.name}</h3>
                     <div className="dark-pricing__price">
@@ -929,7 +929,7 @@ export default function HomeDarkPremium() {
         <ScrollReveal as="section" className="dark-final" id="diagnostico">
           <div className="dark-shell dark-final__inner">
             <div>
-              <p className="dark-eyebrow">Siguiente paso</p>
+              <p className="dark-eyebrow">Acción comercial</p>
               <h2>Ordenemos primero lo que hoy te hace perder ventas.</h2>
               <p>
                 Revisamos cómo atendés, dónde se enfrían oportunidades y qué conviene implementar sin agregar complejidad
