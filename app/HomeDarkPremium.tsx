@@ -88,8 +88,6 @@ const CHANNELS = [
   { name: 'Web', state: 'Configurable', detail: 'Formularios, chat y consultas web conectables al flujo comercial.' },
 ]
 
-
-
 const PRICING_PLANS = [
   {
     name: 'Inicial',
@@ -739,13 +737,12 @@ export default function HomeDarkPremium() {
           <div className="dark-shell dark-whatsapp-change__inner">
             <div className="dark-whatsapp-change__copy">
               <p className="dark-eyebrow dark-eyebrow--amber">Campañas y difusión</p>
-              <h2>La API oficial exige criterio. Las listas de difusión también.</h2>
+              <h2>Las listas de difusión cambiaron. La comunicación comercial también.</h2>
               <p>
-                Las comunicaciones comerciales oficiales requieren consentimiento, segmentación, plantillas cuando corresponda, frecuencia sana y costos visibles.
+                Las listas de difusión que muchos negocios utilizaban dejaron de funcionar como antes. Ahora intervienen plantillas, categorías, consentimiento, límites y costos definidos por Meta.
               </p>
               <p>
-                Escalando Labs no elimina esas reglas. Ayuda a convertirlas en una operación más ordenada, selectiva y
-                medible.
+                Escalando Labs organiza esa nueva operación para que el negocio pueda seguir comunicándose con sus clientes de forma selectiva, trazable y responsable.
               </p>
             </div>
 
@@ -857,7 +854,6 @@ export default function HomeDarkPremium() {
             </div>
           </div>
         </ScrollReveal>
-
 
         <ScrollReveal as="section" className="dark-section dark-pricing" id="precios">
           <span id="planes" className="dark-anchor-alias" aria-hidden="true" />
