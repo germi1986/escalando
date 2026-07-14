@@ -1,6 +1,7 @@
-﻿import "./home-v45.css";
-import HomeV45 from "./HomeV45";
+import './home-dark-premium.css'
+import './home-dark-consent-overrides.css'
+import HomeDarkPremium from './HomeDarkPremium'
 
 export default function HomePage() {
-  return <HomeV45 />;
+  return <HomeDarkPremium />
 }

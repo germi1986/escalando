@@ -1,0 +1,55 @@
+body > aside[aria-label="Preferencias de privacidad"] {
+  max-width: 780px !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: 14px !important;
+  color: #f4f6fa !important;
+  background: #141923 !important;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.48) !important;
+  backdrop-filter: none !important;
+}
+
+body > aside[aria-label="Preferencias de privacidad"] p:first-child {
+  color: #f4f6fa !important;
+  font-family: var(--font-dark-sans, Arial), sans-serif !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.025em !important;
+}
+
+body > aside[aria-label="Preferencias de privacidad"] p,
+body > aside[aria-label="Preferencias de privacidad"] a,
+body > aside[aria-label="Preferencias de privacidad"] button {
+  font-family: var(--font-dark-sans, Arial), sans-serif !important;
+}
+
+body > aside[aria-label="Preferencias de privacidad"] p:not(:first-child) {
+  color: #a5adba !important;
+}
+
+body > aside[aria-label="Preferencias de privacidad"] a {
+  color: #9caeff !important;
+}
+
+body > aside[aria-label="Preferencias de privacidad"] button {
+  min-height: 42px !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: 9px !important;
+  color: #e7ebf2 !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  box-shadow: none !important;
+  font-size: 0.84rem !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+}
+
+body > aside[aria-label="Preferencias de privacidad"] button:last-child {
+  color: #ffffff !important;
+  background: #6683ff !important;
+  border-color: #6683ff !important;
+}
+
+body > aside[aria-label="Preferencias de privacidad"] button:focus-visible,
+body > aside[aria-label="Preferencias de privacidad"] a:focus-visible {
+  outline: 2px solid #9caeff !important;
+  outline-offset: 3px !important;
+}
