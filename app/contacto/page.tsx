@@ -45,9 +45,9 @@ export default function ContactPage() {
           <br />
           Operador legal: Germán Argüello
           <br />
-          Domicilio legal: [DOMICILIO LEGAL, SI CORRESPONDE]
+          Domicilio legal: San Francisco 324, Turdera, Buenos Aires, Argentina
           <br />
-          Identificación fiscal: [IDENTIFICACIÓN FISCAL, SI CORRESPONDE]
+          Identificación fiscal: CUIT 20-32475318-5
         </p>
       </LegalSection>
 

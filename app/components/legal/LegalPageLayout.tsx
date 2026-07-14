@@ -1,6 +1,21 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import BrandMark from "../BrandMark";
+import { IBM_Plex_Mono, Manrope } from "next/font/google";
+import styles from "./LegalPageLayout.module.css";
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-legal-sans",
+  display: "swap",
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-legal-mono",
+  display: "swap",
+});
 
 type LegalNavItem = {
   href: string;
@@ -28,84 +43,98 @@ export default function LegalPageLayout({
   children,
 }: LegalPageLayoutProps) {
   return (
-    <main className="min-h-screen overflow-hidden bg-[var(--background)] text-[var(--text-primary)]">
-      <div className="pointer-events-none fixed inset-0 opacity-80">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.14),transparent_34%),radial-gradient(circle_at_80%_20%,rgba(52,211,153,0.12),transparent_28%)]" />
-        <div className="absolute inset-0 opacity-[0.035] bg-[linear-gradient(to_right,var(--grid-line)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-line)_1px,transparent_1px)] bg-[size:72px_72px]" />
-      </div>
+    <div className={`${styles.root} ${manrope.variable} ${plexMono.variable}`}>
+      <a className={styles.skipLink} href="#contenido-legal">
+        Ir al contenido principal
+      </a>
 
-      <header className="sticky top-0 z-50 border-b border-[var(--border-soft)] bg-[var(--nav-bg)] backdrop-blur-2xl">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 lg:px-8">
-          <Link href="/" aria-label="Volver a Escalando Labs">
-            <BrandMark showLabel size="sm" />
-          </Link>
+      <header className={styles.header} aria-label="Navegación legal">
+        <div className={styles.shell}>
+          <div className={styles.headerInner}>
+            <Link className={styles.brand} href="/" aria-label="Escalando Labs, volver al inicio">
+              <span className={styles.brandMark} aria-hidden="true">
+                <Image src="/brand-icon.png" alt="" width={32} height={32} priority />
+              </span>
+              <span className={styles.brandName}>
+                <strong>Escalando</strong>
+                <span>Labs</span>
+              </span>
+            </Link>
 
-          <nav className="hidden items-center gap-2 md:flex" aria-label="Páginas legales">
+            <nav className={styles.headerNav} aria-label="Páginas legales">
+              {legalLinks.map((item) => (
+                <Link key={item.href} href={item.href}>
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+
+            <Link className={styles.backLink} href="/">
+              Volver al sitio
+            </Link>
+          </div>
+        </div>
+      </header>
+
+      <main id="contenido-legal">
+        <section className={styles.hero}>
+          <div className={styles.shell}>
+            <div className={styles.heroContent}>
+              <p className={styles.eyebrow}>{eyebrow}</p>
+              <h1>{title}</h1>
+              <p className={styles.subtitle}>{subtitle}</p>
+            </div>
+          </div>
+        </section>
+
+        <div className={`${styles.shell} ${styles.mainGrid}`}>
+          <article className={styles.article}>
+            <div className={`${styles.content} legal-content`}>{children}</div>
+          </article>
+
+          <aside className={styles.aside} aria-label="Navegación entre documentos públicos">
+            <div className={styles.asideCard}>
+              <p className={styles.asideEyebrow}>Documentos públicos</p>
+              <nav className={styles.asideNav} aria-label="Documentos públicos">
+                {legalLinks.map((item) => (
+                  <Link key={item.href} href={item.href}>
+                    <span>{item.label}</span>
+                    <span aria-hidden="true">↗</span>
+                  </Link>
+                ))}
+              </nav>
+              <p className={styles.asideNote}>
+                Estos documentos forman parte de la información pública de Escalando Labs.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </main>
+
+      <footer className={styles.footer}>
+        <div className={`${styles.shell} ${styles.footerInner}`}>
+          <div className={styles.footerBrand}>
+            <span className={styles.brandMark} aria-hidden="true">
+              <Image src="/brand-icon.png" alt="" width={32} height={32} />
+            </span>
+            <div>
+              <strong>Escalando Labs</strong>
+              <p>Sistema comercial conversacional con IA y control humano.</p>
+            </div>
+          </div>
+
+          <nav className={styles.footerNav} aria-label="Páginas legales del sitio">
             {legalLinks.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-full border border-transparent px-4 py-2 text-sm font-semibold text-[var(--text-muted)] transition hover:border-[var(--border-soft)] hover:bg-[var(--surface-soft)] hover:text-[var(--text-strong)]"
-              >
+              <Link key={item.href} href={item.href}>
                 {item.label}
               </Link>
             ))}
           </nav>
-        </div>
-      </header>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-5 py-14 lg:px-8 lg:py-20">
-        <section className="max-w-4xl">
-          <p className="inline-flex rounded-full border border-[var(--border-soft)] bg-[var(--surface-soft)] px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-[var(--brand-cyan)]">
-            {eyebrow}
-          </p>
-          <h1 className="mt-7 text-4xl font-semibold leading-tight tracking-[-0.045em] text-[var(--text-strong)] md:text-6xl">
-            {title}
-          </h1>
-          <p className="mt-5 max-w-3xl text-lg leading-8 text-[var(--text-secondary)] md:text-xl">
-            {subtitle}
-          </p>
-        </section>
-
-        <section className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start">
-          <article className="rounded-[2rem] border border-[var(--border-soft)] bg-[var(--panel)] p-6 shadow-[var(--shadow-soft)] backdrop-blur-2xl md:p-9">
-            <div className="legal-content space-y-8">{children}</div>
-          </article>
-
-          <aside className="lg:sticky lg:top-28">
-            <div className="rounded-[1.5rem] border border-[var(--border-soft)] bg-[var(--surface-soft)] p-5 shadow-[var(--shadow-soft)] backdrop-blur-2xl">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--text-muted)]">
-                Páginas públicas
-              </p>
-              <div className="mt-4 grid gap-2">
-                {legalLinks.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] px-4 py-3 text-sm font-semibold text-[var(--text-secondary)] transition hover:border-[var(--border-strong)] hover:text-[var(--text-strong)]"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </aside>
-        </section>
-      </div>
-
-      <footer className="relative z-10 border-t border-[var(--border-soft)] px-5 py-10 lg:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col gap-5 text-sm text-[var(--text-muted)] md:flex-row md:items-center md:justify-between">
-          <BrandMark showLabel size="sm" />
-          <div className="flex flex-wrap gap-x-5 gap-y-2">
-            {legalLinks.map((item) => (
-              <Link key={item.href} href={item.href} className="transition hover:text-[var(--text-strong)]">
-                {item.label}
-              </Link>
-            ))}
-          </div>
+          <p className={styles.copyright}>© {new Date().getFullYear()} Escalando Labs.</p>
         </div>
       </footer>
-    </main>
+    </div>
   );
 }
 
@@ -117,21 +146,19 @@ export function LegalSection({
   children: ReactNode;
 }) {
   return (
-    <section className="space-y-4">
-      <h2 className="text-2xl font-semibold tracking-[-0.03em] text-[var(--text-strong)]">
-        {title}
-      </h2>
-      <div className="space-y-4 text-base leading-8 text-[var(--text-secondary)]">{children}</div>
+    <section className={styles.section}>
+      <h2>{title}</h2>
+      <div className={styles.sectionBody}>{children}</div>
     </section>
   );
 }
 
 export function LegalList({ items }: { items: string[] }) {
   return (
-    <ul className="space-y-3">
+    <ul className={styles.list}>
       {items.map((item) => (
-        <li key={item} className="flex gap-3">
-          <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--brand-cyan)]" />
+        <li key={item}>
+          <span aria-hidden="true" />
           <span>{item}</span>
         </li>
       ))}
