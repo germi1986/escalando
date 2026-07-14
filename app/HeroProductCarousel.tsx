@@ -191,14 +191,13 @@ function WhatsAppLogo() {
 
 export default function HeroProductCarousel() {
   const [activeIndex, setActiveIndex] = useState(0)
-  const [isManuallyPaused, setIsManuallyPaused] = useState(false)
   const [isInteractionPaused, setIsInteractionPaused] = useState(false)
   const [reduceMotion, setReduceMotion] = useState(false)
   const touchStartX = useRef<number | null>(null)
 
   const activeScene = SCENES[activeIndex]
   const isCredentialScene = activeIndex === 0
-  const isAutoPlayPaused = isManuallyPaused || isInteractionPaused || reduceMotion
+  const isAutoPlayPaused = isInteractionPaused || reduceMotion
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -368,7 +367,9 @@ export default function HeroProductCarousel() {
           <ArrowIcon direction="prev" />
         </button>
         <div className="hero-carousel__dots-wrap">
-          <div className="hero-carousel__scene-count" aria-hidden="true">{String(activeIndex + 1).padStart(2, '0')} / {String(SCENES.length).padStart(2, '0')}</div>
+          <div className="hero-carousel__scene-count" aria-hidden="true">
+            {String(activeIndex + 1).padStart(2, '0')} / {String(SCENES.length).padStart(2, '0')}
+          </div>
           <div className="hero-carousel__dots" aria-label="Escenas del carrusel">
             {SCENES.map((scene, index) => (
               <button
@@ -381,14 +382,6 @@ export default function HeroProductCarousel() {
               />
             ))}
           </div>
-          <button
-            type="button"
-            className="hero-carousel__pause"
-            onClick={() => setIsManuallyPaused((current) => !current)}
-            aria-pressed={isManuallyPaused}
-          >
-            {isManuallyPaused ? 'Reanudar carrusel' : 'Pausar carrusel'}
-          </button>
         </div>
         <button type="button" onClick={controls.next} aria-label="Ver escena siguiente">
           <ArrowIcon direction="next" />
