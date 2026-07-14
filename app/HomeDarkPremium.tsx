@@ -1,5 +1,7 @@
 import Image from 'next/image'
 import { IBM_Plex_Mono, Manrope } from 'next/font/google'
+import HeroProductCarousel from './HeroProductCarousel'
+import ScrollReveal from './ScrollReveal'
 
 const manrope = Manrope({
   subsets: ['latin'],
@@ -14,12 +16,9 @@ const plexMono = IBM_Plex_Mono({
   display: 'swap',
 })
 
-const WHATSAPP_URL = `https://wa.me/5491153230859?text=${encodeURIComponent(
-  'Hola, quiero evaluar cómo ordenar la atención, el seguimiento y las campañas de mi negocio con Escalando Labs.',
-)}`
-
 const NAV_ITEMS = [
   { label: 'Plataforma', href: '#plataforma' },
+  { label: 'Canales', href: '#canales' },
   { label: 'Campañas', href: '#campanias' },
   { label: 'Cómo funciona', href: '#como-funciona' },
   { label: 'Planes', href: '#precios' },
@@ -28,23 +27,23 @@ const NAV_ITEMS = [
 const OUTCOMES = [
   {
     icon: 'message',
-    title: 'Respuestas con contexto',
-    text: 'La IA conoce el negocio y el historial.',
+    title: 'Venta cerrada',
+    text: 'La conversación conserva contexto hasta el próximo paso.',
   },
   {
     icon: 'route',
-    title: 'Seguimiento visible',
-    text: 'Cada oportunidad conserva un próximo paso.',
+    title: 'Pago o turno confirmado',
+    text: 'El equipo ve estado, responsable y seguimiento.',
   },
   {
     icon: 'shield',
-    title: 'Campañas con criterio',
-    text: 'Segmentación, frecuencia y reglas claras.',
+    title: 'Campaña revisada',
+    text: 'Segmentación, consentimiento y frecuencia antes del envío.',
   },
 ] as const
 
 const PROBLEMS = [
-  'Las consultas quedan repartidas entre chats y personas.',
+  'Las consultas llegan por WhatsApp, Instagram, web o Messenger y quedan repartidas entre personas.',
   'El seguimiento depende de memoria, planillas o buena voluntad.',
   'Las promociones se envían sin suficiente segmentación ni medición.',
 ]
@@ -91,6 +90,14 @@ const FLOW_STEPS = [
   },
 ]
 
+const CHANNELS = [
+  { name: 'WhatsApp', state: 'Principal', detail: 'WhatsApp Business Platform oficial para atención y comunicaciones comerciales.' },
+  { name: 'Instagram', state: 'Integrable', detail: 'DMs centralizables según alcance técnico y configuración de la cuenta.' },
+  { name: 'Messenger', state: 'Integrable', detail: 'Conversaciones sociales organizadas dentro de la misma operación compartida.' },
+  { name: 'Web', state: 'Configurable', detail: 'Formularios, chats o consultas web conectables al flujo comercial.' },
+  { name: 'Otros canales', state: 'Según alcance', detail: 'Integraciones adicionales se definen por necesidad, costo, pruebas y soporte.' },
+]
+
 const INDUSTRIES = [
   {
     name: 'Gastronomía',
@@ -120,7 +127,7 @@ const PRICING_PLANS = [
     featured: false,
     cta: 'Evaluar plan Inicial',
     items: [
-      '1 negocio y 1 canal principal',
+      '1 negocio y WhatsApp como canal principal',
       'IA comercial configurada',
       'Panel de conversaciones',
       'Modo IA / humano',
@@ -153,7 +160,7 @@ const PRICING_PLANS = [
     cta: 'Consultar implementación',
     items: [
       'Todo lo del plan Crecimiento',
-      'Canales adicionales',
+      'Canales adicionales según alcance',
       'Flujos personalizados',
       'Automatizaciones n8n',
       'Soporte prioritario',
@@ -165,12 +172,17 @@ const FAQ_ITEMS = [
   {
     question: '¿Escalando Labs es solamente un bot?',
     answer:
-      'No. La IA es una parte del sistema. Escalando Labs organiza conversaciones, clientes, seguimiento, campañas y trabajo humano dentro de una misma operación.',
+      'La IA es una parte del sistema. Escalando Labs organiza conversaciones, clientes, seguimiento, campañas y trabajo humano dentro de una misma operación.',
   },
   {
     question: '¿Escalando Labs evita los costos de Meta?',
     answer:
-      'No. Los costos de WhatsApp, Meta, IA y otros proveedores externos se calculan por separado. El objetivo es usar esas comunicaciones con más criterio y menos desperdicio.',
+      'Los costos de WhatsApp, Meta, IA y otros proveedores externos se calculan por separado. El objetivo es usar esas comunicaciones con más criterio y menos desperdicio.',
+  },
+  {
+    question: '¿Es una plataforma multicanal?',
+    answer:
+      'WhatsApp es el canal principal y se trabaja sobre WhatsApp Business Platform. Instagram, Messenger, web y otros canales pueden integrarse según alcance, validación técnica y configuración de cada negocio.',
   },
   {
     question: '¿Puedo enviar promociones a cualquier contacto?',
@@ -185,7 +197,7 @@ const FAQ_ITEMS = [
   {
     question: '¿La IA reemplaza al equipo?',
     answer:
-      'No. Resuelve tareas repetibles, conserva contexto y ayuda a priorizar. Una persona puede tomar el control cuando hace falta criterio, negociación o una excepción.',
+      'La IA resuelve tareas repetibles, conserva contexto y ayuda a priorizar. Una persona puede tomar el control cuando hace falta criterio, negociación o una excepción.',
   },
   {
     question: '¿Los planes incluyen la implementación?',
@@ -357,11 +369,11 @@ function Header() {
         </nav>
 
         <div className="dark-header__actions">
-          <a className="dark-header__demo" href="/demo">
-            Ver demo
+          <a className="dark-header__demo" href="#plataforma">
+            Ver cómo funciona
           </a>
-          <a className="dark-button dark-button--small" href={WHATSAPP_URL} target="_blank" rel="noreferrer">
-            Evaluar mi operación
+          <a className="dark-button dark-button--small" href="/demo">
+            Solicitar una demo
           </a>
         </div>
 
@@ -376,10 +388,8 @@ function Header() {
                 {item.label}
               </a>
             ))}
-            <a href="/demo">Ver demo</a>
-            <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
-              Evaluar mi operación
-            </a>
+            <a href="#plataforma">Ver cómo funciona</a>
+            <a href="/demo">Solicitar una demo</a>
           </div>
         </details>
       </div>
@@ -645,39 +655,37 @@ export default function HomeDarkPremium() {
             <div className="dark-hero__copy">
               <div className="dark-hero__badge">
                 <span aria-hidden="true"><Icon name="shield" /></span>
-                Integración oficial con WhatsApp Business Platform
+                WhatsApp Business Platform oficial - Tech Provider de Meta
               </div>
-
               <h1>
-                Convertí cada conversación en una oportunidad <span>con próximo paso.</span>
+                Convertí conversaciones de WhatsApp y otros canales en oportunidades <span>con próximo paso.</span>
               </h1>
-
               <p className="dark-hero__lead">
-                Escalando Labs reúne WhatsApp, IA y seguimiento comercial para responder mejor, recuperar oportunidades
-                y mantener el control humano cuando realmente importa.
+                Escalando Labs reúne WhatsApp Business Platform, IA, CRM conversacional y canales integrables para ordenar la atención, recuperar oportunidades
+                y mantener control humano sobre cada conversación importante.
               </p>
-
               <div className="dark-hero__actions">
                 <a className="dark-button" href="/demo">
-                  Ver cómo funciona
+                  Solicitar una demo
                   <Icon name="arrow" />
                 </a>
-                <a className="dark-button dark-button--secondary" href={WHATSAPP_URL} target="_blank" rel="noreferrer">
-                  Hablar por WhatsApp
+                <a className="dark-button dark-button--secondary" href="#plataforma">
+                  Ver cómo funciona
                 </a>
               </div>
 
               <div className="dark-hero__trust">
-                <span><i aria-hidden="true" /> IA configurada para tu negocio</span>
+                <span><i aria-hidden="true" /> Tech Provider de Meta</span>
+                <span><i aria-hidden="true" /> WhatsApp principal, canales integrables</span>
                 <span><i aria-hidden="true" /> Control humano disponible</span>
               </div>
             </div>
 
-            <ProductWorkspace />
+            <HeroProductCarousel />
           </div>
         </section>
 
-        <section className="dark-outcomes" aria-label="Resultados principales">
+        <ScrollReveal as="section" className="dark-outcomes" aria-label="Resultados principales">
           <div className="dark-shell dark-outcomes__inner">
             {OUTCOMES.map((outcome) => (
               <article key={outcome.title}>
@@ -689,14 +697,14 @@ export default function HomeDarkPremium() {
               </article>
             ))}
           </div>
-        </section>
+        </ScrollReveal>
 
-        <section className="dark-section dark-operation" id="plataforma">
+        <ScrollReveal as="section" className="dark-section dark-operation" id="plataforma">
           <div className="dark-shell">
             <SectionIntro
-              eyebrow="Una operación comercial, no otro bot"
-              title="El problema no es recibir consultas. Es perder lo que debería pasar después."
-              text="Escalando Labs conecta atención, contexto y seguimiento para que cada conversación tenga continuidad."
+              eyebrow="Operación comercial compartida"
+              title="Consultas, clientes y próximos pasos en un mismo lugar."
+              text="Escalando Labs conecta atención, contexto y seguimiento para que cada conversación tenga continuidad, sin importar si empezó en WhatsApp, Instagram, Messenger, web u otro canal integrable."
             />
 
             <div className="dark-operation__content">
@@ -738,9 +746,29 @@ export default function HomeDarkPremium() {
               </div>
             </div>
           </div>
-        </section>
+        </ScrollReveal>
 
-        <section className="dark-section dark-whatsapp-change" id="campanias">
+        <ScrollReveal as="section" className="dark-section dark-channels" id="canales">
+          <div className="dark-shell dark-channels__inner">
+            <div className="dark-channels__copy">
+              <p className="dark-eyebrow">Claridad multicanal</p>
+              <h2>WhatsApp es el canal principal. La operación puede ordenar más canales sin duplicar trabajo.</h2>
+              <p>Las conversaciones se organizan en un contexto compartido: contacto, canal de origen, intención, historial, responsable y próximo paso comercial.</p>
+            </div>
+
+            <div className="dark-channels__grid">
+              {CHANNELS.map((channel) => (
+                <article key={channel.name}>
+                  <span>{channel.state}</span>
+                  <h3>{channel.name}</h3>
+                  <p>{channel.detail}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal as="section" className="dark-section dark-whatsapp-change" id="campanias">
           <div className="dark-shell dark-whatsapp-change__inner">
             <div className="dark-whatsapp-change__copy">
               <p className="dark-eyebrow dark-eyebrow--amber">WhatsApp cambió las reglas</p>
@@ -781,13 +809,13 @@ export default function HomeDarkPremium() {
               </div>
             </div>
           </div>
-        </section>
+        </ScrollReveal>
 
-        <section className="dark-section dark-responsible">
+        <ScrollReveal as="section" className="dark-section dark-responsible">
           <div className="dark-shell">
             <SectionIntro
               eyebrow="Campañas responsables"
-              title="No se trata de enviar más. Se trata de enviar con permiso, criterio y una razón comercial."
+              title="Cada campaña empieza por audiencia, permiso y objetivo comercial."
               text="La plataforma está pensada para que una campaña comience por la audiencia y el objetivo, no por el botón de enviar."
             />
 
@@ -812,9 +840,9 @@ export default function HomeDarkPremium() {
               depende del consentimiento, el contenido y el comportamiento de cada negocio.
             </p>
           </div>
-        </section>
+        </ScrollReveal>
 
-        <section className="dark-section dark-flow" id="como-funciona">
+        <ScrollReveal as="section" className="dark-section dark-flow" id="como-funciona">
           <div className="dark-shell">
             <SectionIntro
               eyebrow="Cómo funciona"
@@ -839,16 +867,15 @@ export default function HomeDarkPremium() {
               ))}
             </ol>
           </div>
-        </section>
+        </ScrollReveal>
 
-        <section className="dark-section dark-product-depth">
+        <ScrollReveal as="section" className="dark-section dark-product-depth">
           <div className="dark-shell dark-product-depth__inner">
             <div className="dark-product-depth__copy">
               <p className="dark-eyebrow">Producto real, configuración por negocio</p>
-              <h2>La IA responde. La plataforma conserva memoria, estado y responsabilidad.</h2>
+              <h2>Una pantalla pensada para operar, no para improvisar.</h2>
               <p>
-                No alcanza con una respuesta correcta. Para vender mejor hace falta saber quién consultó, en qué etapa
-                está y cuál es la próxima acción.
+                El equipo ve conversación activa, contexto comercial, métricas y próximo paso sin reconstruir la historia del cliente.
               </p>
 
               <ul>
@@ -859,56 +886,13 @@ export default function HomeDarkPremium() {
               </ul>
             </div>
 
-            <div className="dark-product-depth__visual" aria-label="Resumen ilustrativo del producto">
-              <div className="depth-visual__header">
-                <span>Operación de hoy</span>
-                <small>Actualizado ahora</small>
-              </div>
-
-              <div className="depth-visual__metrics">
-                <div>
-                  <span>Consultas activas</span>
-                  <strong>42</strong>
-                  <small>+8 desde ayer</small>
-                </div>
-                <div>
-                  <span>Requieren seguimiento</span>
-                  <strong>11</strong>
-                  <small>3 con prioridad alta</small>
-                </div>
-                <div>
-                  <span>En control humano</span>
-                  <strong>6</strong>
-                  <small>Dentro del tiempo objetivo</small>
-                </div>
-              </div>
-
-              <div className="depth-visual__queue">
-                <header>
-                  <strong>Próximas acciones</strong>
-                  <span>Ordenadas por prioridad</span>
-                </header>
-                <article>
-                  <span className="is-high" />
-                  <div><strong>Enviar propuesta a Carla Méndez</strong><small>Plan Crecimiento · hoy 17:00</small></div>
-                  <em>Alta</em>
-                </article>
-                <article>
-                  <span className="is-medium" />
-                  <div><strong>Retomar presupuesto Clínica Nova</strong><small>Servicios · mañana 09:30</small></div>
-                  <em>Media</em>
-                </article>
-                <article>
-                  <span className="is-campaign" />
-                  <div><strong>Revisar audiencia de recuperación</strong><small>Campaña en borrador · 468 contactos</small></div>
-                  <em>Campaña</em>
-                </article>
-              </div>
+            <div className="dark-product-depth__visual dark-product-depth__visual--workspace">
+              <ProductWorkspace />
             </div>
           </div>
-        </section>
+        </ScrollReveal>
 
-        <section className="dark-section dark-industries">
+        <ScrollReveal as="section" className="dark-section dark-industries">
           <div className="dark-shell">
             <SectionIntro
               eyebrow="Configurable por industria"
@@ -926,9 +910,9 @@ export default function HomeDarkPremium() {
               ))}
             </div>
           </div>
-        </section>
+        </ScrollReveal>
 
-        <section className="dark-section dark-pricing" id="precios">
+        <ScrollReveal as="section" className="dark-section dark-pricing" id="precios">
           <span id="planes" className="dark-anchor-alias" aria-hidden="true" />
           <div className="dark-shell">
             <SectionIntro
@@ -971,14 +955,14 @@ export default function HomeDarkPremium() {
               })}
             </div>
           </div>
-        </section>
+        </ScrollReveal>
 
-        <section className="dark-section dark-faq" id="faq">
+        <ScrollReveal as="section" className="dark-section dark-faq" id="faq">
           <div className="dark-shell dark-faq__inner">
             <div className="dark-faq__intro">
               <p className="dark-eyebrow">Preguntas frecuentes</p>
               <h2>Lo importante antes de evaluar una implementación.</h2>
-              <p>Sin promesas mágicas, costos escondidos ni atajos contra las reglas de WhatsApp.</p>
+              <p>Transparencia sobre Meta, costos externos, plantillas, consentimiento, implementación, control humano y canales adicionales.</p>
             </div>
 
             <div className="dark-faq__items">
@@ -993,9 +977,9 @@ export default function HomeDarkPremium() {
               ))}
             </div>
           </div>
-        </section>
+        </ScrollReveal>
 
-        <section className="dark-final" id="diagnostico">
+        <ScrollReveal as="section" className="dark-final" id="diagnostico">
           <div className="dark-shell dark-final__inner">
             <div>
               <p className="dark-eyebrow">Siguiente paso</p>
@@ -1007,16 +991,16 @@ export default function HomeDarkPremium() {
             </div>
 
             <div className="dark-final__actions">
-              <a className="dark-button" href={WHATSAPP_URL} target="_blank" rel="noreferrer">
-                Evaluar mi operación
+              <a className="dark-button" href="/demo">
+                Solicitar una demo
                 <Icon name="arrow" />
               </a>
-              <a className="dark-button dark-button--secondary" href="/demo">
-                Ver la demo
+              <a className="dark-button dark-button--secondary" href="#plataforma">
+                Ver cómo funciona
               </a>
             </div>
           </div>
-        </section>
+        </ScrollReveal>
       </main>
 
       <footer className="dark-footer">
